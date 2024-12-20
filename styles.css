@@ -1,0 +1,111 @@
+/* css styles */
+
+/* Change the background color of the top bar to pink */
+.navbar {
+    background-color: #E0218A !important;
+}    
+
+.navbar-link {
+    color: #FFFFFF;
+}
+
+.navbar-text {
+  color: #FFC0CB;
+}
+
+.navbar-link {
+  color: #FCC0CB;
+}
+
+.navbar-brand {
+  color: #FFC0CB;
+}
+
+.navbar-brand:hover {
+    color: #FFC0CB; 
+}
+
+.navbar-brand:link {
+    color: #FFC0CB; 
+}
+
+.navbar-brand:visited {
+    color: #FFC0CB; 
+}
+
+.navbar-brand:active {
+    color: #FFC0CB; 
+}
+
+.nav-item {
+    color: #FFC0CB; 
+}
+
+a.nav-link {
+  color: #FFC0CB;
+}
+
+
+
+/* Style for active navigation link */
+a.nav-link.active {
+    color: #FFC0CB; /* Pink for the active link */
+    font-weight: bold; /* Add underline */
+    text-decoration-color: #FFC0CB; /* Ensure the underline matches the link color */
+}
+
+/* Optional: Add hover effect for the active link */
+a.nav-link.active:hover {
+    color: #FFC0CB; /* Brighter pink on hover */
+    text-decoration-color: #FFC0CB; /* Ensure underline changes on hover */
+}
+
+/* Force the active link color to be pink */
+.navbar-nav .nav-link.active {
+    color: #FFC0CB !important; /* Use !important to override Bootstrap's styles */
+    font-weight: bold; /* Add underline */
+    text-decoration-color: #FFC0CB; /* Match underline color to text */
+}
+
+/* Optional: Add hover effect for the active link */
+.navbar-nav .nav-link.active:hover {
+    color: #FFC0CB !important; /* Brighter pink on hover */
+    text-decoration-color: #FFC0CB; /* Ensure underline changes on hover */
+}
+
+/* Hide the title banner */
+.quarto-title-banner {
+    display: none !important;
+}
+
+/* Hide the search bar */
+.quarto-search-bar {
+    display: none !important;
+}
+
+/* Change the color of the menu button (hamburger icon) */
+button.navbar-toggler {
+    color: #E0218A !important; /* Light pink for the lines */
+}
+
+/* Change the color of the menu button (hamburger icon) */
+.navbar-toggler-icon {
+    color: #FFC0CB !important; /* Light pink for the lines */
+}
+
+span.menu-text {
+    color: #FFC0CB !important; /* Light pink for the lines */
+}
+
+a.nav-link {
+    color: #FFC0CB !important; /* Light pink for the lines */
+}
+
+.navbar-collapse.collapse.show {
+  color: #FFC0CB !important; /* Light pink for the lines */
+}
+
+.quarto-content {
+  color: #FFC0CB !important; /* Light pink for the lines */
+}
+
