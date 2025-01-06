@@ -2,7 +2,7 @@
 
 /* Change the background color of the top bar to pink */
 .navbar {
-    background-color: #E0218A !important;
+    background-color: #004C97 !important;
 }    
 
 .navbar-link {
@@ -10,67 +10,67 @@
 }
 
 .navbar-text {
-  color: #FFC0CB;
+  color: #FFFFFF;
 }
 
 .navbar-link {
-  color: #FCC0CB;
+  color: #FFFFFF;
 }
 
 .navbar-brand {
-  color: #FFC0CB;
+  color: #FFFFFF;
 }
 
 .navbar-brand:hover {
-    color: #FFC0CB; 
+    color: #FFFFFF; 
 }
 
 .navbar-brand:link {
-    color: #FFC0CB; 
+    color: #FFFFFF; 
 }
 
 .navbar-brand:visited {
-    color: #FFC0CB; 
+    color: #FFFFFF; 
 }
 
 .navbar-brand:active {
-    color: #FFC0CB; 
+    color: #FFFFFF; 
 }
 
 .nav-item {
-    color: #FFC0CB; 
+    color: #FFFFFF; 
 }
 
 a.nav-link {
-  color: #FFC0CB;
+  color: #FFFFFF;
 }
 
 
 
 /* Style for active navigation link */
 a.nav-link.active {
-    color: #FFC0CB; /* Pink for the active link */
+    color: #FFFFFF; /* Pink for the active link */
     font-weight: bold; /* Add underline */
-    text-decoration-color: #FFC0CB; /* Ensure the underline matches the link color */
+    text-decoration-color: #FFFFFF; /* Ensure the underline matches the link color */
 }
 
 /* Optional: Add hover effect for the active link */
 a.nav-link.active:hover {
-    color: #FFC0CB; /* Brighter pink on hover */
-    text-decoration-color: #FFC0CB; /* Ensure underline changes on hover */
+    color: #FFFFFF; /* Brighter pink on hover */
+    text-decoration-color: #FFFFFF; /* Ensure underline changes on hover */
 }
 
 /* Force the active link color to be pink */
 .navbar-nav .nav-link.active {
-    color: #FFC0CB !important; /* Use !important to override Bootstrap's styles */
+    color: #FFFFFF !important; /* Use !important to override Bootstrap's styles */
     font-weight: bold; /* Add underline */
-    text-decoration-color: #FFC0CB; /* Match underline color to text */
+    text-decoration-color: #FFFFFF; /* Match underline color to text */
 }
 
 /* Optional: Add hover effect for the active link */
 .navbar-nav .nav-link.active:hover {
-    color: #FFC0CB !important; /* Brighter pink on hover */
-    text-decoration-color: #FFC0CB; /* Ensure underline changes on hover */
+    color: #FFFFFF !important; /* Brighter pink on hover */
+    text-decoration-color: #FFFFFF; /* Ensure underline changes on hover */
 }
 
 /* Hide the title banner */
@@ -85,27 +85,27 @@ a.nav-link.active:hover {
 
 /* Change the color of the menu button (hamburger icon) */
 button.navbar-toggler {
-    color: #E0218A !important; /* Light pink for the lines */
+    color: #004C97 !important; /* Light pink for the lines */
 }
 
 /* Change the color of the menu button (hamburger icon) */
 .navbar-toggler-icon {
-    color: #FFC0CB !important; /* Light pink for the lines */
+    color: #FFFFFF !important; /* Light pink for the lines */
 }
 
 span.menu-text {
-    color: #FFC0CB !important; /* Light pink for the lines */
+    color: #FFFFFF !important; /* Light pink for the lines */
 }
 
 a.nav-link {
-    color: #FFC0CB !important; /* Light pink for the lines */
+    color: #FFFFFF !important; /* Light pink for the lines */
 }
 
 .navbar-collapse.collapse.show {
-  color: #FFC0CB !important; /* Light pink for the lines */
+  color: #FFFFFF !important; /* Light pink for the lines */
 }
 
 .quarto-content {
-  color: #FFC0CB !important; /* Light pink for the lines */
+  color: #ffffff !important; /* Light pink for the lines */
 }
 
