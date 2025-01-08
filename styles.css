@@ -2,7 +2,7 @@
 
 /* Change the background color of the top bar to pink */
 .navbar {
-    background-color: #004C97 !important;
+    background-color: #003865 !important;
 }    
 
 .navbar-link {
@@ -85,7 +85,7 @@ a.nav-link.active:hover {
 
 /* Change the color of the menu button (hamburger icon) */
 button.navbar-toggler {
-    color: #004C97 !important; /* Light pink for the lines */
+    color: #003865 !important; /* Light pink for the lines */
 }
 
 /* Change the color of the menu button (hamburger icon) */
@@ -106,6 +106,6 @@ a.nav-link {
 }
 
 .quarto-content {
-  color: #ffffff !important; /* Light pink for the lines */
+  color: #FFFFFF !important; /* Light pink for the lines */
 }
 

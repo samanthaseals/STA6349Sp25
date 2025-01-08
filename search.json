@@ -4,13 +4,181 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Note: this is an abbreviated syllabus. The full syllabus is available through Classmate and/or Canvas.\n\nInstructor Information\n\nDr. Samantha Seals\nOffice: 4/344\n\n\n\nMeeting Times and Location\n\nTR 2:30-3:45 pm\nClassroom: 4/310\n\n\n\nOffice Hours\n\nMonday: 2:30–4:30 pm (Central)\nWednesday: 2:30–4:30 pm (Central)\nThursday: 10:00 am–12:00 pm (Central)\nOther times by appointment\n\n\n\nGrading and Evaluation\nThe course grade will be determined as follows:\n\nAssignments (25%): Each module will include an activity for students to complete using Quarto and R. The resulting .html file should be submitted to the designated assignment on Canvas by 11:59 pm on the specified date (see Canvas).\nProject (40%): You will work with your research team to complete a poster presentation. Deliverables will include 10 worksheets and a poster. Worksheets can be completed using Google Docs. The resulting .pdf file should be submitted to the designated assignment on Canvas by 11:59 on the specified date (see Canvas).\nOUR Symposium (10%): To replace class on Thursday, 04/17, everyone will be presenting their poster at the symposium.\nFinal Exam (25%): The final exam will be a timed concepts-based exam. While there may be some calculations needed, you will not be processing raw data. The final exam will be in class 2:00-4:30 pm on April 29, 2025.\n\n\n\nLate Policy\nAssigments have due dates, however, the dropboxes will not close until the end of the semester. All students are automatically granted “extensions” without question.\nNote that if there is not a submission when I go to grade (after the initial deadline), I will assign a zero (0) and request that you submit the assignment when you are able to. This is only for record keeping purposes. There is no penalty for submitting late and a full grade will be given upon review of your submission.\nExtensions are not available for the project worksheets or the final exam.\n\n\nImportant University Dates\n\n\n\n\n\n\n\nDate\nEvent\n\n\n\n\nJan 8 (Mon)\nSpring begins.\n\n\nJan 14 (Tues)\nDrop/Add period ends.\n\n\nJan 20 (Mon)\nMartin Luther King’s birthday - campus closed.\n\n\nMar 17-23 (Mon-Fri)\nSpring Break - campus closed.\n\n\nApr 7 (Mon)\nWithdrawal deadline (automatic grade of “W”).\n\n\nMay 5 (Fri)\nLate withdrawal deadline (“W” or “WF”, see requirements below)."
+    "text": "Note: this is an abbreviated syllabus. The full syllabus is available through Classmate and/or Canvas.\n\nInstructor Information\n\nDr. Samantha Seals\nOffice: 4/344\n\n\n\nMeeting Times and Location\n\nTR 2:30-3:45 pm\nClassroom: 4/310\n\n\n\nOffice Hours\n\nMonday: 2:30–4:30 pm (Central)\nWednesday: 2:30–4:30 pm (Central)\nThursday: 10:00 am–12:00 pm (Central)\nOther times by appointment\n\n\n\nGrading and Evaluation\nThe course grade will be determined as follows:\n\nAssignments (25%): Each module will include an activity for students to complete using Quarto and R. The resulting .html file should be submitted to the designated dropbox on Canvas by 11:59 pm on the specified date.\n\nAssignment 0: due S 01/12\nAssignment 1: due S 01/26\nAssignment 2: due S 02/09\nAssignment 3: due S 03/16\nAssignment 4: due S 04/27\n\nProjects - 2 (20% each): You will work with your research team to complete two projects. Deliverables will include a written report and an oral presentation.\n\nProject 1: write up due W 02/19; presentation 02/27 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nProject 2: write up due W 04/02; presentation 04/03\nProject 2: write up due 04/02; presentation 04/03 &gt;&gt;&gt;&gt;&gt;&gt;&gt; 8eedea2 (add)\n\nOUR Symposium (10%): Each team will put together a research poster based on Projects 1 and 2. To replace class on Thursday, 04/17, everyone will be presenting their poster at the symposium.\nFinal Exam (25%): The final exam will be a timed concepts-based exam. While there may be some calculations needed, you will not be processing raw data. The final exam will be in class 2:00-4:30 pm on April 29, 2025.\n\n\n\nLate Policy\nAssigments have due dates, however, the dropboxes will not close until the end of the semester. All students are automatically granted “extensions” without question.\nNote that if there is not a submission when I go to grade (after the initial deadline), I will assign a zero (0) and request that you submit the assignment when you are able to. This is only for record keeping purposes. There is no penalty for submitting late and a full grade will be given upon review of your submission.\nExtensions are not available for the projects or final exam.\n\n\nImportant University Dates\n\n\n\n\n\n\n\nDate\nEvent\n\n\n\n\nJan 8 (Mon)\nSpring begins.\n\n\nJan 14 (Tues)\nDrop/Add period ends.\n\n\nJan 20 (Mon)\nMartin Luther King’s birthday - campus closed.\n\n\nMar 17-23 (Mon-Fri)\nSpring Break - campus closed.\n\n\nApr 7 (Mon)\nWithdrawal deadline (automatic grade of “W”).\n\n\nMay 5 (Fri)\nLate withdrawal deadline (“W” or “WF”, see requirements below)."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "<b>STA4173 - Biostatistics - Spring 2025</b>",
     "section": "",
-    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\nIn Class\n\n\n\n\nR 01/09\nReview of Statistics, Introduction to R and Quarto\n\n\n\n\nT 01/14\nIndependent and dependent t tests\n\n\n\n\nR 01/16\nHow to conceptualize research questions as hypotheses\n\n\n\n\nT 01/21\nOptional meeting - Assignment 1 help\n\n\n\n\nR 01/23\nAssumptions on t tests, Wilcoxons\n\n\n\n\nT 01/28\nAssignment 1: t-tests and Wilcoxons\n\n\n\n\nR 01/30\nOne-way ANOVA; posthoc testing\n\n\n\n\nT 02/04\nANOVA assumptions; Kruskal-Wallis\n\n\n\n\nR 02/06\nProject: developing research questions, data search\n\n\n\n\nT 02/11\nTwo-way ANOVA\n\n\n\n\nR 02/13\nAssignment 2: ANOVA\n\n\n\n\nT 02/18\nSimple linear regression\n\n\n\n\nR 02/20\nMultiple regression\n\n\n\n\nT 02/25\nAssignment 3: Regression\n\n\n\n\nR 02/27\nProject: update research questions and data search\n\n\n\n\nT 03/04\nCategorical analysis\n\n\n\n\nR 03/06\nLogistic regression\n\n\n\n\nT 03/11\nAssignment 4: Categorical Analysis\n\n\n\n\nR 03/13\nProject: data exploration\n\n\n\n\nT 03/18\nSpring Break!\n\n\n\n\nR 03/20\nSpring Break!\n\n\n\n\nT 03/25\nProject: data analysis\n\n\n\n\nR 03/27\nOUR: What is a Poster?\n\n\n\n\nT 04/01\nProject: data analysis\n\n\n\n\nR 04/03\nProject: analysis results\n\n\n\n\nT 04/08\nProject: poster\n\n\n\n\nR 04/10\nIndividual group meetings with Dr. Seals\n\n\n\n\nT 04/15\nProject: practice poster presentations\n\n\n\n\nR 04/17\nOUR Symposium\n\n\n\n\nT 04/21\nCatch up\n\n\n\n\nR 04/24\nProject: Reflection"
+    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\nIn Class\n\n\n\n\nR 01/09\nReview of Estimation\n\n\n\n\nT 01/14\nIndependent and dependent t tests\n\n\n\n\nR 01/16\nHow to conceptualize research questions as hypotheses\n\n\n\n\nT 01/21\nOptional meeting - Assignment 1 help\n\n\n\n\nR 01/23\nAssumptions on t tests, Wilcoxons\n\n\n\n\nT 01/28\nOne-way ANOVA; posthoc testing\n\n\n\n\nR 01/30\nANOVA assumptions; Kruskal-Wallis\n\n\n\n\nT 02/04\nTwo-way ANOVA\n\n\n\n\nR 02/06\nProject 1: Prep\n\n\n\n\nT 02/11\nProject 1: Analysis\n\n\n\n\nR 02/13\nProject 1: Summary\n\n\n\n\nT 02/18\nProject 1: Revise & Submit\n\n\n\n\nR 02/20\nCorrelation; simple linear regression\n\n\n\n\nT 02/25\nMultiple regression\n\n\n\n\nR 02/27\nPresentation of P1\n\n\n\n\nT 03/04\nMultiple regression\n\n\n\n\nR 03/06\nLogistic regression\n\n\n\n\nT 03/11\nAssignment 3\n\n\n\n\nR 03/13\nProject 2: Prep\n\n\n\n\nT 03/18\nSpring Break!\n\n\n\n\nR 03/20\nSpring Break!\n\n\n\n\nT 03/25\nProject 2: Analysis & Summary\n\n\n\n\nR 03/27\nOUR: What is a Poster?\n\n\n\n\nT 04/01\nProject 2: Revision & Resubmission\n\n\n\n\nR 04/03\nPresentation of P2\n\n\n\n\nT 04/08\nWork on poster with group\n\n\n\n\nR 04/10\nIndividual group meetings with Dr. Seals\n\n\n\n\nT 04/15\nPoster presentation practice\n\n\n\n\nR 04/17\nOUR Symposium\n\n\n\n\nT 04/21\nCategorical analysis\n\n\n\n\nR 04/24\nCatch up!"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#introduction",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#introduction",
+    "title": "Review of Statistical Estimation",
+    "section": "Introduction",
+    "text": "Introduction\n\nIn this lecture, we will review estimation\n\nContinuous variables\n\nMean\nMedian\nPercentiles / quartiles\nVariance and standard deviation\nInterquartile range\n\nCategorical variables\n\nCount\nPercentage\n\n\nWe will also discuss exploring data graphically"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#r-introduction",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#r-introduction",
+    "title": "Review of Statistical Estimation",
+    "section": "R: Introduction",
+    "text": "R: Introduction\n\nIn this course, we will review formulas, but we will use R for computational purposes\n\nRemember to refer to the lecture notes for specific code needed\nCode is also available on this course’s GitHub repository\n\nYou can install R and RStudio if you wish; both are free.\n\nWe have access to the Posit Workbench (“the server”) through HMCSE.\n\nI know that this is probably the first time you are seeing R (or any sort of programming).\n\nThat is why we have “R lab” time built in to our course.\nRemember that I am not looking for perfection, but instead for competency."
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#todays-data-palmer-penguins",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#todays-data-palmer-penguins",
+    "title": "Review of Statistical Estimation",
+    "section": "Today’s Data: Palmer Penguins",
+    "text": "Today’s Data: Palmer Penguins\n\nToday we will be demonstrating the basics using the Palmer Penguins dataset, available through R.\n\n\npenguins &lt;- palmerpenguins::penguins"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#types-of-variables",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#types-of-variables",
+    "title": "Review of Statistical Estimation",
+    "section": "Types of Variables",
+    "text": "Types of Variables\n\n\n\n\n\n\nContinuous Variables\n\n\nA continuous variable is a variable that can has an infinite set of possible values.\n\n\n\n\nBetween any two possible values, there are an infinite number of possible values.\nThese typically arise from measurement. (Height, weight, etc.)\n\n\n\n\n\n\n\nDiscrete Variables\n\n\nA discrete variable is a variable that can only take on a finite set of possible values.\n\n\n\n\nThe possible values can usually be listed.\nThese typically arise from categorizing (work vs. home) or counting."
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#types-of-variables-1",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#types-of-variables-1",
+    "title": "Review of Statistical Estimation",
+    "section": "Types of Variables",
+    "text": "Types of Variables"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#types-of-continuous-variables",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#types-of-continuous-variables",
+    "title": "Review of Statistical Estimation",
+    "section": "Types of Continuous Variables",
+    "text": "Types of Continuous Variables\n\n\n\n\n\n\nRatio Variables\n\n\nA ratio variable is a variable that has a meaningful zero point, allowing comparisons of magnitude.\n\n\n\n\nTrue zero point indicates the absence of the quantity being measured.\nAll arithmetic operations (addition, subtraction, multiplication, division) are meaningful.\n\n\n\n\n\n\n\nInterval Variables\n\n\nAn interval variable has an arbitrary zero point and differences between values are meaningful.\n\n\n\n\nThe zero point does not indicate a true absence.\nA 1 unit difference always represents the same amount."
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#types-of-discrete-variables",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#types-of-discrete-variables",
+    "title": "Review of Statistical Estimation",
+    "section": "Types of Discrete Variables",
+    "text": "Types of Discrete Variables\n\n\n\n\n\n\nOrdinal Variables\n\n\nAn ordinal variable has a meaningful order of responses; the exact differences between responses are not necessarily equal.\n\n\n\n\nWe understand which value is “greater” or “less,” but not by how much.\nArithmetic is not meaningful.\n\n\n\n\n\n\n\nNominal Variables\n\n\nA nominal variable has is no intrinsic order among the categories.\n\n\n\n\nCategories are used merely as labels or names.\nNo arithmetic or ordering operations are meaningful."
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-mean",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-mean",
+    "title": "Review of Statistical Estimation",
+    "section": "Measures of Centrality: Mean",
+    "text": "Measures of Centrality: Mean\n\n\n\n\n\n\nSample Mean\n\n\nThe sample mean provides a single number that can represent a “typical” or central value in your data.\n\n\\bar{x} = \\frac{\\sum_{i=1}^n x_i}{n}\n\n\n\n\n\nR syntax:\n\n\ndataset_name %&gt;% summarize(mean(variable_name, na.rm = TRUE))"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-mean-1",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-mean-1",
+    "title": "Review of Statistical Estimation",
+    "section": "Measures of Centrality: Mean",
+    "text": "Measures of Centrality: Mean\n\nLet’s find the average weight (body_mass_g) of the penguins.\n\n\npenguins %&gt;% summarize(mean(body_mass_g, na.rm = TRUE))\n\n\n  \n\n\n\n\nLet’s find the average flipper length (flipper_length_mm) of the penguins.\n\n\npenguins %&gt;% summarize(mean(flipper_length_mm, na.rm = TRUE))"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-median",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-median",
+    "title": "Review of Statistical Estimation",
+    "section": "Measures of Centrality: Median",
+    "text": "Measures of Centrality: Median\n\n\n\n\n\n\nSample Median\n\n\nThe sample median is the midpoint of a distribution, the number such that half the observations are smaller and the other half are larger.\n\nIf n is odd, the median is the single middle value.\nIf n is even, the median is the average of the two middle values.\n\n\n\n\n\nR syntax:\n\n\ndataset_name %&gt;% summarize(median(variable_name, na.rm = TRUE))"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-median-1",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-median-1",
+    "title": "Review of Statistical Estimation",
+    "section": "Measures of Centrality: Median",
+    "text": "Measures of Centrality: Median\n\nLet’s find the median weight (body_mass_g) of the penguins.\n\n\npenguins %&gt;% summarize(median(body_mass_g, na.rm = TRUE))\n\n\n  \n\n\n\n\nLet’s find the median flipper length (flipper_length_mm) of the penguins.\n\n\npenguins %&gt;% summarize(median(flipper_length_mm, na.rm = TRUE))"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-variance-and-standard-deviation",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-variance-and-standard-deviation",
+    "title": "Review of Statistical Estimation",
+    "section": "Measures of Spread: Variance and Standard Deviation",
+    "text": "Measures of Spread: Variance and Standard Deviation\n\n\n\n\n\n\nSample Variance\n\n\nThe sample variance measures how “widely spread” the data points are around the mean.\ns^2 = \\frac{\\sum_{i=1}^n x_i^2 - \\frac{(\\sum_{i=1}^n x_i)^2}{n}}{n-1}\n\n\n\n\nWhen we have a mound-shaped and symmetric distribution, most observations will fall within 2 standard deviations of the mean.\nVariance results in units2, which typically does not make sense.\n\n\n\n\n\n\n\nSample Standard Deviation\n\n\nThe sample standard deviation also measures how “widely spread” the data points are around the mean.\ns = \\sqrt{s^2}\n\n\n\n\nStandard deviation is the square root of the variance, measuring spread in the original units of the data.\nR syntax:\n\n\ndataset_name %&gt;% summarize(var(variable_name, na.rm = TRUE), \n                           sd(variable_name, na.rm = TRUE))"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-variance-and-standard-deviation-1",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-variance-and-standard-deviation-1",
+    "title": "Review of Statistical Estimation",
+    "section": "Measures of Spread: Variance and Standard Deviation",
+    "text": "Measures of Spread: Variance and Standard Deviation\n\nLet’s find the variance and standard deviation of the weight (body_mass_g) of the penguins.\n\n\npenguins %&gt;% summarize(var(body_mass_g, na.rm = TRUE),\n                       sd(body_mass_g, na.rm = TRUE))\n\n\n  \n\n\n\n\nLet’s find the variance and standard deviation of the flipper length (flipper_length_mm) of the penguins.\n\n\npenguins %&gt;% summarize(var(flipper_length_mm, na.rm = TRUE),\n                       sd(flipper_length_mm, na.rm = TRUE))"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-interquartile-range",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-interquartile-range",
+    "title": "Review of Statistical Estimation",
+    "section": "Measures of Spread: Interquartile Range",
+    "text": "Measures of Spread: Interquartile Range\n\n\n\n\n\n\nSample Interquartile Range\n\n\nThe sample interquartile range measures the spread of the middle 50% of data.\n\\text{IQR} = P_{75}-P_{25}\n\n\n\n\nR syntax:\n\n\ndataset_name %&gt;% summarize(IQR(variable_name))"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-interquartile-range-1",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-interquartile-range-1",
+    "title": "Review of Statistical Estimation",
+    "section": "Measures of Spread: Interquartile Range",
+    "text": "Measures of Spread: Interquartile Range\n\nLet’s find the IQR of the weight (body_mass_g) of the penguins.\n\n\npenguins %&gt;% summarize(IQR(body_mass_g, na.rm = TRUE))\n\n\n  \n\n\n\n\nLet’s find the IQR of the flipper length (flipper_length_mm) of the penguins.\n\n\npenguins %&gt;% summarize(IQR(flipper_length_mm, na.rm = TRUE))"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#mean-standard-deviation-vs.-median-iqr",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#mean-standard-deviation-vs.-median-iqr",
+    "title": "Review of Statistical Estimation",
+    "section": "Mean & Standard Deviation vs. Median & IQR",
+    "text": "Mean & Standard Deviation vs. Median & IQR\n\nWhen should we use the mean vs. the median to describe the center of the distribution?\n\nMound-shaped and symmetric \\to \\bar{x} & s.\nNot mound-shaped and symmetric \\to M & \\text{IQR}.\n\n… How do we know the shape of the distribution?\nWe will explore histograms."
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms",
+    "title": "Review of Statistical Estimation",
+    "section": "Graphs: Histograms",
+    "text": "Graphs: Histograms"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-1",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-1",
+    "title": "Review of Statistical Estimation",
+    "section": "Graphs: Histograms",
+    "text": "Graphs: Histograms"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-2",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-2",
+    "title": "Review of Statistical Estimation",
+    "section": "Graphs: Histograms",
+    "text": "Graphs: Histograms"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-3",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-3",
+    "title": "Review of Statistical Estimation",
+    "section": "Graphs: Histograms",
+    "text": "Graphs: Histograms"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-r-code",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-r-code",
+    "title": "Review of Statistical Estimation",
+    "section": "Graphs: Histograms (R code)",
+    "text": "Graphs: Histograms (R code)\n\nWe are using the ggplot2 package for graphing.\n\nIt will always start with ggplot().\nWe will then layer elements on top.\n\nR syntax:\n\n\ndataset_name %&gt;% \n  ggplot(aes(x=variable_name)) + \n  geom_histogram()"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-4",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-4",
+    "title": "Review of Statistical Estimation",
+    "section": "Graphs: Histograms",
+    "text": "Graphs: Histograms\n\nLet’s look at the histogram of penguin weight (body_mass_g):\n\n\n\npenguins %&gt;% \n  ggplot(aes(x=body_mass_g)) + \n  geom_histogram()"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-5",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-5",
+    "title": "Review of Statistical Estimation",
+    "section": "Graphs: Histograms",
+    "text": "Graphs: Histograms\n\nLet’s look at the histogram of penguin weight (body_mass_g):\n\n\n\npenguins %&gt;% \n  ggplot(aes(x=body_mass_g)) + \n  geom_histogram() +\n  labs(x = \"Body Mass (g)\",\n       y = \"Number of Penguins\",\n       title = \"Penguin Weight Distribution\") +\n  theme_bw()"
+  },
+  {
+    "objectID": "files/lectures/W01-L1-review-of-estimation.html#wrap-up",
+    "href": "files/lectures/W01-L1-review-of-estimation.html#wrap-up",
+    "title": "Review of Statistical Estimation",
+    "section": "Wrap Up",
+    "text": "Wrap Up\n\nToday we reviewed estimation.\nNext week, we will review statistical inference.\n\nConfidence intervals\nHypothesis testing\n\nGet to know you quiz - complete with RStudio.\n\n.qmd \\to Quarto\n.R \\to R script\n\nJoin the Discord server!\n\nIf you are already a Discord user, this is a friendly reminder that you can change your display name…"
   }
 ]
