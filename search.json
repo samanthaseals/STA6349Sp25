@@ -4,188 +4,160 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Note: this is an abbreviated syllabus. The full syllabus is available through Classmate and/or Canvas.\n\nInstructor Information\n\nDr. Samantha Seals\nOffice: 4/344\n\n\n\nMeeting Times and Location\n\nTR 2:30-3:45 pm\nClassroom: 4/310\n\n\n\nOffice Hours\n\nMonday: 2:30–4:30 pm (Central)\nWednesday: 2:30–4:30 pm (Central)\nThursday: 10:00 am–12:00 pm (Central)\nOther times by appointment\n\n\n\nGrading and Evaluation\nThe course grade will be determined as follows:\n\nAssignments (25%): Each module will include an activity for students to complete using Quarto and R. The resulting .html file should be submitted to the designated dropbox on Canvas by 11:59 pm on the specified date (see Canvas).\nProject (40%): You will work with your research team to complete a research project. There will be several group check ins submitted during the project period. The resulting .pdf file should be submitted to the designated dropbox on Canvas by 11:59 pm on the specified date (see Canvas).\nOUR Symposium (10%): Each team will put together a research poster based on the project. All research teams will present their poster at the symposium.\nFinal Exam (25%): The final exam will be a timed concepts-based exam. While there may be some calculations needed, you will not be processing raw data. The final exam will be in class 11:00 am-1:30 pm on April 30, 2025.\n\n\n\nLate Policy\nAssigments have due dates, however, the dropboxes will not close until the end of the semester. All students are automatically granted “extensions” without question.\nNote that if there is not a submission when I go to grade (after the initial deadline), I will assign a zero (0) and request that you submit the assignment when you are able to. This is only for record keeping purposes. There is no penalty for submitting late and a full grade will be given upon review of your submission.\nExtensions are not available for the projects or final exam."
+    "text": "Note: this is an abbreviated syllabus. The full syllabus is available through Classmate and/or Canvas.\n\nInstructor Information\n\nDr. Samantha Seals\nOffice: 4/344\n\n\n\nMeeting Times and Location\n\nDay/time: MW 6:00-7:15 pm (Central)\nClassroom: 4/406\n\n\n\nOffice Hours\n\nMonday: 2:30–4:30 pm (Central)\nWednesday: 2:30–4:30 pm (Central)\nThursday: 10:00 am–12:00 pm (Central)\nOther times by appointment\n\n\n\nGrading and Evaluation\nThe course grade will be determined as follows:\n\nActivities (20%): Every few lectures, we will use the class time to work on an activity reflecting homework question(s) from the learning module. The resulting .html file will be submitted to the appropriate dropbox on Canvas. To allow for flexibility with life/work scheduling, activities will be due the following Sunday at 11:59 pm (Central).\nProjects - 2 (25% each): Both projects will be completed using R and Quarto. Projects will be presented orally on the assigned date(s). Students are expected to be present for and participate in their group’s presentation, but to allow for flexibility with life/work scheduling, students may watch the other groups’ presentations through the class recording. Evaluations of other groups’ projects will be due the following Sunday at 11:59 pm (Central).\nFinal Exam (30%): The final exam will be a written, closed book, proctored exam focused on your conceptual understanding of the course. While there may be some basic calculations needed, you will not be processing raw data on the proctored portion of the final exam or dealing with R code in any form. A scientific (not graphing) calculator will be allowed and is recommended. The proctored final exam will be on Monday, April 28, 2025. Exams may not be taken late. Students will have 2 hours and 30 minutes to complete the exam.\n\nFor those local to the Pensacola area, you may opt to come to the classroom for your final exam. When MathStat Proctoring reaches out, please reply: let them know that you will be testing with me on campus and cc me on your response. Our exam is 6:00-8:30 pm in Building 4, Room 404.\nFor those requiring external proctoring, you must follow guidelines from MathStat Proctoring. You will receive an email from Proctoring the first week of the semester. Due to the number of students in our graduate programs and form processing time, you must complete the form by the deadline specified by Proctoring. Otherwise, you will receive a 0 on the exam.\n\n\n\n\nLate Policy\nAssigments have due dates, however, the dropboxes will not close until the end of the semester. All students are automatically granted “extensions” without question.\nNote that if there is not a submission when I go to grade (after the initial deadline), I will assign a zero (0) and request that you submit the assignment when you are able to. This is only for record keeping purposes. There is no penalty for submitting late and a full grade will be given upon review of your submission.\nExtensions are not available for the projects or final exam."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#introduction",
+    "href": "files/lecture/W01-L1-intro-to-R.html#introduction",
+    "title": "Review of Technology",
+    "section": "Introduction",
+    "text": "Introduction\n\nWelcome to Applied Bayesian Analysis - Spring 2025!\n\nCanvas set up\nSyllabus\nDiscord\nR/RStudio\nQuarto\nGitHub\nResources"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#introduction-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#introduction-1",
+    "title": "Review of Technology",
+    "section": "Introduction",
+    "text": "Introduction\n\nGeneral topics:\n\nProbability rules and distributions\nBayes Theorem\nPrior distributions\nPosterior distributions\nConjugate families\nBeta-Binomial, Normal-Normal, and Gamma-Poisson models\nPosterior simulation\nPosterior inference\nLinear regression\n\nThis is an applied class."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#github",
+    "href": "files/lecture/W01-L1-intro-to-R.html#github",
+    "title": "Review of Technology",
+    "section": "GitHub",
+    "text": "GitHub\n\nOur course lectures and labs are posted on GitHub.\nPlease bookmark the repository: GitHub for STA6349.\nYou will want to look at my .qmd files for formatting / \\LaTeX purposes.\nFeel free to poke around my GitHub to see materials for other classes."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#rrstudio",
+    "href": "files/lecture/W01-L1-intro-to-R.html#rrstudio",
+    "title": "Review of Technology",
+    "section": "R/RStudio",
+    "text": "R/RStudio\n\nWe will be using R in this course.\n\nI use the RStudio IDE, however, if you would like to use another IDE, that is fine.\n\nIt is okay if you have not used R before!\nFull disclosure: I am a biostatistician first, programmer second.\n\nThis means that I focus on the application of statistical methods and not on “understanding” the innerworkings of R.\n\nR is a tool that we use, like how SAS, JMP, Stata, SPSS, Excel, etc. are tools.\n\nSometimes my code is not elegant/efficient, and that’s okay! Because our focus is on the application of methods, we are interested in the code working.\nI have learned so much from my students since implementing R in the classroom.\n\nDo not be afraid to teach me new things!\n\n\nThis is an applied class."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#rrstudio-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#rrstudio-1",
+    "title": "Review of Technology",
+    "section": "R/RStudio",
+    "text": "R/RStudio\n\nYou can install R and RStudio on your computer for free.\n\nR from CRAN\nRStudio from Posit\n\nAlternative to installing: RStudio Server hosted by UWF HMCSE\nDo not use Citrix.\nI encourage you to install R on your own machine if you are able.\n\nIn the “real world,” you will not have access to the server.\nInstalling on your own machine will help your future self troubleshoot issues."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidy-data",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidy-data",
+    "title": "Review of Technology",
+    "section": "Tidy Data",
+    "text": "Tidy Data\nJournal article: Tidy Data by Wickham (2014, Journal of Statistical Software)\nBook chapter: Data Tidying by Wickham, Çetinkaya-Rundel, and Grolemund\n\nThere are three interrelated rules that make a dataset tidy:\n\nEach variable is a column; each column is a variable.\nEach observation is a row; each row is an observation.\nEach value is a cell; each cell is a single value."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidyverse",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidyverse",
+    "title": "Review of Technology",
+    "section": "Tidyverse",
+    "text": "Tidyverse"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidyverse-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidyverse-1",
+    "title": "Review of Technology",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\ntibble for modern data frames.\nreadr and haven for data import.\n\nreadr is pulled in with tidyverse\nhaven needs to be called in on its own\n\ntidyr for data tidying.\n\ndplyr for data manipulation.\nggplot2 for data visualization.\nIt is not possible for me to teach you everything you will ever need to know about programming in R.\n\nGood resource for tidyverse: data science in a box"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidyverse-2",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidyverse-2",
+    "title": "Review of Technology",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\nA major advantage of using tidyverse is the common “language” between the functions.\nAnother advantage: the pipe operator, %&gt;%.\n\nYes, there is a pipe operator now included in base R. No, I do not use it.\n\nHere is a discussion of similarities and differences from Hadley himself.\n\nBy default, %&gt;% deposits everything that came before into the first argument of the next function.\n\nIf we want to insert it elsewhere, we can indicate that with a “.” in the function.\n\n\n\n\nlm(body_mass_g ~ flipper_length_mm, data = penguins)\n\npenguins %&gt;% lm(body_mass_g ~ flipper_length_mm, data = .)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidyverse-3",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidyverse-3",
+    "title": "Review of Technology",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\nIf we try to use a function before calling its package in, we will see an error.\n\n\nsw &lt;- tibble(starwars) %&gt;% filter(mass &lt; 100)\n\nError in tibble(starwars) %&gt;% filter(mass &lt; 100): could not find function \"%&gt;%\"\n\n\n\nWe are good to go after calling in tidyverse.\n\n\nlibrary(tidyverse)\nsw &lt;- tibble(starwars) %&gt;% filter(mass &lt; 100)\nhead(sw, n=3)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#importing-data",
+    "href": "files/lecture/W01-L1-intro-to-R.html#importing-data",
+    "title": "Review of Technology",
+    "section": "Importing Data",
+    "text": "Importing Data\n\nLet’s import data from the Jackson Heart Study.\n\n\njhs_csv &lt;- read_csv(\"/path/to/folder/analysislong.csv\")\nhead(jhs_csv)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#importing-data-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#importing-data-1",
+    "title": "Review of Technology",
+    "section": "Importing Data",
+    "text": "Importing Data\n\nBe comfortable with Googling for help with code to import data.\nAs a collaborative statistician, I have received the following file types:\n\n.sas7bdat\n.sav\n.dat\n.csv\n.xls\n.xlsx\n.txt\nGoogle Sheet\nhand written"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#importing-data-2",
+    "href": "files/lecture/W01-L1-intro-to-R.html#importing-data-2",
+    "title": "Review of Technology",
+    "section": "Importing Data",
+    "text": "Importing Data\n\nThere have been times where I have received data as a .xlsx, but I can’t get it to import properly.\n\nUsually, the issue is that there is a character variable with too much text.\nSometimes, it’s that the variable type changes mid-dataset.\n\ni.e., both a number and a character stored in the same vector.\n\n\nSometimes the solution is saving it as a different file type (I default to .csv).\nGet comfortable Googling error messages.\n\nI am still consulting Dr. Google for assistance on a daily basis!\n\nTry not to do any data management within the original file type!\n\nWe want to be able to retrace our steps.\nReproducible research!"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nFunctions:\n\nselect(): Selecting columns.\nfilter(): Filtering the observations.\nmutate(): Adding or transforming columns.\nsummarise(): Summarizing data.\ngroup_by(): Grouping data for summary operations.\n%&gt;%: Pipelines."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-1",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nselect(): Selecting columns.\n\n\njhs_csv %&gt;% \n  select(subjid, visit, age, sex) %&gt;% \n  head(n=4)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-2",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-2",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nfilter(): Filtering rows.\n\n\njhs_csv %&gt;% \n  filter(visit == 1) %&gt;% \n  head(n=3)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-3",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-3",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nmutate(): Adding or transforming columns.\n\n\njhs_csv %&gt;% \n  filter(visit == 1) %&gt;%\n  select(subjid, sex) %&gt;%\n  mutate(male = if_else(sex == \"Male\", 1, 0)) %&gt;%\n  head(n=3)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-4",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-4",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nsummarise(): Summarizing data.\n\n\njhs_csv %&gt;% \n  filter(visit == 1) %&gt;%\n  summarize(n = n(),\n            mean_BMI = round(mean(BMI, na.rm = TRUE),2),\n            sd_BMI = round(sd(BMI, na.rm = TRUE),2),\n            n_female = sum(sex == \"Female\", na.rm = TRUE),\n            pct_female = round(sum(sex == \"Female\", na.rm = TRUE)*100/n(),2))"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-5",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-5",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\ngroup_by(): Grouping data for summary operations.\n\n\njhs_csv %&gt;% \n  filter(visit == 1) %&gt;%\n  group_by(HTN) %&gt;%\n  summarize(n = n(),\n            mean_BMI = round(mean(BMI, na.rm = TRUE),2),\n            sd_BMI = round(sd(BMI, na.rm = TRUE),2),\n            n_female = sum(sex == \"Female\", na.rm = TRUE),\n            pct_female = round(sum(sex == \"Female\", na.rm = TRUE)*100/n(),2))"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#wrap-up",
+    "href": "files/lecture/W01-L1-intro-to-R.html#wrap-up",
+    "title": "Review of Technology",
+    "section": "Wrap Up",
+    "text": "Wrap Up\n\nToday we have gently introduced data management in R.\nI do not expect you to become an expert R programmer, but the more you practice, the easier it becomes.\nToday’s activity: Assignment 0"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "<b>STA6349 - Applied Bayesian Analysis - Spring 2025</b>",
+    "section": "",
+    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\nIn Class\n\n\n\n\nW 01/09\nIntroduction to R\n \n \n\n\nM 01/13\nIndependent and dependent t tests\n\n\n\n\nW 01/15\nHow to conceptualize research questions as hypotheses\n\n\n\n\nM 01/20\nOptional meeting - Assignment 1 help\n\n\n\n\nW 01/22\nAssumptions on t tests, Wilcoxons\n\n\n\n\nM 01/27\nAssignment 1\n\n\n\n\nW 01/29\nOne-Way ANOVA and post-hoc tests\n\n\n\n\nM 02/03\nANOVA assumptions; Kruskal-Wallis\n\n\n\n\nW 02/05\nProject: planning meeting\n\n\n\n\nM 02/09\nTwo-way ANOVA\n\n\n\n\nW 02/11\nAssignment 2\n\n\n\n\nM 02/17\nRegression\n\n\n\n\nW 02/19\nRegression\n\n\n\n\nM 02/24\nAssigment 3\n\n\n\n\nW 02/26\nProject: planning meeting\n\n\n\n\nM 03/03\nCategorical analysis\n\n\n\n\nW 03/05\nLogistic regression\n\n\n\n\nM 03/10\nAssignment 4\n\n\n\n\nW 03/12\nProject: planning meeting\n\n\n\n\nM 03/17\nSpring Break!\n\n\n\n\nW 03/19\nSpring Break!\n\n\n\n\nM 03/24\nProject: analysis\n\n\n\n\nW 03/26\nOUR: What is a Poster?\n\n\n\n\nM 03/31\nProject: analysis\n\n\n\n\nW 04/02\nProject: summary\n\n\n\n\nM 04/07\nProject: poster draft\n\n\n\n\nW 04/09\nIndividual group meetings with Dr. Seals\n\n\n\n\nM 04/14\nPoster presentation practice\n\n\n\n\nW 04/16\nOUR Symposium\n\n\n\n\nM 04/20\nCatch up!\n\n\n\n\nW 04/23\nProject: reflections"
   },
   {
     "objectID": "files/assignments/Assignment0.html",
     "href": "files/assignments/Assignment0.html",
     "title": "Introductions",
     "section": "",
-    "text": "What is your name as it appears on my roster in Classmate? (We are using this assignment for attendance verification.)\nHow is your name pronounced?\nIs there another name you prefer to go by?\nWhat are your pronouns?\nWhat is your major(s) and minor(s)?\nWhat statistics courses have you taken previously?\nWhat environmental science courses have you taken previously?\nAre you familiar with statistical programming? (e.g., R, python, SAS, etc.)\nAre you familiar with Pensacola Beach?\nDo you have any questions or concerns about this course? If so, please list them and we will respond when we grade this assignment.\nWhat interests do you have, outside of school and work?\nWhat are three of your favorite things?\nIf you were independently wealthy, what would you do with your time?"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "<b>STA4173 - Biostatistics - Spring 2025</b>",
-    "section": "",
-    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\nIn Class\n\n\n\n\nR 01/09\nReview of Estimation\n \n \n\n\nT 01/14\nIndependent and dependent t tests\n\n\n\n\nR 01/16\nHow to conceptualize research questions as hypotheses\n\n\n\n\nT 01/21\nOptional meeting - Assignment 1 help\n\n\n\n\nR 01/23\nAssumptions on t tests, Wilcoxons\n\n\n\n\nT 01/28\nAssignment 1\n\n\n\n\nR 01/30\nOne-Way ANOVA and post-hoc tests\n\n\n\n\nT 02/04\nANOVA assumptions; Kruskal-Wallis\n\n\n\n\nR 02/06\nProject: planning meeting\n\n\n\n\nT 02/11\nTwo-way ANOVA\n\n\n\n\nR 02/13\nAssignment 2\n\n\n\n\nT 02/18\nRegression\n\n\n\n\nR 02/20\nRegression\n\n\n\n\nT 02/25\nAssigment 3\n\n\n\n\nR 02/27\nProject: planning meeting\n\n\n\n\nT 03/04\nCategorical analysis\n\n\n\n\nR 03/06\nLogistic regression\n\n\n\n\nT 03/11\nAssignment 4\n\n\n\n\nR 03/13\nProject: planning meeting\n\n\n\n\nT 03/18\nSpring Break!\n\n\n\n\nR 03/20\nSpring Break!\n\n\n\n\nT 03/25\nProject: analysis\n\n\n\n\nR 03/27\nOUR: What is a Poster?\n\n\n\n\nT 04/01\nProject: analysis\n\n\n\n\nR 04/03\nProject: summary\n\n\n\n\nT 04/08\nProject: poster draft\n\n\n\n\nR 04/10\nIndividual group meetings with Dr. Seals\n\n\n\n\nT 04/15\nPoster presentation practice\n\n\n\n\nR 04/17\nOUR Symposium\n\n\n\n\nT 04/21\nCatch up!\n\n\n\n\nR 04/24\nProject: reflections"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#introduction",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#introduction",
-    "title": "Review of Statistical Estimation",
-    "section": "Introduction",
-    "text": "Introduction\n\nIn this lecture, we will review estimation\n\nContinuous variables\n\nMean\nMedian\nPercentiles / quartiles\nVariance and standard deviation\nInterquartile range\n\nCategorical variables\n\nCount\nPercentage\n\n\nWe will also discuss exploring data graphically"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#r-introduction",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#r-introduction",
-    "title": "Review of Statistical Estimation",
-    "section": "R: Introduction",
-    "text": "R: Introduction\n\nIn this course, we will review formulas, but we will use R for computational purposes\n\nRemember to refer to the lecture notes for specific code needed\nCode is also available on this course’s GitHub repository\n\nYou can install R and RStudio if you wish; both are free.\n\nWe have access to the Posit Workbench (“the server”) through HMCSE.\n\nI know that this is probably the first time you are seeing R (or any sort of programming).\n\nThat is why we have “R lab” time built in to our course.\nRemember that I am not looking for perfection, but instead for competency."
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#todays-data-palmer-penguins",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#todays-data-palmer-penguins",
-    "title": "Review of Statistical Estimation",
-    "section": "Today’s Data: Palmer Penguins",
-    "text": "Today’s Data: Palmer Penguins\n\nToday we will be demonstrating the basics using the Palmer Penguins dataset, available through R.\n\n\npenguins &lt;- palmerpenguins::penguins"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#types-of-variables",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#types-of-variables",
-    "title": "Review of Statistical Estimation",
-    "section": "Types of Variables",
-    "text": "Types of Variables\n\n\n\n\n\n\nContinuous Variables\n\n\nA continuous variable is a variable that can has an infinite set of possible values.\n\n\n\n\nBetween any two possible values, there are an infinite number of possible values.\nThese typically arise from measurement. (Height, weight, etc.)\n\n\n\n\n\n\n\nDiscrete Variables\n\n\nA discrete variable is a variable that can only take on a finite set of possible values.\n\n\n\n\nThe possible values can usually be listed.\nThese typically arise from categorizing (work vs. home) or counting."
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#types-of-variables-1",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#types-of-variables-1",
-    "title": "Review of Statistical Estimation",
-    "section": "Types of Variables",
-    "text": "Types of Variables"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#types-of-continuous-variables",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#types-of-continuous-variables",
-    "title": "Review of Statistical Estimation",
-    "section": "Types of Continuous Variables",
-    "text": "Types of Continuous Variables\n\n\n\n\n\n\nRatio Variables\n\n\nA ratio variable is a variable that has a meaningful zero point, allowing comparisons of magnitude.\n\n\n\n\nTrue zero point indicates the absence of the quantity being measured.\nAll arithmetic operations (addition, subtraction, multiplication, division) are meaningful.\n\n\n\n\n\n\n\nInterval Variables\n\n\nAn interval variable has an arbitrary zero point and differences between values are meaningful.\n\n\n\n\nThe zero point does not indicate a true absence.\nA 1 unit difference always represents the same amount."
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#types-of-discrete-variables",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#types-of-discrete-variables",
-    "title": "Review of Statistical Estimation",
-    "section": "Types of Discrete Variables",
-    "text": "Types of Discrete Variables\n\n\n\n\n\n\nOrdinal Variables\n\n\nAn ordinal variable has a meaningful order of responses; the exact differences between responses are not necessarily equal.\n\n\n\n\nWe understand which value is “greater” or “less,” but not by how much.\nArithmetic is not meaningful.\n\n\n\n\n\n\n\nNominal Variables\n\n\nA nominal variable has is no intrinsic order among the categories.\n\n\n\n\nCategories are used merely as labels or names.\nNo arithmetic or ordering operations are meaningful."
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-mean",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-mean",
-    "title": "Review of Statistical Estimation",
-    "section": "Measures of Centrality: Mean",
-    "text": "Measures of Centrality: Mean\n\n\n\n\n\n\nSample Mean\n\n\nThe sample mean provides a single number that can represent a “typical” or central value in your data.\n\n\\bar{x} = \\frac{\\sum_{i=1}^n x_i}{n}\n\n\n\n\n\nR syntax:\n\n\ndataset_name %&gt;% summarize(mean(variable_name, na.rm = TRUE))"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-mean-1",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-mean-1",
-    "title": "Review of Statistical Estimation",
-    "section": "Measures of Centrality: Mean",
-    "text": "Measures of Centrality: Mean\n\nLet’s find the average weight (body_mass_g) of the penguins.\n\n\npenguins %&gt;% summarize(mean(body_mass_g, na.rm = TRUE))\n\n\n  \n\n\n\n\nLet’s find the average flipper length (flipper_length_mm) of the penguins.\n\n\npenguins %&gt;% summarize(mean(flipper_length_mm, na.rm = TRUE))"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-median",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-median",
-    "title": "Review of Statistical Estimation",
-    "section": "Measures of Centrality: Median",
-    "text": "Measures of Centrality: Median\n\n\n\n\n\n\nSample Median\n\n\nThe sample median is the midpoint of a distribution, the number such that half the observations are smaller and the other half are larger.\n\nIf n is odd, the median is the single middle value.\nIf n is even, the median is the average of the two middle values.\n\n\n\n\n\nR syntax:\n\n\ndataset_name %&gt;% summarize(median(variable_name, na.rm = TRUE))"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-median-1",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-centrality-median-1",
-    "title": "Review of Statistical Estimation",
-    "section": "Measures of Centrality: Median",
-    "text": "Measures of Centrality: Median\n\nLet’s find the median weight (body_mass_g) of the penguins.\n\n\npenguins %&gt;% summarize(median(body_mass_g, na.rm = TRUE))\n\n\n  \n\n\n\n\nLet’s find the median flipper length (flipper_length_mm) of the penguins.\n\n\npenguins %&gt;% summarize(median(flipper_length_mm, na.rm = TRUE))"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-variance-and-standard-deviation",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-variance-and-standard-deviation",
-    "title": "Review of Statistical Estimation",
-    "section": "Measures of Spread: Variance and Standard Deviation",
-    "text": "Measures of Spread: Variance and Standard Deviation\n\n\n\n\n\n\nSample Variance\n\n\nThe sample variance measures how “widely spread” the data points are around the mean.\ns^2 = \\frac{\\sum_{i=1}^n x_i^2 - \\frac{(\\sum_{i=1}^n x_i)^2}{n}}{n-1}\n\n\n\n\nWhen we have a mound-shaped and symmetric distribution, most observations will fall within 2 standard deviations of the mean.\nVariance results in units2, which typically does not make sense.\n\n\n\n\n\n\n\nSample Standard Deviation\n\n\nThe sample standard deviation also measures how “widely spread” the data points are around the mean.\ns = \\sqrt{s^2}\n\n\n\n\nStandard deviation is the square root of the variance, measuring spread in the original units of the data.\nR syntax:\n\n\ndataset_name %&gt;% summarize(var(variable_name, na.rm = TRUE), \n                           sd(variable_name, na.rm = TRUE))"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-variance-and-standard-deviation-1",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-variance-and-standard-deviation-1",
-    "title": "Review of Statistical Estimation",
-    "section": "Measures of Spread: Variance and Standard Deviation",
-    "text": "Measures of Spread: Variance and Standard Deviation\n\nLet’s find the variance and standard deviation of the weight (body_mass_g) of the penguins.\n\n\npenguins %&gt;% summarize(var(body_mass_g, na.rm = TRUE),\n                       sd(body_mass_g, na.rm = TRUE))\n\n\n  \n\n\n\n\nLet’s find the variance and standard deviation of the flipper length (flipper_length_mm) of the penguins.\n\n\npenguins %&gt;% summarize(var(flipper_length_mm, na.rm = TRUE),\n                       sd(flipper_length_mm, na.rm = TRUE))"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-interquartile-range",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-interquartile-range",
-    "title": "Review of Statistical Estimation",
-    "section": "Measures of Spread: Interquartile Range",
-    "text": "Measures of Spread: Interquartile Range\n\n\n\n\n\n\nSample Interquartile Range\n\n\nThe sample interquartile range measures the spread of the middle 50% of data.\n\\text{IQR} = P_{75}-P_{25}\n\n\n\n\nR syntax:\n\n\ndataset_name %&gt;% summarize(IQR(variable_name))"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-interquartile-range-1",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#measures-of-spread-interquartile-range-1",
-    "title": "Review of Statistical Estimation",
-    "section": "Measures of Spread: Interquartile Range",
-    "text": "Measures of Spread: Interquartile Range\n\nLet’s find the IQR of the weight (body_mass_g) of the penguins.\n\n\npenguins %&gt;% summarize(IQR(body_mass_g, na.rm = TRUE))\n\n\n  \n\n\n\n\nLet’s find the IQR of the flipper length (flipper_length_mm) of the penguins.\n\n\npenguins %&gt;% summarize(IQR(flipper_length_mm, na.rm = TRUE))"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#mean-standard-deviation-vs.-median-iqr",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#mean-standard-deviation-vs.-median-iqr",
-    "title": "Review of Statistical Estimation",
-    "section": "Mean & Standard Deviation vs. Median & IQR",
-    "text": "Mean & Standard Deviation vs. Median & IQR\n\nWhen should we use the mean vs. the median to describe the center of the distribution?\n\nMound-shaped and symmetric \\to \\bar{x} & s.\nNot mound-shaped and symmetric \\to M & \\text{IQR}.\n\n… How do we know the shape of the distribution?\nWe will explore histograms."
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms",
-    "title": "Review of Statistical Estimation",
-    "section": "Graphs: Histograms",
-    "text": "Graphs: Histograms"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-1",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-1",
-    "title": "Review of Statistical Estimation",
-    "section": "Graphs: Histograms",
-    "text": "Graphs: Histograms"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-2",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-2",
-    "title": "Review of Statistical Estimation",
-    "section": "Graphs: Histograms",
-    "text": "Graphs: Histograms"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-3",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-3",
-    "title": "Review of Statistical Estimation",
-    "section": "Graphs: Histograms",
-    "text": "Graphs: Histograms"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-r-code",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-r-code",
-    "title": "Review of Statistical Estimation",
-    "section": "Graphs: Histograms (R code)",
-    "text": "Graphs: Histograms (R code)\n\nWe are using the ggplot2 package for graphing.\n\nIt will always start with ggplot().\nWe will then layer elements on top.\n\nR syntax:\n\n\ndataset_name %&gt;% \n  ggplot(aes(x=variable_name)) + \n  geom_histogram()"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-4",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-4",
-    "title": "Review of Statistical Estimation",
-    "section": "Graphs: Histograms",
-    "text": "Graphs: Histograms\n\nLet’s look at the histogram of penguin weight (body_mass_g):\n\n\n\npenguins %&gt;% \n  ggplot(aes(x=body_mass_g)) + \n  geom_histogram()"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-5",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#graphs-histograms-5",
-    "title": "Review of Statistical Estimation",
-    "section": "Graphs: Histograms",
-    "text": "Graphs: Histograms\n\nLet’s look at the histogram of penguin weight (body_mass_g):\n\n\n\npenguins %&gt;% \n  ggplot(aes(x=body_mass_g)) + \n  geom_histogram() +\n  labs(x = \"Body Mass (g)\",\n       y = \"Number of Penguins\",\n       title = \"Penguin Weight Distribution\") +\n  theme_bw()"
-  },
-  {
-    "objectID": "files/lectures/W01-L1-review-of-estimation.html#wrap-up",
-    "href": "files/lectures/W01-L1-review-of-estimation.html#wrap-up",
-    "title": "Review of Statistical Estimation",
-    "section": "Wrap Up",
-    "text": "Wrap Up\n\nToday we reviewed estimation.\nNext week, we will review statistical inference.\n\nConfidence intervals\nHypothesis testing\n\nGet to know you quiz - complete with RStudio.\n\n.qmd \\to Quarto\n.R \\to R script\n\nJoin the Discord server!\n\nIf you are already a Discord user, this is a friendly reminder that you can change your display name…"
+    "text": "What is your name as it appears on my roster in Classmate? (I am using this assignment for attendance verification.)\nHow is your name pronounced?\nIs there another name you prefer to go by?\nWhat are your pronouns?\nWhat is your major(s) and minor(s)?\nWhat statistics courses have you taken previously?\nAre you familiar with statistical programming? (e.g., R, python, SAS, etc.)\nDo you have any questions or concerns about this course? If so, please list them and I will respond when I grade this assignment.\nWhat interests do you have, outside of school and work?\nWhat are three of your favorite things?\nIf you were independently wealthy, what would you do with your time?"
   }
 ]
