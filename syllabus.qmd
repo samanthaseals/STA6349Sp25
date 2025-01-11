@@ -1,0 +1,50 @@
+---
+page-layout: full
+title: "Syllabus"
+format:
+  html:
+    embed-resources: true
+execute:
+    echo: false
+    warning: false
+    message: false
+---
+
+Note: this is an abbreviated syllabus. The full syllabus is available through Classmate and/or Canvas.
+
+### Instructor Information
+
+- [Dr. Samantha Seals](http://sealslab.github.io)
+-	Office: 4/344
+
+### Meeting Times and Location
+
+- Day/time: MW 6:00-7:15 pm (Central)
+- Classroom: 4/406
+
+### Office Hours
+
+- Monday: 2:30--4:30 pm (Central)
+- Wednesday: 2:30--4:30 pm (Central)
+- Thursday: 10:00 am--12:00 pm (Central)
+- Other times by appointment
+
+### Grading and Evaluation
+
+The course grade will be determined as follows:
+
+1. Activities (20%): Every few lectures, we will use the class time to work on an activity reflecting homework question(s) from the learning module. The resulting .html file will be submitted to the appropriate dropbox on Canvas. To allow for flexibility with life/work scheduling, activities will be due the following Sunday at 11:59 pm (Central). 
+2. Projects - 2 (25% each): Both projects will be completed using R and Quarto. Projects will be presented orally on the assigned date(s). Students are expected to be present for and participate in their group's presentation, but to allow for flexibility with life/work scheduling, students may watch the other groups' presentations through the class recording. Evaluations of other groups' projects will be due the following Sunday at 11:59 pm (Central). 
+3. Final Exam (30%): The final exam will be a written, closed book, proctored exam focused on your *conceptual understanding* of the course. While there may be some basic calculations needed, you will not be processing raw data on the proctored portion of the final exam or dealing with R code in any form. A scientific (*not* graphing) calculator will be allowed and is recommended. **The proctored final exam will be on Monday, April 28, 2025.** Exams may not be taken late. Students will have 2 hours and 30 minutes to complete the exam.
+    - For those local to the Pensacola area, you may opt to come to the classroom for your final exam. *When MathStat Proctoring reaches out, please reply: let them know that you will be testing with me on campus and cc me on your response.* Our exam is 6:00-8:30 pm in Building 4, Room 404. 
+    - For those requiring external proctoring, you must follow guidelines from MathStat Proctoring. You will receive an email from Proctoring the first week of the semester. Due to the number of students in our graduate programs and form processing time, you *must* complete the form by the deadline specified by Proctoring. Otherwise, you will receive a 0 on the exam.
+
+### Late Policy 
+
+Assigments have due dates, however, the dropboxes will not close until the end of the semester. All students are automatically granted "extensions" without question. 
+
+Note that if there is not a submission when I go to grade (after the initial deadline), I will assign a zero (0) and request that you submit the assignment when you are able to. This is only for record keeping purposes. There is no penalty for submitting late and a full grade will be given upon review of your submission.
+
+**Extensions are *not available* for the projects or final exam**.
+
+

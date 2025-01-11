@@ -1,0 +1,163 @@
+[
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Note: this is an abbreviated syllabus. The full syllabus is available through Classmate and/or Canvas.\n\nInstructor Information\n\nDr. Samantha Seals\nOffice: 4/344\n\n\n\nMeeting Times and Location\n\nDay/time: MW 6:00-7:15 pm (Central)\nClassroom: 4/406\n\n\n\nOffice Hours\n\nMonday: 2:30–4:30 pm (Central)\nWednesday: 2:30–4:30 pm (Central)\nThursday: 10:00 am–12:00 pm (Central)\nOther times by appointment\n\n\n\nGrading and Evaluation\nThe course grade will be determined as follows:\n\nActivities (20%): Every few lectures, we will use the class time to work on an activity reflecting homework question(s) from the learning module. The resulting .html file will be submitted to the appropriate dropbox on Canvas. To allow for flexibility with life/work scheduling, activities will be due the following Sunday at 11:59 pm (Central).\nProjects - 2 (25% each): Both projects will be completed using R and Quarto. Projects will be presented orally on the assigned date(s). Students are expected to be present for and participate in their group’s presentation, but to allow for flexibility with life/work scheduling, students may watch the other groups’ presentations through the class recording. Evaluations of other groups’ projects will be due the following Sunday at 11:59 pm (Central).\nFinal Exam (30%): The final exam will be a written, closed book, proctored exam focused on your conceptual understanding of the course. While there may be some basic calculations needed, you will not be processing raw data on the proctored portion of the final exam or dealing with R code in any form. A scientific (not graphing) calculator will be allowed and is recommended. The proctored final exam will be on Monday, April 28, 2025. Exams may not be taken late. Students will have 2 hours and 30 minutes to complete the exam.\n\nFor those local to the Pensacola area, you may opt to come to the classroom for your final exam. When MathStat Proctoring reaches out, please reply: let them know that you will be testing with me on campus and cc me on your response. Our exam is 6:00-8:30 pm in Building 4, Room 404.\nFor those requiring external proctoring, you must follow guidelines from MathStat Proctoring. You will receive an email from Proctoring the first week of the semester. Due to the number of students in our graduate programs and form processing time, you must complete the form by the deadline specified by Proctoring. Otherwise, you will receive a 0 on the exam.\n\n\n\n\nLate Policy\nAssigments have due dates, however, the dropboxes will not close until the end of the semester. All students are automatically granted “extensions” without question.\nNote that if there is not a submission when I go to grade (after the initial deadline), I will assign a zero (0) and request that you submit the assignment when you are able to. This is only for record keeping purposes. There is no penalty for submitting late and a full grade will be given upon review of your submission.\nExtensions are not available for the projects or final exam."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#introduction",
+    "href": "files/lecture/W01-L1-intro-to-R.html#introduction",
+    "title": "Review of Technology",
+    "section": "Introduction",
+    "text": "Introduction\n\nWelcome to Applied Bayesian Analysis - Spring 2025!\n\nCanvas set up\nSyllabus\nDiscord\nR/RStudio\nQuarto\nGitHub\nResources"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#introduction-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#introduction-1",
+    "title": "Review of Technology",
+    "section": "Introduction",
+    "text": "Introduction\n\nGeneral topics:\n\nProbability rules and distributions\nBayes Theorem\nPrior distributions\nPosterior distributions\nConjugate families\nBeta-Binomial, Normal-Normal, and Gamma-Poisson models\nPosterior simulation\nPosterior inference\nLinear regression\n\nThis is an applied class."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#github",
+    "href": "files/lecture/W01-L1-intro-to-R.html#github",
+    "title": "Review of Technology",
+    "section": "GitHub",
+    "text": "GitHub\n\nOur course lectures and labs are posted on GitHub.\nPlease bookmark the repository: GitHub for STA6349.\nYou will want to look at my .qmd files for formatting / \\LaTeX purposes.\nFeel free to poke around my GitHub to see materials for other classes."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#rrstudio",
+    "href": "files/lecture/W01-L1-intro-to-R.html#rrstudio",
+    "title": "Review of Technology",
+    "section": "R/RStudio",
+    "text": "R/RStudio\n\nWe will be using R in this course.\n\nI use the RStudio IDE, however, if you would like to use another IDE, that is fine.\n\nIt is okay if you have not used R before!\nFull disclosure: I am a biostatistician first, programmer second.\n\nThis means that I focus on the application of statistical methods and not on “understanding” the innerworkings of R.\n\nR is a tool that we use, like how SAS, JMP, Stata, SPSS, Excel, etc. are tools.\n\nSometimes my code is not elegant/efficient, and that’s okay! Because our focus is on the application of methods, we are interested in the code working.\nI have learned so much from my students since implementing R in the classroom.\n\nDo not be afraid to teach me new things!\n\n\nThis is an applied class."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#rrstudio-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#rrstudio-1",
+    "title": "Review of Technology",
+    "section": "R/RStudio",
+    "text": "R/RStudio\n\nYou can install R and RStudio on your computer for free.\n\nR from CRAN\nRStudio from Posit\n\nAlternative to installing: RStudio Server hosted by UWF HMCSE\nDo not use Citrix.\nI encourage you to install R on your own machine if you are able.\n\nIn the “real world,” you will not have access to the server.\nInstalling on your own machine will help your future self troubleshoot issues."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidy-data",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidy-data",
+    "title": "Review of Technology",
+    "section": "Tidy Data",
+    "text": "Tidy Data\nJournal article: Tidy Data by Wickham (2014, Journal of Statistical Software)\nBook chapter: Data Tidying by Wickham, Çetinkaya-Rundel, and Grolemund\n\nThere are three interrelated rules that make a dataset tidy:\n\nEach variable is a column; each column is a variable.\nEach observation is a row; each row is an observation.\nEach value is a cell; each cell is a single value."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidyverse",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidyverse",
+    "title": "Review of Technology",
+    "section": "Tidyverse",
+    "text": "Tidyverse"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidyverse-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidyverse-1",
+    "title": "Review of Technology",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\ntibble for modern data frames.\nreadr and haven for data import.\n\nreadr is pulled in with tidyverse\nhaven needs to be called in on its own\n\ntidyr for data tidying.\n\ndplyr for data manipulation.\nggplot2 for data visualization.\nIt is not possible for me to teach you everything you will ever need to know about programming in R.\n\nGood resource for tidyverse: data science in a box"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidyverse-2",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidyverse-2",
+    "title": "Review of Technology",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\nA major advantage of using tidyverse is the common “language” between the functions.\nAnother advantage: the pipe operator, %&gt;%.\n\nYes, there is a pipe operator now included in base R. No, I do not use it.\n\nHere is a discussion of similarities and differences from Hadley himself.\n\nBy default, %&gt;% deposits everything that came before into the first argument of the next function.\n\nIf we want to insert it elsewhere, we can indicate that with a “.” in the function.\n\n\n\n\nlm(body_mass_g ~ flipper_length_mm, data = penguins)\n\npenguins %&gt;% lm(body_mass_g ~ flipper_length_mm, data = .)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#tidyverse-3",
+    "href": "files/lecture/W01-L1-intro-to-R.html#tidyverse-3",
+    "title": "Review of Technology",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\nIf we try to use a function before calling its package in, we will see an error.\n\n\nsw &lt;- tibble(starwars) %&gt;% filter(mass &lt; 100)\n\nError in tibble(starwars) %&gt;% filter(mass &lt; 100): could not find function \"%&gt;%\"\n\n\n\nWe are good to go after calling in tidyverse.\n\n\nlibrary(tidyverse)\nsw &lt;- tibble(starwars) %&gt;% filter(mass &lt; 100)\nhead(sw, n=3)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#importing-data",
+    "href": "files/lecture/W01-L1-intro-to-R.html#importing-data",
+    "title": "Review of Technology",
+    "section": "Importing Data",
+    "text": "Importing Data\n\nLet’s import data from the Jackson Heart Study.\n\n\njhs_csv &lt;- read_csv(\"/path/to/folder/analysislong.csv\")\nhead(jhs_csv)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#importing-data-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#importing-data-1",
+    "title": "Review of Technology",
+    "section": "Importing Data",
+    "text": "Importing Data\n\nBe comfortable with Googling for help with code to import data.\nAs a collaborative statistician, I have received the following file types:\n\n.sas7bdat\n.sav\n.dat\n.csv\n.xls\n.xlsx\n.txt\nGoogle Sheet\nhand written"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#importing-data-2",
+    "href": "files/lecture/W01-L1-intro-to-R.html#importing-data-2",
+    "title": "Review of Technology",
+    "section": "Importing Data",
+    "text": "Importing Data\n\nThere have been times where I have received data as a .xlsx, but I can’t get it to import properly.\n\nUsually, the issue is that there is a character variable with too much text.\nSometimes, it’s that the variable type changes mid-dataset.\n\ni.e., both a number and a character stored in the same vector.\n\n\nSometimes the solution is saving it as a different file type (I default to .csv).\nGet comfortable Googling error messages.\n\nI am still consulting Dr. Google for assistance on a daily basis!\n\nTry not to do any data management within the original file type!\n\nWe want to be able to retrace our steps.\nReproducible research!"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nFunctions:\n\nselect(): Selecting columns.\nfilter(): Filtering the observations.\nmutate(): Adding or transforming columns.\nsummarise(): Summarizing data.\ngroup_by(): Grouping data for summary operations.\n%&gt;%: Pipelines."
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-1",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-1",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nselect(): Selecting columns.\n\n\njhs_csv %&gt;% \n  select(subjid, visit, age, sex) %&gt;% \n  head(n=4)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-2",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-2",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nfilter(): Filtering rows.\n\n\njhs_csv %&gt;% \n  filter(visit == 1) %&gt;% \n  head(n=3)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-3",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-3",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nmutate(): Adding or transforming columns.\n\n\njhs_csv %&gt;% \n  filter(visit == 1) %&gt;%\n  select(subjid, sex) %&gt;%\n  mutate(male = if_else(sex == \"Male\", 1, 0)) %&gt;%\n  head(n=3)"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-4",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-4",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\nsummarise(): Summarizing data.\n\n\njhs_csv %&gt;% \n  filter(visit == 1) %&gt;%\n  summarize(n = n(),\n            mean_BMI = round(mean(BMI, na.rm = TRUE),2),\n            sd_BMI = round(sd(BMI, na.rm = TRUE),2),\n            n_female = sum(sex == \"Female\", na.rm = TRUE),\n            pct_female = round(sum(sex == \"Female\", na.rm = TRUE)*100/n(),2))"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-5",
+    "href": "files/lecture/W01-L1-intro-to-R.html#data-manipulation-5",
+    "title": "Review of Technology",
+    "section": "Data Manipulation",
+    "text": "Data Manipulation\n\ngroup_by(): Grouping data for summary operations.\n\n\njhs_csv %&gt;% \n  filter(visit == 1) %&gt;%\n  group_by(HTN) %&gt;%\n  summarize(n = n(),\n            mean_BMI = round(mean(BMI, na.rm = TRUE),2),\n            sd_BMI = round(sd(BMI, na.rm = TRUE),2),\n            n_female = sum(sex == \"Female\", na.rm = TRUE),\n            pct_female = round(sum(sex == \"Female\", na.rm = TRUE)*100/n(),2))"
+  },
+  {
+    "objectID": "files/lecture/W01-L1-intro-to-R.html#wrap-up",
+    "href": "files/lecture/W01-L1-intro-to-R.html#wrap-up",
+    "title": "Review of Technology",
+    "section": "Wrap Up",
+    "text": "Wrap Up\n\nToday we have gently introduced data management in R.\nI do not expect you to become an expert R programmer, but the more you practice, the easier it becomes.\nToday’s activity: Assignment 0"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "<b>STA6349 - Applied Bayesian Analysis - Spring 2025</b>",
+    "section": "",
+    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\nIn Class\n\n\n\n\nW 01/09\nIntroduction to R\n \n \n\n\nM 01/13\nIndependent and dependent t tests\n\n\n\n\nW 01/15\nHow to conceptualize research questions as hypotheses\n\n\n\n\nM 01/20\nOptional meeting - Assignment 1 help\n\n\n\n\nW 01/22\nAssumptions on t tests, Wilcoxons\n\n\n\n\nM 01/27\nAssignment 1\n\n\n\n\nW 01/29\nOne-Way ANOVA and post-hoc tests\n\n\n\n\nM 02/03\nANOVA assumptions; Kruskal-Wallis\n\n\n\n\nW 02/05\nProject: planning meeting\n\n\n\n\nM 02/09\nTwo-way ANOVA\n\n\n\n\nW 02/11\nAssignment 2\n\n\n\n\nM 02/17\nRegression\n\n\n\n\nW 02/19\nRegression\n\n\n\n\nM 02/24\nAssigment 3\n\n\n\n\nW 02/26\nProject: planning meeting\n\n\n\n\nM 03/03\nCategorical analysis\n\n\n\n\nW 03/05\nLogistic regression\n\n\n\n\nM 03/10\nAssignment 4\n\n\n\n\nW 03/12\nProject: planning meeting\n\n\n\n\nM 03/17\nSpring Break!\n\n\n\n\nW 03/19\nSpring Break!\n\n\n\n\nM 03/24\nProject: analysis\n\n\n\n\nW 03/26\nOUR: What is a Poster?\n\n\n\n\nM 03/31\nProject: analysis\n\n\n\n\nW 04/02\nProject: summary\n\n\n\n\nM 04/07\nProject: poster draft\n\n\n\n\nW 04/09\nIndividual group meetings with Dr. Seals\n\n\n\n\nM 04/14\nPoster presentation practice\n\n\n\n\nW 04/16\nOUR Symposium\n\n\n\n\nM 04/20\nCatch up!\n\n\n\n\nW 04/23\nProject: reflections"
+  },
+  {
+    "objectID": "files/assignments/Assignment0.html",
+    "href": "files/assignments/Assignment0.html",
+    "title": "Introductions",
+    "section": "",
+    "text": "What is your name as it appears on my roster in Classmate? (I am using this assignment for attendance verification.)\nHow is your name pronounced?\nIs there another name you prefer to go by?\nWhat are your pronouns?\nWhat is your major(s) and minor(s)?\nWhat statistics courses have you taken previously?\nAre you familiar with statistical programming? (e.g., R, python, SAS, etc.)\nDo you have any questions or concerns about this course? If so, please list them and I will respond when I grade this assignment.\nWhat interests do you have, outside of school and work?\nWhat are three of your favorite things?\nIf you were independently wealthy, what would you do with your time?"
+  }
+]

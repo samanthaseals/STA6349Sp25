@@ -1,0 +1,25 @@
+project:
+  type: website
+
+website:
+  title: "<b>STA6349 - Applied Bayesian Analysis - Spring 2025</b>"
+
+  navbar:
+    collapse: false
+    right:
+      - syllabus.qmd
+      - index.qmd
+      - icon: github
+        href: https://github.com/samanthaseals/STA6349Sp25/tree/main/files/lectures
+  search: false
+
+format:
+  html:
+    anchor-sections: false
+    title-block: false
+    theme: cosmo
+    css: styles.css
+
+execute:
+  freeze: auto
+

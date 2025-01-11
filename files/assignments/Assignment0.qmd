@@ -1,0 +1,51 @@
+---
+title: "Introductions"
+format:
+    html:
+      embed-resources: true
+editor: source
+---
+
+1. What is your name as it appears on my roster in Classmate? (I am using this assignment for attendance verification.)
+
+
+
+2. How is your name pronounced?
+
+
+
+3. Is there another name you prefer to go by?
+
+
+
+4. What are your pronouns?
+
+
+
+5. What is your major(s) and minor(s)?
+
+
+
+6. What statistics courses have you taken previously?
+
+
+
+7. Are you familiar with statistical programming? (e.g., R, python, SAS, etc.)
+
+
+
+8. Do you have any questions or concerns about this course? If so, please list them and I will respond when I grade this assignment.
+
+
+
+9. What interests do you have, outside of school and work?
+
+
+
+10. What are three of your favorite things?
+
+
+
+11. If you were independently wealthy, what would you do with your time?
+
+

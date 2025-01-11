@@ -1,0 +1,45 @@
+---
+page-layout: full
+title-block-banner: false
+---
+
+<!-- {{< fa display >}} {{< fa paperclip >}} -->
+<!--  -->
+
+
+### Tentative Schedule 
+
+
+| Day | Topic | Slides | In Class |
+|----|-------------|:--:|:--:|
+| W 01/09 | Introduction to R | <a href="files/lecture/W01-L1-intro-to-R.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W01-L1-intro-to-R.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |  <a href="files/assignments/Assignment0.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/assignments/Assignment0.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
+| M 01/13 | Independent and dependent *t* tests | | |
+| W 01/15 | How to conceptualize research questions as hypotheses | | |
+| M 01/20 | Optional meeting - Assignment 1 help |  | |
+| W 01/22 | Assumptions on *t* tests, Wilcoxons | | |
+| M 01/27 | Assignment 1 | | |
+| W 01/29 | One-Way ANOVA and post-hoc tests | | |
+| M 02/03 | ANOVA assumptions; Kruskal-Wallis  | | |
+| W 02/05 | Project: planning meeting | | |
+| M 02/09 | Two-way ANOVA | | |
+| W 02/11 | Assignment 2 | | |
+| M 02/17 | Regression | | |
+| W 02/19 | Regression | | |
+| M 02/24 | Assigment 3 | | |
+| W 02/26 | Project: planning meeting | | |
+| M 03/03 | Categorical analysis | | |
+| W 03/05 | Logistic regression | | |
+| M 03/10 | Assignment 4 | | |
+| W 03/12 | Project: planning meeting | | |
+| M 03/17 | Spring Break! | | |
+| W 03/19 | Spring Break! | | | 
+| M 03/24 | Project: analysis | | |
+| W 03/26 | OUR: What is a Poster? | | |
+| M 03/31 | Project: analysis | | |
+| W 04/02 | Project: summary | | |
+| M 04/07 | Project: poster draft | | |
+| W 04/09 | Individual group meetings with Dr. Seals | | |
+| M 04/14 | Poster presentation practice | | |
+| W 04/16 | OUR Symposium | | | |
+| M 04/20 | Catch up! | | |
+| W 04/23 | Project: reflections | | |
