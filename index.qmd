@@ -17,29 +17,29 @@ title-block-banner: false
 | W 01/15 | Probability Theory: Part 2 | | |
 | M 01/20 | MLK Holiday - campus closed |  | |
 | W 01/22 | Discrete Random Variables | | |
-| M 01/27 | Assignment 1 | | |
-| W 01/29 | One-Way ANOVA and post-hoc tests | | |
-| M 02/03 | ANOVA assumptions; Kruskal-Wallis  | | |
-| W 02/05 | Project: planning meeting | | |
-| M 02/09 | Two-way ANOVA | | |
-| W 02/11 | Assignment 2 | | |
-| M 02/17 | Regression | | |
-| W 02/19 | Regression | | |
-| M 02/24 | Assigment 3 | | |
-| W 02/26 | Project: planning meeting | | |
-| M 03/03 | Categorical analysis | | |
-| W 03/05 | Logistic regression | | |
-| M 03/10 | Assignment 4 | | |
-| W 03/12 | Project: planning meeting | | |
+| M 01/27 | Continuous Random Variables | | |
+| W 01/29 | Assignment 1 | | |
+| M 02/03 | Bayesian Thinking and Bayes' Rule  | | |
+| W 02/05 | Bayesian Modeling for Random Variables | | |
+| M 02/10 | Dr. Seals out (conference) | | |
+| W 02/12 | Beta-Binomial Conjugage Family | | |
+| M 02/17 | Balance and Sequentiality | | |
+| W 02/19 | Gamma-Poisson and Normal-Normal Conjugate Families | | |
+| M 02/24 | Approximating the Posterior | | |
+| W 02/26 | Posterior Inference & Prediction | | |
+| M 03/03 | Assignment 2 | | |
+| W 03/05 | Project 1 (in class group work) | | |
+| M 03/10 | Project 1 (in class group work) | | |
+| W 03/12 | Project 1 (presentations) | | |
 | M 03/17 | Spring Break! | | |
 | W 03/19 | Spring Break! | | | 
-| M 03/24 | Project: analysis | | |
-| W 03/26 | OUR: What is a Poster? | | |
-| M 03/31 | Project: analysis | | |
-| W 04/02 | Project: summary | | |
-| M 04/07 | Project: poster draft | | |
-| W 04/09 | Individual group meetings with Dr. Seals | | |
-| M 04/14 | Poster presentation practice | | |
-| W 04/16 | OUR Symposium | | | |
-| M 04/20 | Catch up! | | |
-| W 04/23 | Project: reflections | | |
+| M 03/24 | Simple Normal Regression | | |
+| W 03/26 | Simple Normal Regression | | |
+| M 03/31 | Evaluating Regression Models | | |
+| W 04/02 | Including Multiple Predictors | | |
+| M 04/07 | Interaction terms | | |
+| W 04/09 | Assignment 3 | | |
+| M 04/14 | Project 2 (in class group work) | | |
+| W 04/16 | Project 2 (in class group work) | | | 
+| M 04/20 | Project 2 (presentations) | | |
+| W 04/23 | Catch up | | |
