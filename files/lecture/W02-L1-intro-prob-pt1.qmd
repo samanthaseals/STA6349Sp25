@@ -1,0 +1,321 @@
+---
+title: "**Introduction to Probability**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Introduction**
+
+- The first few lectures come from [Mathematical Statistics with Applications](https://www.cengage.com/c/mathematical-statistics-with-applications-7e-wackerly/9780495110811/), by Wackerly.
+
+    - We must understand the underlying probability and random variable theory before moving into the Bayesian world.
+    
+- We will be covering the following chapters:
+    - <font color = "#965dc7">Chapter 2: probability theory</font>
+    - Chapter 3: discrete random variables
+    - Chapter 4: continuous random variables
+
+## **2.2: Probability and Inference**
+
+- In statistics we use probabilities to make inference, or draw conclusions.
+
+- Consider a gambler who wishes to make an inference concerning the balance, or fairness, of a die. 
+
+    - If the die were perfectly balanced, one-sixth of the measurements in this population would be 1s, one-sixth would be 2s, one-sixth would be 3s, etc.
+
+![](images/W01-L2-a.png){fig-align="center"}
+
+## **2.2: Probability and Inference**
+
+- Using the scientific method, the gambler proposes the hypothesis that the die is balanced, and he seeks observations from nature to contradict the theory, if false.
+    - A sample of ten tosses is selected from the population by rolling the die ten times. 
+    - All ten tosses result in 1s. 🧐
+    - The gambler looks upon this output and concludes that his hypothesis is not in agreement with nature and, thus, the die is not balanced.
+    
+- The gambler rejected his hypothesis not because it is *impossible* to throw ten 1s in ten tosses of a balanced die, but because it is *highly improbable*.    
+
+## **2.3: Review of Set Notation**
+
+- Suppose the elements $a_1$, $a_2$, and $a_3$ are in the set $A$, we will write $$A = \left\{ a_1, a_2, a_3 \right\}$$
+
+    - Notation: capital letters $\to$ *sets* of points.
+
+- We can denote the set of all elements under consideration with $S$, the *universal set*.
+
+![](images/W01-L2-b.png){fig-align="center" width=80%}  
+
+## **2.3: Review of Set Notation**
+
+- $A \subset B$:
+
+    - For any two sets $A$ and $B$, we say that $A$ is a *subset* of $B$ if every point in $A$ is also in $B$.
+    
+![](images/W01-L2-b.png){fig-align="center" width=80%}  
+
+## **2.3: Review of Set Notation**
+
+- $A \cup B$:
+    - The *union* of $A$ and $B$ is the set of all points in either $A$ **or** $B$.
+    - i.e., the union has all points that are in <u>at least one</u> of the sets.
+    
+![](images/W01-L2-c.png){fig-align="center" width=80%}  
+
+## **2.3: Review of Set Notation**
+
+- $A \cap B$:
+    - The *intersection* of $A$ and $B$ is the set of all points in both $A$ and $B$.
+    - i.e., the intersection is where the two sets <u>overlap</u>.
+    
+![](images/W01-L2-d.png){fig-align="center" width=80%}  
+
+## **2.3: Review of Set Notation**
+
+- $\bar{A}$ or $A^c$:
+    - The *complement* of $A$ is the set of points that are in $S$, but **not** in $A$.
+    - $A \cup \bar{A} = S$.
+    
+![](images/W01-L2-e.png){fig-align="center" width=80%} 
+
+## **2.3: Review of Set Notation**
+
+- $A \cap B = \emptyset$:
+    - $A$ and $B$, are said to be *disjoint* or *mutually exclusive* when they have no points in common.
+    - Related: for any set $A$, we know that $A$ and $\bar{A}$ are mutually exclusive.
+    
+![](images/W01-L2-f.png){fig-align="center" width=80%} 
+
+## **2.3: Review of Set Notation**
+
+- Fast forwarding through set algebra, we need to know these *distributive laws*: 
+
+$$
+\begin{align*}
+A \cap (B \cup C) &= (A \cap B) \cup (A \cap C) \\ 
+A \cup (B \cap C) &= (A \cup B) \cap (A \cup C) \\ 
+\overline{(A \cap B)} &= \overline{A} \cup \overline{B} \\
+\overline{(A \cup B)} &= \overline{A} \cap \overline{B}
+\end{align*}
+$$
+
+## **2.3: Review of Set Notation**
+
+- Suppose two dice are tossed and the numbers on the upper faces are observed.
+
+- Let $S$ denote the set of all possible pairs that can be observed.
+
+    - e.g., (2, 3) indicates that a 2 was observed on the first die and a 3 on the second.
+    
+- Define the following subsets of $S$ and list their points:
+
+    - $A$: The number on the second die is even.
+    - $B$: The sum of the two numbers is even.
+    - $C$: At least one number in the pair is odd.
+    
+- List the points in the following:
+
+    - $A \cup B$
+    - $A \cap \bar{B}$
+    - $\bar{A} \cap C$
+    
+## **2.3: Review of Set Notation**
+
+- Define the following subsets of $S$ and list their points:
+    - $A$: The number on the second die is even. <br><br>
+    - $B$: The sum of the two numbers is even.<br><br>
+    - $C$: At least one number in the pair is odd.<br><br><br>
+    
+- List the points in the following:
+    - $A \cup B$<br><br>
+    - $A \cap \bar{B}$<br><br>
+    - $\bar{A} \cap C$    
+
+## **2.4: A Probabilistic Model for an Experiment**
+
+- *Experiment*: the process by which an observation is made.
+    - Examples: 
+        - coin and die tossing, 
+        - measuring the systolic blood pressure of an individual,
+        - determine the number of bacteria per cubic centimeter in a serving of processed food. 
+    
+- *Events*: the outcomes possible in an experiment.
+    - Notation: capital leters
+    - Examples for bacteria observation:
+        - $A$: Exactly 110 bacteria are present.
+        - $B$: More than 200 bacteria are present.
+        - $C$: The number of bacteria present is between 100 and 300.
+        
+## **2.4: A Probabilistic Model for an Experiment**
+
+- *Sample space*, $S$: the set consisting of all possible sample points.
+
+- The following Venn diagram shows the six simple events in $S$, 
+
+$$S = \{E_1, E_2, E_3, E_4, E_5, E_6 \}$$
+
+![](images/W01-L2-g.png){fig-align="center" width=80%}
+
+## **2.4: A Probabilistic Model for an Experiment**
+
+- *Compound event*: A collection of sample points in a discrete sample space, $S$.
+
+    - i.e., any subset of $S$.
+    
+- e.g., suppose we define two events, $A$ and $B$,
+
+![](images/W01-L2-h.png){fig-align="center" width=80%}
+
+## **2.4: A Probabilistic Model for an Experiment**
+
+- Suppose $S$ is a sample space associated with an experiment. 
+
+- To every event $A$ in $S$ (i.e., $A \subset S$), we assign a number, $P[A]$, called the *probability of $A$*, such that the follow axioms hold:
+    - Axiom 1: $P[A] \ge 0$.
+    - Axiom 2: $P[S] = 1$.
+    - Axiom 3: If $A_1, A_2, ..., A_n$ form a sequence of pairwise mutually exclusive events in $S$ 
+        - Remember, mutually exclusive: $A_i \cap A_j = \emptyset$ if $i \ne j$
+    
+$$P[A_1 \cup A_2 \cup \ ... \cup \ A_n] = \sum_{i=1}^n P[A_i] $$
+    
+## **2.4: A Probabilistic Model for an Experiment**
+
+- Suppose a sample space consists of five simple events, $E_1$, $E_2$, $E_3$, $E_4$, and $E_5$.
+    - If $P[E_1] = P[E_2] = 0.15$, $P[E_3] = 0.4$, and $P[E_4] = 2P[E_5]$, find the probabilities of $E_4$ and $E_5$. <br><br><br><br><br><br><br>
+    - If $P[E_1] = 3P[E_2] = 0.3$, find the probabilities of the remaining simple events if you know that the remaining simple events are equally probable.
+
+## **2.5: Calculating the Probability of an Event**
+
+- The following are steps used to find the probability of an event:
+    1. Define the experiment and clearly determine how to describe one simple event.
+    2. Define $S$: list the simple events associated with the experiment.
+    3. Assign reasonable probabilities to the sample points in $S$; remember that $P[E_i] \ge 0$ and $\sum_i P[E_i] = 1$.
+    4. Define the event of interest, $A$, as a specific collection of sample points.
+    5. Find $P[A]$ by summing the probabilities of the sample points in $A$.
+    
+## **2.5: Calculating the Probability of an Event**
+
+- Suppose we toss a balanced coin three times. Find the probability that 2/3 tosses result in heads.
+    1. Define the experiment and clearly determine how to describe one simple event.<br><br><br>
+    2. Define $S$: list the simple events associated with the experiment.<br><br><br>
+    3. Assign reasonable probabilities to the sample points in $S$; remember that $P[E_i] \ge 0$ and $\sum_i P[E_i] = 1$.<br><br><br>
+    4. Define the event of interest, $A$, as a specific collection of sample points.<br><br><br>
+    5. Find $P[A]$ by summing the probabilities of the sample points in $A$.
+
+## **2.5: Calculating the Probability of an Event**
+
+- The odds are two to one that when $A$ and $B$ play tennis, $A$ wins. Suppose that $A$ and $B$ play two matches. Find the probability that $A$ wins at least one match.
+    1. Define the experiment and clearly determine how to describe one simple event.<br><br><br>
+    2. Define $S$: list the simple events associated with the experiment.<br><br><br>
+    3. Assign reasonable probabilities to the sample points in $S$; remember that $P[E_i] \ge 0$ and $\sum_i P[E_i] = 1$.<br><br><br>
+    4. Define the event of interest, $A$, as a specific collection of sample points.<br><br><br>
+    5. Find $P[A]$ by summing the probabilities of the sample points in $A$.
+
+## **2.6: Tools for Counting Sample Points**
+
+- Let us discuss some results from combinatorial theory.
+
+- We want to be able to count the total number of sample points in the sample space, $S$.
+
+- Sometimes we use this method to efficiently find probabilities. 
+
+    - If a sample space contains $N$ equiprobable sample points and an event $A$ contains exactly $n_a$ sample points, then
+    
+$$
+P[A] = \frac{n_a}{N}    
+$$
+
+## **2.6: Tools for Counting Sample Points**
+
+- **Theorem**: 
+
+    - With $m$ elements $a_1$, $a_2$, ..., $a_m$ and $n$ elements $b_1$, $b_2$, ..., $b_n$, it is possible for form $mn = m \times n$ pairs containing one element from each group.
+    
+![](images/W01-L2-i.png){fig-align="center" width=80%}
+
+## **2.6: Tools for Counting Sample Points**
+
+- Consider an experiment that consists of recording the birthday for each of 20 randomly selected persons. 
+
+- Ignoring leap years and assuming that there are only 365 possible distinct birthdays, find the number of points in the sample space $S$ for this experiment. <br><br><br><br><br><br><br>
+
+- If we assume that each of the possible sets of birthdays is equiprobable, what is the probability that each person in the 20 has a different birthday?
+
+## **2.6: Tools for Counting Sample Points**
+
+- *Permutation*: an ordered arrangement of $r$ distinct objects, $P_r^n$.
+
+$$
+P_r^n = \frac{n!}{(n-r)!}
+$$
+
+- Remember, *factorials* are defined as follows:
+
+$$
+n! = n \times (n-1) \times (n-2) \times ... \times 2 \times 1
+$$
+
+- With special factorials:
+
+$$
+\begin{align*}
+1! &= 1 \\
+0! &= 1
+\end{align*}
+$$
+
+## **2.6: Tools for Counting Sample Points**
+
+- Suppose that an assembly operation in a manufacturing plant involves four steps, which can be performed in any sequence. If the manufacturer wishes to compare the assembly time for each of the sequences, how many different sequences will be involved in the experiment?
+
+## **2.6: Tools for Counting Sample Points**
+
+- *Combination*: the number of subsets formed from $n$ objects taken $r$ at a time, $C_r^n$ or ${n \choose r}$.
+
+- **Theorem**:
+
+    - The number of unordered subsets of size $r$ chosen without replacmeent from $n$ available objects is 
+    
+$$ 
+{n \choose r} = C_r^n = \frac{P_r^n}{r!} = \frac{n!}{r(n-r)!}
+$$
+
+## **2.6: Tools for Counting Sample Points**
+
+- A company orders supplies from $M$ distributors and wishes to place $n$ orders $(n < M)$. Assume that the company places the orders in a manner that allows every distributor an equal chance of obtaining any one order and there is no restriction on the number of orders that can be placed with any distributor. Find the probability that a particular distributor gets exactly $k$ orders $(k \le n)$.
+
+## **Homework**
+
+- 2.15
+- 2.18
+- 2.32
+- 2.33
+- 2.51
+- 2.54
+
+
+
+
+
+
+
+
+
+
+
+
