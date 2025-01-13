@@ -13,10 +13,10 @@ title-block-banner: false
 | Day | Topic | Slides | In Class |
 |----|-------------|:--:|:--:|
 | W 01/09 | Introduction to R | <a href="files/lecture/W01-L1-intro-to-R.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W01-L1-intro-to-R.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |  <a href="files/assignments/Assignment0.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/assignments/Assignment0.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
-| M 01/13 | Independent and dependent *t* tests | | |
-| W 01/15 | How to conceptualize research questions as hypotheses | | |
-| M 01/20 | Optional meeting - Assignment 1 help |  | |
-| W 01/22 | Assumptions on *t* tests, Wilcoxons | | |
+| M 01/13 | Probability Theory: Part 1 | <a href="files/lecture/W02-L1-intro-prob-pt1.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W02-L1-intro-prob-pt1.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> | |
+| W 01/15 | Probability Theory: Part 2 | | |
+| M 01/20 | MLK Holiday - campus closed |  | |
+| W 01/22 | Discrete Random Variables | | |
 | M 01/27 | Assignment 1 | | |
 | W 01/29 | One-Way ANOVA and post-hoc tests | | |
 | M 02/03 | ANOVA assumptions; Kruskal-Wallis  | | |

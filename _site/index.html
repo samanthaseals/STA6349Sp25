@@ -126,25 +126,25 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>M 01/13</td>
-<td>Independent and dependent <em>t</em> tests</td>
-<td style="text-align: center;"></td>
+<td>Probability Theory: Part 1</td>
+<td style="text-align: center;"><a href="files/lecture/W02-L1-intro-prob-pt1.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W02-L1-intro-prob-pt1.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td>W 01/15</td>
-<td>How to conceptualize research questions as hypotheses</td>
+<td>Probability Theory: Part 2</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td>M 01/20</td>
-<td>Optional meeting - Assignment 1 help</td>
+<td>MLK Holiday - campus closed</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td>W 01/22</td>
-<td>Assumptions on <em>t</em> tests, Wilcoxons</td>
+<td>Discrete Random Variables</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -394,7 +394,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/samanthaseals\.github\.io\/STA6349Sp25\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

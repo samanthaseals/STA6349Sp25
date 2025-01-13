@@ -7,6 +7,209 @@
     "text": "Note: this is an abbreviated syllabus. The full syllabus is available through Classmate and/or Canvas.\n\nInstructor Information\n\nDr. Samantha Seals\nOffice: 4/344\n\n\n\nMeeting Times and Location\n\nDay/time: MW 6:00-7:15 pm (Central)\nClassroom: 4/406\n\n\n\nOffice Hours\n\nMonday: 2:30–4:30 pm (Central)\nWednesday: 2:30–4:30 pm (Central)\nThursday: 10:00 am–12:00 pm (Central)\nOther times by appointment\n\n\n\nGrading and Evaluation\nThe course grade will be determined as follows:\n\nActivities (20%): Every few lectures, we will use the class time to work on an activity reflecting homework question(s) from the learning module. The resulting .html file will be submitted to the appropriate dropbox on Canvas. To allow for flexibility with life/work scheduling, activities will be due the following Sunday at 11:59 pm (Central).\nProjects - 2 (25% each): Both projects will be completed using R and Quarto. Projects will be presented orally on the assigned date(s). Students are expected to be present for and participate in their group’s presentation, but to allow for flexibility with life/work scheduling, students may watch the other groups’ presentations through the class recording. Evaluations of other groups’ projects will be due the following Sunday at 11:59 pm (Central).\nFinal Exam (30%): The final exam will be a written, closed book, proctored exam focused on your conceptual understanding of the course. While there may be some basic calculations needed, you will not be processing raw data on the proctored portion of the final exam or dealing with R code in any form. A scientific (not graphing) calculator will be allowed and is recommended. The proctored final exam will be on Monday, April 28, 2025. Exams may not be taken late. Students will have 2 hours and 30 minutes to complete the exam.\n\nFor those local to the Pensacola area, you may opt to come to the classroom for your final exam. When MathStat Proctoring reaches out, please reply: let them know that you will be testing with me on campus and cc me on your response. Our exam is 6:00-8:30 pm in Building 4, Room 404.\nFor those requiring external proctoring, you must follow guidelines from MathStat Proctoring. You will receive an email from Proctoring the first week of the semester. Due to the number of students in our graduate programs and form processing time, you must complete the form by the deadline specified by Proctoring. Otherwise, you will receive a 0 on the exam.\n\n\n\n\nLate Policy\nAssigments have due dates, however, the dropboxes will not close until the end of the semester. All students are automatically granted “extensions” without question.\nNote that if there is not a submission when I go to grade (after the initial deadline), I will assign a zero (0) and request that you submit the assignment when you are able to. This is only for record keeping purposes. There is no penalty for submitting late and a full grade will be given upon review of your submission.\nExtensions are not available for the projects or final exam."
   },
   {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#introduction",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#introduction",
+    "title": "Introduction to Probability",
+    "section": "Introduction",
+    "text": "Introduction\n\nThe first few lectures come from Mathematical Statistics with Applications, by Wackerly.\n\nWe must understand the underlying probability and random variable theory before moving into the Bayesian world.\n\nWe will be covering the following chapters:\n\nChapter 2: probability theory\nChapter 3: discrete random variables\nChapter 4: continuous random variables"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#probability-and-inference",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#probability-and-inference",
+    "title": "Introduction to Probability",
+    "section": "2.2: Probability and Inference",
+    "text": "2.2: Probability and Inference\n\nIn statistics we use probabilities to make inference, or draw conclusions.\nConsider a gambler who wishes to make an inference concerning the balance, or fairness, of a die.\n\nIf the die were perfectly balanced, one-sixth of the measurements in this population would be 1s, one-sixth would be 2s, one-sixth would be 3s, etc."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#probability-and-inference-1",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#probability-and-inference-1",
+    "title": "Introduction to Probability",
+    "section": "2.2: Probability and Inference",
+    "text": "2.2: Probability and Inference\n\nUsing the scientific method, the gambler proposes the hypothesis that the die is balanced, and he seeks observations from nature to contradict the theory, if false.\n\nA sample of ten tosses is selected from the population by rolling the die ten times.\nAll ten tosses result in 1s. 🧐\nThe gambler looks upon this output and concludes that his hypothesis is not in agreement with nature and, thus, the die is not balanced.\n\nThe gambler rejected his hypothesis not because it is impossible to throw ten 1s in ten tosses of a balanced die, but because it is highly improbable."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation",
+    "title": "Introduction to Probability",
+    "section": "2.3: Review of Set Notation",
+    "text": "2.3: Review of Set Notation\n\nSuppose the elements a_1, a_2, and a_3 are in the set A, we will write A = \\left\\{ a_1, a_2, a_3 \\right\\}\n\nNotation: capital letters \\to sets of points.\n\nWe can denote the set of all elements under consideration with S, the universal set."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-1",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-1",
+    "title": "Introduction to Probability",
+    "section": "2.3: Review of Set Notation",
+    "text": "2.3: Review of Set Notation\n\nA \\subset B:\n\nFor any two sets A and B, we say that A is a subset of B if every point in A is also in B."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-2",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-2",
+    "title": "Introduction to Probability",
+    "section": "2.3: Review of Set Notation",
+    "text": "2.3: Review of Set Notation\n\nA \\cup B:\n\nThe union of A and B is the set of all points in either A or B.\ni.e., the union has all points that are in at least one of the sets."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-3",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-3",
+    "title": "Introduction to Probability",
+    "section": "2.3: Review of Set Notation",
+    "text": "2.3: Review of Set Notation\n\nA \\cap B:\n\nThe intersection of A and B is the set of all points in both A and B.\ni.e., the intersection is where the two sets overlap."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-4",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-4",
+    "title": "Introduction to Probability",
+    "section": "2.3: Review of Set Notation",
+    "text": "2.3: Review of Set Notation\n\n\\bar{A} or A^c:\n\nThe complement of A is the set of points that are in S, but not in A.\nA \\cup \\bar{A} = S."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-5",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-5",
+    "title": "Introduction to Probability",
+    "section": "2.3: Review of Set Notation",
+    "text": "2.3: Review of Set Notation\n\nA \\cap B = \\emptyset:\n\nA and B, are said to be disjoint or mutually exclusive when they have no points in common.\nRelated: for any set A, we know that A and \\bar{A} are mutually exclusive."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-6",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-6",
+    "title": "Introduction to Probability",
+    "section": "2.3: Review of Set Notation",
+    "text": "2.3: Review of Set Notation\n\nFast forwarding through set algebra, we need to know these distributive laws:\n\n\n\\begin{align*}\nA \\cap (B \\cup C) &= (A \\cap B) \\cup (A \\cap C) \\\\\nA \\cup (B \\cap C) &= (A \\cup B) \\cap (A \\cup C) \\\\\n\\overline{(A \\cap B)} &= \\overline{A} \\cup \\overline{B} \\\\\n\\overline{(A \\cup B)} &= \\overline{A} \\cap \\overline{B}\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-7",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-7",
+    "title": "Introduction to Probability",
+    "section": "2.3: Review of Set Notation",
+    "text": "2.3: Review of Set Notation\n\nSuppose two dice are tossed and the numbers on the upper faces are observed.\nLet S denote the set of all possible pairs that can be observed.\n\ne.g., (2, 3) indicates that a 2 was observed on the first die and a 3 on the second.\n\nDefine the following subsets of S and list their points:\n\nA: The number on the second die is even.\nB: The sum of the two numbers is even.\nC: At least one number in the pair is odd.\n\nList the points in the following:\n\nA \\cup B\nA \\cap \\bar{B}\n\\bar{A} \\cap C"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-8",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#review-of-set-notation-8",
+    "title": "Introduction to Probability",
+    "section": "2.3: Review of Set Notation",
+    "text": "2.3: Review of Set Notation\n\nDefine the following subsets of S and list their points:\n\nA: The number on the second die is even. \nB: The sum of the two numbers is even.\nC: At least one number in the pair is odd.\n\nList the points in the following:\n\nA \\cup B\nA \\cap \\bar{B}\n\\bar{A} \\cap C"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment",
+    "title": "Introduction to Probability",
+    "section": "2.4: A Probabilistic Model for an Experiment",
+    "text": "2.4: A Probabilistic Model for an Experiment\n\nExperiment: the process by which an observation is made.\n\nExamples:\n\ncoin and die tossing,\nmeasuring the systolic blood pressure of an individual,\ndetermine the number of bacteria per cubic centimeter in a serving of processed food.\n\n\nEvents: the outcomes possible in an experiment.\n\nNotation: capital leters\nExamples for bacteria observation:\n\nA: Exactly 110 bacteria are present.\nB: More than 200 bacteria are present.\nC: The number of bacteria present is between 100 and 300."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment-1",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment-1",
+    "title": "Introduction to Probability",
+    "section": "2.4: A Probabilistic Model for an Experiment",
+    "text": "2.4: A Probabilistic Model for an Experiment\n\nSample space, S: the set consisting of all possible sample points.\nThe following Venn diagram shows the six simple events in S,\n\nS = \\{E_1, E_2, E_3, E_4, E_5, E_6 \\}"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment-2",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment-2",
+    "title": "Introduction to Probability",
+    "section": "2.4: A Probabilistic Model for an Experiment",
+    "text": "2.4: A Probabilistic Model for an Experiment\n\nCompound event: A collection of sample points in a discrete sample space, S.\n\ni.e., any subset of S.\n\ne.g., suppose we define two events, A and B,"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment-3",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment-3",
+    "title": "Introduction to Probability",
+    "section": "2.4: A Probabilistic Model for an Experiment",
+    "text": "2.4: A Probabilistic Model for an Experiment\n\nSuppose S is a sample space associated with an experiment.\nTo every event A in S (i.e., A \\subset S), we assign a number, P[A], called the probability of A, such that the follow axioms hold:\n\nAxiom 1: P[A] \\ge 0.\nAxiom 2: P[S] = 1.\nAxiom 3: If A_1, A_2, ..., A_n form a sequence of pairwise mutually exclusive events in S\n\nRemember, mutually exclusive: A_i \\cap A_j = \\emptyset if i \\ne j\n\n\n\nP[A_1 \\cup A_2 \\cup \\ ... \\cup \\ A_n] = \\sum_{i=1}^n P[A_i]"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment-4",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#a-probabilistic-model-for-an-experiment-4",
+    "title": "Introduction to Probability",
+    "section": "2.4: A Probabilistic Model for an Experiment",
+    "text": "2.4: A Probabilistic Model for an Experiment\n\nSuppose a sample space consists of five simple events, E_1, E_2, E_3, E_4, and E_5.\n\nIf P[E_1] = P[E_2] = 0.15, P[E_3] = 0.4, and P[E_4] = 2P[E_5], find the probabilities of E_4 and E_5. \nIf P[E_1] = 3P[E_2] = 0.3, find the probabilities of the remaining simple events if you know that the remaining simple events are equally probable."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#calculating-the-probability-of-an-event",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#calculating-the-probability-of-an-event",
+    "title": "Introduction to Probability",
+    "section": "2.5: Calculating the Probability of an Event",
+    "text": "2.5: Calculating the Probability of an Event\n\nThe following are steps used to find the probability of an event:\n\nDefine the experiment and clearly determine how to describe one simple event.\nDefine S: list the simple events associated with the experiment.\nAssign reasonable probabilities to the sample points in S; remember that P[E_i] \\ge 0 and \\sum_i P[E_i] = 1.\nDefine the event of interest, A, as a specific collection of sample points.\nFind P[A] by summing the probabilities of the sample points in A."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#calculating-the-probability-of-an-event-1",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#calculating-the-probability-of-an-event-1",
+    "title": "Introduction to Probability",
+    "section": "2.5: Calculating the Probability of an Event",
+    "text": "2.5: Calculating the Probability of an Event\n\nSuppose we toss a balanced coin three times. Find the probability that 2/3 tosses result in heads.\n\nDefine the experiment and clearly determine how to describe one simple event.\nDefine S: list the simple events associated with the experiment.\nAssign reasonable probabilities to the sample points in S; remember that P[E_i] \\ge 0 and \\sum_i P[E_i] = 1.\nDefine the event of interest, A, as a specific collection of sample points.\nFind P[A] by summing the probabilities of the sample points in A."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#calculating-the-probability-of-an-event-2",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#calculating-the-probability-of-an-event-2",
+    "title": "Introduction to Probability",
+    "section": "2.5: Calculating the Probability of an Event",
+    "text": "2.5: Calculating the Probability of an Event\n\nThe odds are two to one that when A and B play tennis, A wins. Suppose that A and B play two matches. Find the probability that A wins at least one match.\n\nDefine the experiment and clearly determine how to describe one simple event.\nDefine S: list the simple events associated with the experiment.\nAssign reasonable probabilities to the sample points in S; remember that P[E_i] \\ge 0 and \\sum_i P[E_i] = 1.\nDefine the event of interest, A, as a specific collection of sample points.\nFind P[A] by summing the probabilities of the sample points in A."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points",
+    "title": "Introduction to Probability",
+    "section": "2.6: Tools for Counting Sample Points",
+    "text": "2.6: Tools for Counting Sample Points\n\nLet us discuss some results from combinatorial theory.\nWe want to be able to count the total number of sample points in the sample space, S.\nSometimes we use this method to efficiently find probabilities.\n\nIf a sample space contains N equiprobable sample points and an event A contains exactly n_a sample points, then\n\n\n\nP[A] = \\frac{n_a}{N}"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-1",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-1",
+    "title": "Introduction to Probability",
+    "section": "2.6: Tools for Counting Sample Points",
+    "text": "2.6: Tools for Counting Sample Points\n\nTheorem:\n\nWith m elements a_1, a_2, …, a_m and n elements b_1, b_2, …, b_n, it is possible for form mn = m \\times n pairs containing one element from each group."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-2",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-2",
+    "title": "Introduction to Probability",
+    "section": "2.6: Tools for Counting Sample Points",
+    "text": "2.6: Tools for Counting Sample Points\n\nConsider an experiment that consists of recording the birthday for each of 20 randomly selected persons.\nIgnoring leap years and assuming that there are only 365 possible distinct birthdays, find the number of points in the sample space S for this experiment. \nIf we assume that each of the possible sets of birthdays is equiprobable, what is the probability that each person in the 20 has a different birthday?"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-3",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-3",
+    "title": "Introduction to Probability",
+    "section": "2.6: Tools for Counting Sample Points",
+    "text": "2.6: Tools for Counting Sample Points\n\nPermutation: an ordered arrangement of r distinct objects, P_r^n.\n\n\nP_r^n = \\frac{n!}{(n-r)!}\n\n\nRemember, factorials are defined as follows:\n\n\nn! = n \\times (n-1) \\times (n-2) \\times ... \\times 2 \\times 1\n\n\nWith special factorials:\n\n\n\\begin{align*}\n1! &= 1 \\\\\n0! &= 1\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-4",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-4",
+    "title": "Introduction to Probability",
+    "section": "2.6: Tools for Counting Sample Points",
+    "text": "2.6: Tools for Counting Sample Points\n\nSuppose that an assembly operation in a manufacturing plant involves four steps, which can be performed in any sequence. If the manufacturer wishes to compare the assembly time for each of the sequences, how many different sequences will be involved in the experiment?"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-5",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-5",
+    "title": "Introduction to Probability",
+    "section": "2.6: Tools for Counting Sample Points",
+    "text": "2.6: Tools for Counting Sample Points\n\nCombination: the number of subsets formed from n objects taken r at a time, C_r^n or {n \\choose r}.\nTheorem:\n\nThe number of unordered subsets of size r chosen without replacmeent from n available objects is\n\n\n\n{n \\choose r} = C_r^n = \\frac{P_r^n}{r!} = \\frac{n!}{r(n-r)!}"
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-6",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#tools-for-counting-sample-points-6",
+    "title": "Introduction to Probability",
+    "section": "2.6: Tools for Counting Sample Points",
+    "text": "2.6: Tools for Counting Sample Points\n\nA company orders supplies from M distributors and wishes to place n orders (n &lt; M). Assume that the company places the orders in a manner that allows every distributor an equal chance of obtaining any one order and there is no restriction on the number of orders that can be placed with any distributor. Find the probability that a particular distributor gets exactly k orders (k \\le n)."
+  },
+  {
+    "objectID": "files/lecture/W02-L1-intro-prob-pt1.html#homework",
+    "href": "files/lecture/W02-L1-intro-prob-pt1.html#homework",
+    "title": "Introduction to Probability",
+    "section": "Homework",
+    "text": "Homework\n\n2.15\n2.18\n2.32\n2.33\n2.51\n2.54"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "<b>STA6349 - Applied Bayesian Analysis - Spring 2025</b>",
+    "section": "",
+    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\nIn Class\n\n\n\n\nW 01/09\nIntroduction to R\n \n \n\n\nM 01/13\nProbability Theory: Part 1\n \n\n\n\nW 01/15\nProbability Theory: Part 2\n\n\n\n\nM 01/20\nMLK Holiday - campus closed\n\n\n\n\nW 01/22\nDiscrete Random Variables\n\n\n\n\nM 01/27\nAssignment 1\n\n\n\n\nW 01/29\nOne-Way ANOVA and post-hoc tests\n\n\n\n\nM 02/03\nANOVA assumptions; Kruskal-Wallis\n\n\n\n\nW 02/05\nProject: planning meeting\n\n\n\n\nM 02/09\nTwo-way ANOVA\n\n\n\n\nW 02/11\nAssignment 2\n\n\n\n\nM 02/17\nRegression\n\n\n\n\nW 02/19\nRegression\n\n\n\n\nM 02/24\nAssigment 3\n\n\n\n\nW 02/26\nProject: planning meeting\n\n\n\n\nM 03/03\nCategorical analysis\n\n\n\n\nW 03/05\nLogistic regression\n\n\n\n\nM 03/10\nAssignment 4\n\n\n\n\nW 03/12\nProject: planning meeting\n\n\n\n\nM 03/17\nSpring Break!\n\n\n\n\nW 03/19\nSpring Break!\n\n\n\n\nM 03/24\nProject: analysis\n\n\n\n\nW 03/26\nOUR: What is a Poster?\n\n\n\n\nM 03/31\nProject: analysis\n\n\n\n\nW 04/02\nProject: summary\n\n\n\n\nM 04/07\nProject: poster draft\n\n\n\n\nW 04/09\nIndividual group meetings with Dr. Seals\n\n\n\n\nM 04/14\nPoster presentation practice\n\n\n\n\nW 04/16\nOUR Symposium\n\n\n\n\nM 04/20\nCatch up!\n\n\n\n\nW 04/23\nProject: reflections"
+  },
+  {
     "objectID": "files/lecture/W01-L1-intro-to-R.html#introduction",
     "href": "files/lecture/W01-L1-intro-to-R.html#introduction",
     "title": "Review of Technology",
@@ -145,13 +348,6 @@
     "title": "Review of Technology",
     "section": "Wrap Up",
     "text": "Wrap Up\n\nToday we have gently introduced data management in R.\nI do not expect you to become an expert R programmer, but the more you practice, the easier it becomes.\nToday’s activity: Assignment 0"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "<b>STA6349 - Applied Bayesian Analysis - Spring 2025</b>",
-    "section": "",
-    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\nIn Class\n\n\n\n\nW 01/09\nIntroduction to R\n \n \n\n\nM 01/13\nIndependent and dependent t tests\n\n\n\n\nW 01/15\nHow to conceptualize research questions as hypotheses\n\n\n\n\nM 01/20\nOptional meeting - Assignment 1 help\n\n\n\n\nW 01/22\nAssumptions on t tests, Wilcoxons\n\n\n\n\nM 01/27\nAssignment 1\n\n\n\n\nW 01/29\nOne-Way ANOVA and post-hoc tests\n\n\n\n\nM 02/03\nANOVA assumptions; Kruskal-Wallis\n\n\n\n\nW 02/05\nProject: planning meeting\n\n\n\n\nM 02/09\nTwo-way ANOVA\n\n\n\n\nW 02/11\nAssignment 2\n\n\n\n\nM 02/17\nRegression\n\n\n\n\nW 02/19\nRegression\n\n\n\n\nM 02/24\nAssigment 3\n\n\n\n\nW 02/26\nProject: planning meeting\n\n\n\n\nM 03/03\nCategorical analysis\n\n\n\n\nW 03/05\nLogistic regression\n\n\n\n\nM 03/10\nAssignment 4\n\n\n\n\nW 03/12\nProject: planning meeting\n\n\n\n\nM 03/17\nSpring Break!\n\n\n\n\nW 03/19\nSpring Break!\n\n\n\n\nM 03/24\nProject: analysis\n\n\n\n\nW 03/26\nOUR: What is a Poster?\n\n\n\n\nM 03/31\nProject: analysis\n\n\n\n\nW 04/02\nProject: summary\n\n\n\n\nM 04/07\nProject: poster draft\n\n\n\n\nW 04/09\nIndividual group meetings with Dr. Seals\n\n\n\n\nM 04/14\nPoster presentation practice\n\n\n\n\nW 04/16\nOUR Symposium\n\n\n\n\nM 04/20\nCatch up!\n\n\n\n\nW 04/23\nProject: reflections"
   },
   {
     "objectID": "files/assignments/Assignment0.html",
