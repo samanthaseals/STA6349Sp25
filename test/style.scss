@@ -1,0 +1,37 @@
+/*-- scss:defaults --*/
+
+$font-family-sans-serif:	"Fira Sans", Helvetica, sans-serif !default;
+$font-family-monospace:	"Source Code Pro", monospace !default;
+$presentation-h-font12:	"Yanone Kaffeesatz", sans-serif !default; 
+$presentation-h-font36: "Source Sans 3", sans-serif !default; 
+$presentation-font-size-root:	32px !default;
+$presentation-h1-font-size:	2.5em !default;
+$presentation-h2-font-size:	2em !default;
+$presentation-h3-font-size:	1.4em !default;
+$presentation-font-smaller:	0.7 !default;
+$presentation-line-height: 1.3 !default;
+$presentation-title-slide-text-align: left !default;
+$presentation-slide-text-align: left !default;
+$code-block-font-size: 0.60em !default;
+
+$primary-color: #009CDE !default;
+$secondary-color: #009CDE !default;
+$body-fg-color: #004C97 !default;
+$alert-color: #8DC8E8 !default;
+$example-color: #8DC8E8 !default;
+$body-bg: #f1f1f1 !default;
+$body-color: $body-fg-color !default; 
+
+$header-bg-color: $primary-color !default;
+$selection-bg-color: #004C97 !default;
+$selection-fcolor: #fff !default;
+$dark-bg-code-color: $example-color !default;
+$link-color: $secondary-color !default;
+
+$titleSlide-line: solid !default;
+$h12-font-weight: 500 !default;
+$h36-font-weight: 400 !default;
+$cell-code-font-weight: normal !default;
+$body-font-weight: 300 !default;
+$authors-block-gap: 4em !default;
+
