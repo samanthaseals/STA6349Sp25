@@ -1,0 +1,751 @@
+---
+title: "**The Beta-Binomial Bayesian Model**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Introduction** 
+
+- Last week, we talked about creating posterior models for discrete priors (non-named distributions).
+
+- This week, we will now introduce having a named distribution as a prior.
+
+- We will start with analyzing a binomial outcome.
+
+    - Recall that the binomial distribution depends on $\pi$.
+
+## **Example**
+
+- Consider the following scenario. 
+    - "Michelle" has decided to run for president and you're her campaign manager for the state of Florida. 
+    - As such, you've conducted 30 different polls throughout the election season. 
+    - Though Michelle's support has hovered around 45%, she polled at around 35% in the dreariest days and around 55% in the best days on the campaign trail.
+    
+<center><img src="images/W07-L1-a.png"></center>  
+
+## **Example**
+- Past polls provide prior information about $\pi$, the proportion of Floridians that currently support Michelle. 
+
+    - In fact, we can reorganize this information into a formal prior probability model of $\pi$.
+
+- In a previous problem, we assumed that $\pi$ could only be 0.2, 0.5, or 0.8, the corresponding chances of which were defined by a discrete probability model.
+
+    - However, in the reality of Michelle's election support, $\pi \in [0, 1]$. 
+    
+- We can reflect this reality and conduct a Bayesian analysis by constructing a continuous prior probability model of $\pi$.
+
+## **Example**
+
+<center><img src="images/W07-L1-a.png"></center>  
+
+- A reasonable prior is represented by the curve on the right. 
+
+    - Notice that this curve preserves the overall information and variability in the past polls, i.e., Michelle's support, $\pi$ can be anywhere between 0 and 1, but is most likely around 0.45.
+
+## **Example**
+
+- Incorporating this more nuanced, continuous view of Michelle's support, $\pi$, will require some new tools. 
+    - No matter if our parameter $\pi$ is continuous or discrete, the posterior model of $\pi$ will combine insights from the prior and data. 
+    - $\pi$ isn’t the only variable of interest that lives on [0,1]. 
+    
+- Maybe we're interested in modeling the proportion of people that use public transit, the proportion of trains that are delayed, the proportion of people that prefer cats to dogs, etc. 
+    - The Beta-Binomial model provides the tools we need to study the proportion of interest, $\pi$, in each of these settings.    
+    
+## **Beta Prior**
+
+<center><img src="images/W07-L1-a.png"></center>  
+
+- In building the Bayesian election model of Michelle's election support among Floridians, $\pi$, we begin with the prior. 
+
+    - Our continuous prior probability model of $\pi$ is specified by the probability density function (pdf). 
+    
+- What values can $\pi$ take and which are more plausible than others?
+
+## **Beta Prior**
+
+- Let $\pi$ be a random variable, where $\pi \in [0, 1]$. 
+
+- The variability in $\pi$ may be captured by a Beta model with shape hyperparameters $\alpha > 0$ and $\beta > 0$,
+
+    - **hyperparameter:** a parameter used in a prior model.
+    
+$$ \pi \sim \text{Beta}(\alpha, \beta), $$
+
+- Let's explore the shape of the Beta:
+
+```{r}
+#| eval: false
+
+library(bayesrules)
+library(tidyverse)
+
+plot_beta(1, 5) + theme_bw()
+plot_beta(1, 2) + theme_bw()
+plot_beta(3, 7) + theme_bw()
+plot_beta(1, 1) + theme_bw()
+```
+
+## **Beta Prior**
+
+<center>
+```{r}
+#| echo: false
+library(bayesrules)
+library(tidyverse)
+```
+```{r}
+plot_beta(1, 5) + theme_bw() + ggtitle("Beta(1, 5)")
+```
+</center>
+
+## **Beta Prior**
+
+<center>
+```{r}
+plot_beta(1, 2) + theme_bw() + ggtitle("Beta(1, 2)")
+```
+</center>
+
+## **Beta Prior**
+
+<center>
+```{r}
+plot_beta(3, 7) + theme_bw() + ggtitle("Beta(3, 7)")
+```
+</center>
+
+## **Beta Prior**
+
+<center>
+```{r}
+plot_beta(1, 1) + theme_bw() + ggtitle("Beta(1, 1)")
+```
+</center>
+
+## **Beta Prior**
+
+- Your turn!
+
+- Explore the following and report back:
+    - How would you describe the typical behavior of a Beta($\alpha, \beta$) variable, $\pi$, when $\alpha=\beta$?
+    - How would you describe the typical behavior of a Beta($\alpha, \beta$) variable, $\pi$, when $\alpha>\beta$?
+    - How would you describe the typical behavior of a Beta($\alpha, \beta$) variable, $\pi$, when $\alpha<\beta$?
+    - For which model is there greater variability in the plausible values of $\pi$, Beta(20, 20) or Beta(5, 5)?
+
+## **Tuning the Beta Prior**
+
+- We can *tune* the shape hyperparameters ($\alpha$ and $\beta$) to reflect our prior information about Michelle's election support, $\pi$.
+
+- In our example, we saw that she polled between 25 and 65 percentage points, with an average of 45 percentage points.
+    - We want our Beta($\alpha, \beta$) to have similar patterns.
+    - We want to pick $\alpha$ and $\beta$ such that $\pi$ is around 0.45.
+    
+$$
+E[\pi] = \frac{\alpha}{\alpha+\beta} \approx 0.45
+$$
+
+- Using algebra, we can tune, and find
+
+$$\alpha \approx \frac{9}{11} \beta$$
+
+## **Tuning the Beta Prior**
+
+- Your turn!
+
+    - Graph the following and determine which is best for the example.
+        
+```{r}
+#| eval: false
+
+plot_beta(9, 11) + theme_bw()
+plot_beta(27, 33) + theme_bw()
+plot_beta(45, 55) + theme_bw()
+```        
+        
+- Recall, this is what we are going for:        
+
+<center><img src="images/W07-L1-a.png"></center>  
+
+## **Tuning the Beta Prior**
+
+<center>
+```{r}
+plot_beta(9, 11) + theme_bw() + ggtitle("Beta(9, 11)")
+```
+</center>
+
+## **Tuning the Beta Prior**
+
+<center>
+```{r}
+plot_beta(27, 33) + theme_bw() + ggtitle("Beta(27, 33)")
+```
+</center>
+
+## **Tuning the Beta Prior**
+
+<center>
+```{r}
+plot_beta(45, 55) + theme_bw() + ggtitle("Beta(45, 55)")
+```
+</center>
+
+## **Tuning the Beta Prior**
+
+- Now that we have a prior, we "know" some things.
+
+$$\pi \sim \text{Beta}(45, 55)$$
+
+- From the properties of the beta distribution,
+
+$$
+\begin{equation*}
+\begin{aligned}
+E[\pi] &= \frac{\alpha}{\alpha + \beta} & \text{ and } & \text{ } & \text{ }  \\
+&=\frac{45}{45+55} \\
+&= 0.45
+\end{aligned} 
+\begin{aligned}
+\text{var}[\pi] &= \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)} \\
+&= \frac{(45)(55)}{(45+55)^2(45+55+1)} \\
+&= 0.0025
+\end{aligned}
+\end{equation*}
+$$
+
+
+## **The Binomial Data Model and Likelihood Function**
+        
+- Now we are ready to think about the data collection.
+
+- A new poll of $n = 50$ Floridians recorded $Y$, the number that support Michelle. 
+
+    - The results depend upon $\pi$ -- the greater Michelle’s actual support, the greater $Y$ will tend to be. 
+    
+- To model the dependence of $Y$ on $\pi$, we assume
+
+    - voters answer the poll independently of one another;
+    - the probability that any polled voter supports your candidate Michelle is $\pi$
+    
+- This is a binomial event, $Y|\pi \sim \text{Bin}(50, \pi)$,  with conditional pmf, $f(y|\pi)$ defined for $y \in \{0, 1, ..., 50\}$
+
+$$f(y|\pi) = P[Y = y|\pi] = {50 \choose y} \pi^y (1-\pi)^{50-y}$$
+
+## **The Binomial Data Model and Likelihood Function**
+
+- The conditional pmf, $f(y|\pi)$, gives us answers to a hypothetical question:
+
+    - If Michelle's support were given some value of $\pi$, then how many of the 50 polled voters ($Y=y$) might we expect to suppport her?
+
+- Let's look at this graphically:
+
+```{r}
+#| eval: false
+
+n <- 50
+pi <- value of pi
+
+binom_prob <- tibble(n_success = 1:n,
+                     prob = dbinom(n_success, size=n, prob=pi))
+
+binom_prob %>%
+  ggplot(aes(x=n_success,y=prob))+
+  geom_col(width=0.2)+
+  labs(x= "Number of Successes",
+       y= "Probability") +
+  theme_bw()
+```
+
+## **The Binomial Data Model and Likelihood Function**
+
+```{r}
+#| echo: false
+library(latex2exp)
+library(tidyverse)
+```
+
+<center>
+```{r}
+#| echo: false
+
+n <- 50
+pi <- 0.1
+
+binom_prob <- tibble(n_success = 1:n) %>%
+  mutate(prob = dbinom(n_success, size=n, prob=pi))
+binom_prob %>%
+  ggplot(aes(x=n_success,y=prob))+
+  geom_col(width=0.2)+
+  labs(x= "Number of Successes",
+       y= "Probability", 
+       title = TeX(r'($\pi=0.1$)')) +
+  theme_bw()
+```
+</center>
+
+
+## **The Binomial Data Model and Likelihood Function**
+
+<center>
+```{r}
+#| echo: false
+
+n <- 50
+pi <- 0.5
+
+binom_prob <- tibble(n_success = 1:n) %>%
+  mutate(prob = dbinom(n_success, size=n, prob=pi))
+binom_prob %>%
+  ggplot(aes(x=n_success,y=prob))+
+  geom_col(width=0.2)+
+  labs(x= "Number of Successes",
+       y= "Probability",
+       title = TeX(r'($\pi=0.5$)')) +
+  theme_bw()
+```
+</center>
+
+
+## **The Binomial Data Model and Likelihood Function**
+
+<center>
+```{r}
+#| echo: false
+
+n <- 50
+pi <- 0.75
+
+binom_prob <- tibble(n_success = 1:n) %>%
+  mutate(prob = dbinom(n_success, size=n, prob=pi))
+binom_prob %>%
+  ggplot(aes(x=n_success,y=prob))+
+  geom_col(width=0.2)+
+  labs(x= "Number of Successes",
+       y= "Probability",
+       title = TeX(r'($\pi=0.75$)')) +
+  theme_bw()
+```
+</center>
+
+## **The Binomial Data Model and Likelihood Function**
+
+- It is observed that $Y=30$ of the $n=50$ polled voters support Michelle.
+
+- We now want to find the likelihood function -- remember that we treat $Y=30$ as the observed data and $\pi$ as unknown,
+
+$$
+\begin{align*}
+f(y|\pi) &= {50 \choose y} \pi^y (1-\pi)^{50-y} \\
+L(\pi|y=30) &= {50 \choose 30} \pi^{30} (1-\pi)^{20}
+\end{align*}
+$$
+
+- This is valid for $\pi \in [0, 1]$.
+
+## **The Binomial Data Model and Likelihood Function**
+
+- What is the likelihood of 30/50 voters supporting Michelle?
+
+```{r}
+#| eval: false
+dbinom(30, 50, pi)
+```
+
+- You try this for $\pi = \{0.25, 0.50, 0.75\}$.
+
+## **The Binomial Data Model and Likelihood Function**
+
+- What is the likelihood of 30/50 voters supporting Michelle?
+
+```{r}
+#| eval: false
+dbinom(30, 50, pi)
+```
+
+- For $\pi = 0.25$,
+
+```{r}
+dbinom(30, 50, 0.25)
+```
+
+- For $\pi = 0.5$,
+
+```{r}
+dbinom(30, 50, 0.5)
+```
+
+- For $\pi = 0.75$,
+
+```{r}
+dbinom(30, 50, 0.75)
+```
+
+## **The Binomial Data Model and Likelihood Function**
+
+- Challenge!
+
+- Create a graph showing what happens to the likelihood for different values of $\pi$.
+
+    - i.e., have $\pi$ on the $x$-axis and likelihood on the $y$-axis.
+    
+- To get you started,    
+    
+```{r}
+#| eval: false
+graph <- tibble(pi = seq(0, 1, 0.001)) %>%
+  mutate(likelihood = dbinom(30, 50, pi))
+```    
+    
+## **The Binomial Data Model and Likelihood Function**
+
+- Create a graph showing what happens to the likelihood for different values of $\pi$.
+
+<center>
+```{r}
+#| echo: false
+graph <- tibble(pi = seq(0, 1, 0.001)) %>%
+  mutate(likelihood = dbinom(30, 50, pi))
+
+graph %>% ggplot(aes(x = pi, y = likelihood)) +
+  geom_line() +
+  labs(x = "Probability of Success", y = "Likelihood") +
+  theme_bw()
+```
+</center>
+
+- Where is the maximum?
+
+## **The Binomial Data Model and Likelihood Function**
+
+- Where is the maximum?
+
+<center>
+```{r}
+#| echo: false
+graph <- tibble(pi = seq(0, 1, 0.001)) %>%
+  mutate(likelihood = dbinom(30, 50, pi))
+  
+graph2 <- graph %>% filter(likelihood == max(likelihood))
+
+graph %>% ggplot(aes(x = pi, y = likelihood)) +
+  geom_line() +
+  geom_point(data = graph2, color = "red", size = 3) +
+  geom_text(data = graph2, label =  TeX(r'($\pi=0.60$)'), hjust=-.5) +
+  labs(x = "Probability of Success", y = "Likelihood") +
+  theme_bw()
+```
+</center>
+
+## **The Beta Posterior Model**
+
+$$
+\begin{align*}
+Y|\pi &\sim \text{Bin}(50, \pi) \\
+\pi &\sim \text{Beta}(45, 55)
+\end{align*}
+$$
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 45, beta = 55, y = 30, n = 50, posterior = FALSE) + 
+  theme_bw()
+```
+</center>
+
+- The prior is a bit more pessimistic about Michelle's election support than the data obtained from the latest poll.
+
+## **The Beta Posterior Model**
+
+- Let's graph the posterior,
+
+<center>
+```{r}
+plot_beta_binomial(alpha = 45, beta = 55, y = 30, n = 50) + 
+  theme_bw()
+```
+</center>
+
+- We can see that the posterior model of $\pi$ is continuous and $\in [0, 1]$.
+
+- The shape of the posterior appears to also have a Beta($\alpha$, $\beta$) model.
+
+    - The shape parameters ($\alpha$ and $\beta$) have been *updated*.
+
+## **The Beta Posterior Model**
+    
+- If we were to collect more information about Michelle's support, we would use the current posterior as the new prior, then update our posterior. 
+
+    - How do we know what the updated parameters are?
+
+```{r}
+summarize_beta_binomial(alpha = 45, beta = 55, y = 30, n = 50)
+```
+
+## **The Beta-Binomial Model**
+
+- We used Michelle's election support to understand the Beta-Binomial model.
+
+- Let's now generalize it for any appropriate situation.
+
+$$
+\begin{align*}
+Y|\pi &\sim \text{Bin}(n, \pi) \\
+\pi &\sim \text{Beta}(\alpha, \beta) \\
+\pi | (Y=y) &\sim \text{Beta}(\alpha+y, \beta+n-y)
+\end{align*}
+$$
+
+- We can see that the posterior distribution reveals the influence of the prior ($\alpha$ and $\beta$) and data ($y$ and $n$).
+
+## **The Beta-Binomial Model**
+
+- Under this updated distribution,
+
+$$
+\pi | (Y=y) \sim \text{Beta}(\alpha+y, \beta+n-y)
+$$
+
+- we have updated moments:
+
+$$
+\begin{align*}
+E[\pi | Y = y] &= \frac{\alpha + y}{\alpha + \beta + n} \\
+\text{Var}[\pi|Y=y] &= \frac{(\alpha+y)(\beta+n-y)}{(\alpha+\beta+n)^2(\alpha+\beta+1)}
+\end{align*}
+$$
+
+## **The Beta-Binomial Model**
+
+- Let's pause and think about this from a theoretical standpoint.
+
+- The Beta distribution is a *conjugate prior* for the likelihood.
+
+    - **Conjugate prior**: the posterior is from the same model family as the prior.
+    
+- Recall the Beta prior, $f(\pi)$, 
+
+$$ L(\pi|y) = {n \choose y} \pi^y (1-\pi)^{n-y} $$
+
+- and the likelihood function, $L(\pi|y)$.
+
+$$ f(\pi) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} \pi^{\alpha-1}(1-\alpha)^{\beta-1} $$
+
+## **The Beta-Binomial Model**
+
+- We can put the prior and likelihood together to create the posterior,
+
+$$
+\begin{align*}
+f(\pi|y) &\propto f(\pi)L(\pi|y) \\
+&= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} \pi^{\alpha-1}(1-\pi)^{\beta-1} \times {n \choose y} \pi^y (1-\pi)^{n-1} \\
+&\propto \pi^{(\alpha+y)-1} (1-\pi)^{(\beta+n-y)-1}
+\end{align*}
+$$
+
+- This is the same structure as the normalized Beta($\alpha+y, \beta+n-y$),
+
+$$f(\pi|y) = \frac{\Gamma(\alpha+\beta+n)}{\Gamma(\alpha+y) \Gamma(\beta+n-y)} \pi^{(\alpha+y)-1} (1-\pi)^{(\beta+n-y)-1}$$
+
+## **Example**
+
+- In a 1963 issue of The Journal of Abnormal and Social Psychology, Stanley Milgram described a study in which he investigated the propensity of people to obey orders from authority figures, even when those orders may harm other people ([Milgram 1963](https://psycnet.apa.org/record/1964-03472-001?doi=1)).
+
+- Study participants were given the task of testing another participant (who was a trained actor) on their ability to memorize facts. 
+
+- If the actor didn't remember a fact, the participant was ordered to administer a shock on the actor and to increase the shock level with every subsequent failure. 
+
+- Unbeknownst to the participant, the shocks were fake and the actor was only pretending to register pain from the shock.
+
+## **Example**
+
+- The parameter of interest here is $\pi$, the chance that a person would obey authority (in this case, administering the most severe shock), even if it meant bringing harm to others. 
+    - Since Milgram passed away in 1984, we don’t have the opportunity to ask him about his understanding of $\pi$ prior to conducting the study.
+    - Suppose another psychologist helped carry out this work. Prior to collecting data, they indicated that a Beta(1,10) model accurately reflected their understanding about $\pi$.
+
+- The outcome of interest is $Y$, the number of the $n=40$ study participants that would inflict the most severe shock. 
+
+- What model is appropriate?
+
+## **Example**
+
+- What model is appropriate?
+
+- Assuming that each participant behaves independently of the others, we can model the dependence of $Y$ on $\pi$ using the Binomial.
+
+- Thus, we have a Beta-Binomial Bayesian model.
+
+$$
+\begin{align*}
+Y|\pi &\sim \text{Bin}(40, \pi) \\
+\pi &\sim \text{Beta}(1, 10)
+\end{align*}
+$$
+
+## **Example**
+
+- What do you think this prior reveals about the psychologist's prior understanding of $\pi$?
+
+```{r}
+#| eval: false
+plot_beta(alpha = 1, beta = 10)
+```
+
+a. They don't have an informed opinion.
+
+b. They're fairly certain that a large proportion of people will do what authority tells them.
+
+c. They're fairly certain that only a small proportion of people will do what authority tells them.
+
+## **Example**
+
+- What do you think this prior reveals about the psychologist's prior understanding of $\pi$?
+
+<center>
+```{r}
+#| echo: false
+plot_beta(alpha = 1, beta = 10) + theme_bw()
+```
+</center>
+
+**c. They're fairly certain that only a small proportion of people will do what authority tells them.**
+
+## **Example**
+
+- After data collection, $Y = 26$ of the $n=40$ study participants inflected what they understood to be the maximum shock. 
+
+- From the problem set up,
+
+$$
+\begin{align*}
+Y|\pi &\sim \text{Bin}(40, \pi) \\
+\pi &\sim \text{Beta}(1, 10)
+\end{align*}
+$$
+
+- Use what you know to find the posterior model of $\pi$,
+
+$$\pi|(Y=26) \sim \text{Beta}(\text{??}, \text{??})$$
+
+## **Example**
+
+- After data collection, $Y = 26$ of the $n=40$ study participants inflected what they understood to be the maximum shock. 
+
+- Use what you know to find the posterior model of $\pi$,
+
+$$\pi|(Y=26) \sim \text{Beta}(\text{??}, \text{??})$$
+
+- With $\alpha = 1$ and $\beta = 10$, we know the posterior distribution will be as follows,
+
+$$
+\begin{align*}
+\pi | (Y=y) &\sim \text{Beta}(\alpha+y, \beta+n-y) \\
+&\sim \text{Beta}(1+26, 10+40-26) \\
+&\sim \text{Beta}(27, 24)
+\end{align*}
+$$
+
+## **Example**
+
+- Let's find the summary,
+
+```{r}
+#| eval: false
+summarize_beta_binomial(alpha = 1, beta = 10, y = 26, n = 40)
+```
+
+- and graph the distributions involved,
+
+```{r}
+#| eval: false
+plot_beta_binomial(alpha = 1, beta = 10, y = 26, n = 40)
+```
+
+- What belief did we have for $\pi$ before considering the data?
+
+- What belief do we have for $\pi$ after considering the prior and the observed data?
+
+## **Example**
+
+- Let's find the summary,
+
+```{r}
+summarize_beta_binomial(alpha = 1, beta = 10, y = 26, n = 40)
+```
+
+- and graph the distributions involved,
+
+<center>
+```{r}
+plot_beta_binomial(alpha = 1, beta = 10, y = 26, n = 40) + theme_bw()
+```
+</center>
+
+## **Example** 
+
+<center>
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 4
+plot_beta_binomial(alpha = 1, beta = 10, y = 26, n = 40) + theme_bw()
+```
+</center>
+
+- What belief did we have for $\pi$ before considering the data?
+
+    - Fewer than 25% of people would inflict the most severe shock.
+
+- What belief do we have for $\pi$ after considering the prior and the observed data?
+
+    - Somewhere between 30% and 70% of people would inflict the most severe shock.
+
+## **Wrap Up**
+
+- Today we have built the Beta-Binomial model for $\pi$, an unknown proportion.
+
+$$
+\begin{equation*}
+\begin{aligned}
+Y|\pi &\sim \text{Bin}(n,\pi) \\
+\pi &\sim \text{Beta}(\alpha,\beta) &
+\end{aligned} 
+\Rightarrow 
+\begin{aligned}
+&& \pi | (Y=y) &\sim \text{Beta}(\alpha+y, \beta+n-y) \\
+\end{aligned}
+\end{equation*}
+$$
+
+- The prior model, $f(\pi)$, is given by Beta($\alpha,\beta$).
+
+- The data model, $f(Y|\pi)$, is given by Bin($n,\pi$).
+
+- The likelihood function, $L(\pi|y)$, is obtained by plugging $y$ into the Binomial pmf.
+
+- The posterior model is a Beta distribution with updated parameters $\alpha+y$ and $\beta+n-y$.
+
+## **Homework** 
+
+- 3.3
+- 3.9
+- 3.10
+- 3.18
+

@@ -1,0 +1,280 @@
+---
+title: "**Introduction to Probability**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Introduction**
+
+- The first few lectures come from [Mathematical Statistics with Applications](https://www.cengage.com/c/mathematical-statistics-with-applications-7e-wackerly/9780495110811/), by Wackerly.
+
+    - We must understand the underlying probability and random variable theory before moving into the Bayesian world.
+    
+- We will be covering the following chapters:
+    - <font color = "#965dc7">Chapter 2: probability theory</font>
+    - Chapter 3: discrete random variables
+    - Chapter 4: continuous random variables
+
+## **2.7: Conditional Prob. and Independence of Events**
+
+- *Conditional probability* of an event $A$ given that an event $B$ has occurred is as follows
+
+$$
+P[A|B] = \frac{P[A \cap B]}{P[B]},
+$$
+
+- so long as $P[B] > 0$.
+
+- Notation: $P[A|B]$ is the probability of $A$ *given* $B$.
+
+## **2.7: Conditional Prob. and Independence of Events**
+
+- Suppose that a balanced die is tossed once. Find the probability of rolling a 1, given that an odd number was obtained.
+
+## **2.7: Conditional Prob. and Independence of Events**
+
+- Two events $A$ and $B$ are said to be *independent* events if any one of the following holds:
+
+$$
+\begin{align*}
+P[A|B] &= P[A] \\
+P[B|A] &= P[B] \\
+P[A \cap B] &= P[A] P[B]
+\end{align*}
+$$
+- Otherwise, we say that $A$ and $B$ are *dependent* events.
+
+## **2.7: Conditional Prob. and Independence of Events**
+
+- Consider the following events in the toss of a single die:
+
+    - $A$: Observe an odd number.
+    - $B$: Observe an even number.
+    - $C$: Observe a 1 or 2.
+    
+- Are $A$ and $B$ independent events? <br><br><br><br><br><br><br>
+
+- Are $A$ and $C$ independent events?
+
+## **2.8: Two Laws of Probability**
+
+- **Theorem**: The Multiplicative Law of Probability
+
+    - The probability of the intersection of two events $A$ and $B$ is
+    
+$$\begin{align*}P[A\cap B] &= P[A] P[B|A] \\ &= P[B] P[A|B]\end{align*}$$
+    
+- Note that if $A$ and $B$ are independent, then
+
+$$P[A \cap B] = P[A] P[B]$$
+
+## **2.8: Two Laws of Probability**
+
+- **Theorem**: The Additive Law of Probability
+
+    - The probability of the union of two events $A$ and $B$ is
+    
+$$P[A \cup B] = P[A] + P[B] - P[A \cap B] $$
+
+- Note that if $A$ and $B$ are mutually exclusive, then $P[A \cap B] = 0$ and
+
+$$P[A \cup B] = P[A] + P[B]$$
+
+## **2.8: Two Laws of Probability**
+
+- **Theorem**: The Complement Rule
+
+    - If $A$ is an event, then
+    
+$$
+\begin{align*}
+P[A] &= 1 - P[\bar{A}] \\
+P[\bar{A}] &= 1 - P[A] \\
+1 &= P[A] + P[\bar{A}]
+\end{align*}
+$$
+
+## **2.8: Two Laws of Probability**
+
+- Suppose $A_1$, $A_2$, and $A_3$ are three events and $P[A_1 \cap A_2] = P[A_1 \cap A_3] \ne 0$ but $P[A_2 \cap A_3] = 0$. Show that 
+
+$$
+P[\text{at least one } A_i] = P[A_1] + P[A_2] + P[A_3] - 2 P[A_1 \cap A_2]. 
+$$
+
+## **2.9: Calculating the Probability of an Event**
+
+- The steps used to define the probability of an event:
+
+    1. Define the experiment.
+    
+    2. Visualize the nature of the sample points. Identify a few to clarify your thinking.
+    
+    3. Write an equation expressing the event of interest ($A$) as a composition of two or more events, using usions, intersections, and/or complements. Make certain that event $A$ and the event implied by the compsotion represnt the sameset of sample points.
+    
+    4. Apply the additive and multiplicative laws of probability in the compositions obtained in step 3 to find $P[A]$.
+
+## **2.9: Calculating the Probability of an Event**
+
+- It is known that a patient with a disease with respond to treatment with probability equal to 0.9. If three patients with the disease are treated independently, find the probability that at least one will respond.
+
+## **2.10: The Law of Total Probability and Bayes' Rule**
+
+- *Partition*:
+    - For some positive integer $k$, let the sets $B_1, B_2, ..., B_k$ be such that
+        - $S = B_1 \cup B_2 \cup ... \cup B_k$
+        - $B_1 \cap B_j = \emptyset$, for $i \ne j$
+    - Then the collection of sets $\{B_1, B_2, ..., B_k\}$ is said to be a *partition* of $S$.
+- We also know that if $A$ is any subset of $S$ and $\{B_1, B_2, ..., B_k\}$ is a partition of $S$, $A$ can be *decomposed*:
+
+$$
+A = (A \cap B_1) \cup (A \cap B_2) \cup \ ... \ \cup (A \cap B_k)
+$$
+
+
+![](images/W02-L1-a.png){fig-align="center"} 
+
+## **2.10: The Law of Total Probability and Bayes' Rule**
+
+- **Theorem**:
+
+    - Assume that $\{ B_1, B_2, ..., B_k \}$ is a partition of $S$ such that $P[B_i] > 0$ for $i = 1, 2, ..., k$. Then for any event $A$,
+    
+$$
+P[A] = \sum_{i=1}^k P[A|B_i] P[B_i]
+$$
+
+- **Theorem**: Bayes' Rule
+
+    - Assume that $\{ B_1, B_2, ..., B_k \}$ is a partition of $S$ such that $P[B_i] > 0$ for $i = 1, 2, ..., k$. Then
+    
+$$
+P[B_j | A] = \frac{P[A|B_j] P[B_j]}{\sum_{i=1}^k P[A|B_i] P[B_i]}
+$$
+
+## **2.10: The Law of Total Probability and Bayes' Rule**
+
+- An electronic fuse is produced by five production lines in a manufacturing operation. The fuses are costly, are quite reliable, and are shipped to suppliers in 100-unit lots. Because testing is destructive, most buyers of the fuses test only a small number of fuses before deciding to accept or reject lots of incoming fuses. All five production lines produce fuses at the same rate and normally produce only 2% defective fuses, which are dispersed randomly in the output.  Unfortunately, production line 1 suffered mechanical difficulty and produced 5% defectives during the month of March. This situation became known to the manufacturer after the fuses had been shipped. 
+   
+- A customer received a lot produced in March and tested three fuses. One failed.
+    - What is the probability that the lot was produced on line 1? <br><br><br><br><br><br>
+    - What is the probability that the lot came from one of the four other lines?
+
+<!-- 
+in solution, insert
+![](images/W02-L1-b.png){fig-align="center"} 
+-->
+
+## **2.10: The Law of Total Probability and Bayes' Rule**
+
+- Of the travelers arriving at a small airport, 60% fly on major airlines, 30% fly on privately owned planes, and the remainder fly on commercially owned planes not belonging to a major airline.  Of those traveling on major airlines, 50% are traveling for business reasons, whereas 60% of those arriving on private planes and 90% of those arriving on other commercially owned planes are traveling for business reasons. 
+- Suppose that we randomly select one person arriving at this airport. What is the probability that the person:
+
+    a. is traveling on business? <br><br><br>
+    
+    b. is traveling for business on a privately owned plane? <br><br><br>
+    
+    c. arrived on a privately owned plane, given that the person is traveling for business reasons? <br><br><br><br><br>
+    
+    d. is traveling on business, given that the person is flying on a commercially owned plane?
+
+## **2.11: Numerical Events and Random Variables**
+
+- *Random variable*:
+
+    - A real-valued function for which the domain is a sample space.
+
+- Let $Y$ denote a variable to be measured in an experiment.
+    - Because the value of $Y$ will vary depending on the outcome of the experiment, it is called a *random variable*.
+    - Each point in the sample space will be assigned a real number denoting the value of $Y$.
+        - That is, it may vary from one sample point to another.
+    
+![](images/W02-L1-c.png){fig-align="center"}    
+
+## **2.11: Numerical Events and Random Variables**
+
+- Define an experiment as tossing two coins and observing the results. 
+
+- Let $Y$ equal the number of heads obtained. 
+    - Identify the sample points in S. <br><br><br><br>
+    - Assign a value of Y to each sample point <br><br><br><br>
+    - Identify the sample points associated with each value of the random variable $Y$. <br><br><br><br>
+    - Compute the probabilities for each value of $Y$.
+
+## **2.12: Random Sampling**
+
+- *Population*: collection of all elements of interest.
+
+    - *Parameter*: numeric characteristic of the population
+
+- *Sample*: subset of the population.
+
+    - *Statistic*: numeric characteristic of the sample
+    
+- The method of sampling will affect the probability of a particular sample outcome.
+    - Simple random sample.
+    - Stratified random sample.
+    - Cluster sample.
+    - Systematic sample.
+
+## **2.12: Random Sampling**
+
+![](images/W02-L1-d.png){fig-align="center"}   
+
+## **2.12: Random Sampling**
+
+- *Sampling with replacement*: elements can be chosen more than once for inclusion in a sample.
+
+    - This means every time we select an element for the sample, the possible choices from the population stay the same.
+
+- *Sampling without replacement*: elements cannot be chosen more than once for inclusion in a sample.
+
+    - This means every time we select an element for the sample, the possible choices from the population decrease.
+    
+- *Random sample*: each of the ${N \choose n}$ possible samples have equal probability of being selected.
+    - $N$ is the population size
+    - $n$ is the sample size
+    
+- If we need to randomize, we will use a random number generator to assign a random number, then reorder the dataset and take the first $n$ observations.    
+
+## **Homework**
+
+- 2.73
+- 2.77
+- 2.94
+- 2.106
+- 2.107
+- 2.114
+- 2.120
+- 2.128
+- 2.140
+- 2.141
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,660 @@
+---
+title: "**Balance and Sequentiality in Bayesian Analyses**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Introduction**
+
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(bayesrules)
+library(janitor)
+library(ggpubr)
+```
+
+- On Monday, we talked about the Beta-Binomial model for binary outcomes with an unknown probability of success, $\pi$.
+
+- We will now discuss sequentality in Bayesian analyses.
+
+- Working example: 
+    - In Alison Bechdel's 1985 comic strip The Rule, a character states that they only see a movie if it satisfies the following three rules (Bechdel 1986):
+        - the movie has to have at least two women in it;
+        - these two women talk to each other; and
+        - they talk about something besides a man.
+
+    - These criteria constitute the Bechdel test for the representation of women in film. 
+    
+- Thinking of movies you've watched, what percentage of all recent movies do you think pass the Bechdel test? Is it closer to 10%, 50%, 80%, or 100%?
+
+## **Introduction**  
+
+- Let  $\pi$, a random value between 0 and 1, denote the unknown proportion of recent movies that pass the Bechdel test. 
+
+- Three friends - the feminist, the clueless, and the optimist - have some prior ideas about $\pi$.
+    - Reflecting upon movies that he has seen in the past, the feminist understands that the majority lack strong women characters. 
+    - The clueless doesn’t really recall the movies they've seen, and so are unsure whether passing the Bechdel test is common or uncommon. 
+    - Lastly, the optimist thinks that the Bechdel test is a really low bar for the representation of women in film, and thus assumes almost all movies pass the test. 
+    
+```{r}
+#| eval: false
+plot_beta(alpha = 1, beta = 1)
+plot_beta(alpha = 5, beta = 11)
+plot_beta(alpha = 14, beta = 1)
+```    
+    
+- Which one is which?
+    
+## **Introduction**      
+
+```{r}
+#| eval: false
+plot_beta(alpha = 1, beta = 1)
+plot_beta(alpha = 5, beta = 11)
+plot_beta(alpha = 14, beta = 1)
+```    
+    
+- Which one is which?
+    - Reflecting upon movies that he has seen in the past, the feminist understands that the majority lack strong women characters. 
+    - The clueless doesn’t really recall the movies they've seen, and so are unsure whether passing the Bechdel test is common or uncommon. 
+    - Lastly, the optimist thinks that the Bechdel test is a really low bar for the representation of women in film, and thus assumes almost all movies pass the test. 
+
+## **Introduction**  
+
+<center>
+```{r}
+plot_beta(alpha = 1, beta = 1) + theme_bw() + ggtitle("Beta(1, 1)")
+```
+</center>
+
+- The clueless doesn’t really recall the movies they've seen, and so are unsure whether passing the Bechdel test is common or uncommon. 
+
+## **Introduction**  
+
+<center>
+```{r}
+plot_beta(alpha = 5, beta = 11) + theme_bw() + ggtitle("Beta(5, 11)")
+```
+</center>
+
+- Reflecting upon movies that he has seen in the past, the feminist understands that the majority lack strong women characters. 
+
+## **Introduction**  
+
+<center>
+```{r}
+plot_beta(alpha = 14, beta = 1) + theme_bw() + ggtitle("Beta(14, 1)")
+```
+</center>
+
+- Lastly, the optimist thinks that the Bechdel test is a really low bar for the representation of women in film, and thus assumes almost all movies pass the test.   
+
+## **Introduction** 
+
+- The analysts agree to review a sample of $n$ recent movies and record $Y$, the number that pass the Bechdel test. 
+    - Because the outcome is yes/no, the binomial distribution is appropriate for the data distribution.
+    - We aren't sure what the population proportion, $\pi$, is, so we will not restrict it to a fixed value. 
+        - Because we know $\pi \in [0, 1]$, the beta distribution is appropriate for the prior distribution.
+    
+$$
+\begin{align*}
+Y|\pi &\sim \text{Bin}(n, \pi) \\
+\pi &\sim \text{Beta}(\alpha, \beta)
+\end{align*}
+$$
+
+- From the previous chapter, we know that this results in the following posterior distribution
+
+$$
+\pi | (Y=y) \sim \text{Beta}(\alpha+y, \beta+n-y)
+$$
+
+## **Introduction** 
+
+- Wait!!
+    - Everyone gets their own prior?
+    - ... is there a "correct" prior?
+    - ...... is the Bayesian world always this subjective?
+    
+## **Introduction** 
+
+- Wait!!
+    - Everyone gets their own prior?
+    - ... is there a "correct" prior?
+    - ...... is the Bayesian world always this subjective?    
+    
+- More clearly defined questions that we *can* actually answer:
+    - To what extent might different priors lead the analysts to three different posterior conclusions about the Bechdel test? 
+        - How might this depend upon the sample size and outcomes of the movie data they collect? 
+    - To what extent will the analysts' posterior understandings evolve as they collect more and more data? 
+    - Will they ever come to agreement about the representation of women in film?! 
+    
+## **Different Priors $\to$ Different Posteriors**
+    
+<center>    
+```{r}
+#| echo: false
+ggarrange(plot_beta(alpha = 1, beta = 1) + theme_bw() + ggtitle("Beta(1, 1)") + ylim(0,15),
+          plot_beta(alpha = 5, beta = 11) + theme_bw() + ggtitle("Beta(5, 11)") + ylim(0,15),
+          plot_beta(alpha = 14, beta = 1) + theme_bw() + ggtitle("Beta(14, 1)") + ylim(0,15),
+          ncol = 3)
+```
+</center>
+
+- The differing prior means show disagreement about whether $\pi$ is closer to 0 or 1.
+
+- The differing levels of prior variability show that the analysts have different degrees of certainty in their prior information. 
+
+    - The more certain we are about the prior information, the smaller the prior variability. 
+
+## **Different Priors $\to$ Different Posteriors**  
+
+<center>    
+```{r}
+#| echo: false
+plot_beta(alpha = 14, beta = 1) + theme_bw() + ggtitle("Beta(14, 1)") + ylim(0,15)
+```
+</center>
+
+- **Informative prior**: reflects specific information about the unknown variable with high certainty, i.e., low variability.
+    
+## **Different Priors $\to$ Different Posteriors**  
+
+<center>    
+```{r}
+#| echo: false
+plot_beta(alpha = 1, beta = 1) + theme_bw() + ggtitle("Beta(14, 1)") + ylim(0,15)
+```
+</center>
+
+- **Vague or diffuse prior**:  reflects little specific information about the unknown variable. 
+    - A **flat prior**, which assigns equal prior plausibility to all possible values of the variable, is a special case.
+    - This is effectively saying "🤷."
+    
+## **Different Priors $\to$ Different Posteriors**  
+
+- Okay, great - we have different priors.
+    - How do the different priors affect the posterior?
+    
+- We have data from FiveThirtyEight, reporting results of the Bechdel test.
+
+```{r}
+set.seed(65821)
+bechdel20 <- bayesrules::bechdel %>% sample_n(20)
+head(bechdel20, n = 3)
+```
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- So how many pass the test in this sample?
+
+```{r}
+bechdel20 %>% tabyl(binary) %>% adorn_totals("row")
+```
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's look at the graphs of just the prior and likelihood.
+
+```{r}
+#| eval: false
+plot_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20, posterior = FALSE) + theme_bw()
+plot_beta_binomial(alpha = 1, beta = 1, y = 9, n = 20, posterior = FALSE) + theme_bw()
+plot_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20, posterior = FALSE) + theme_bw()
+```
+
+- Questions to think about:
+
+    - Whose posterior do you anticipate will look the most like the scaled likelihood? 
+    - Whose do you anticipate will look the least like the scaled likelihood?
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's look at the graphs of just the prior and likelihood.
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20, posterior = FALSE) + theme_bw() + ggtitle("The feminist: Beta(5, 11)")
+```
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's look at the graphs of just the prior and likelihood.
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 1, beta = 1, y = 9, n = 20, posterior = FALSE) + theme_bw() + ggtitle("The clueless: Beta(1, 1)") 
+```
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's look at the graphs of just the prior and likelihood.
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20, posterior = FALSE) + theme_bw() + ggtitle("The optimist: Beta(14, 1)") 
+```
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Find the posterior distributions. (i.e., What are the updated parameters?)
+
+<center>
+<table><thead>
+  <tr>
+    <th>Analyst</th>
+    <th>Prior</th>
+    <th>Posterior</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>the feminist</td>
+    <td>Beta(5, 11)</td>
+    <td>Beta(14, 22)</td>
+  </tr>
+  <tr>
+    <td>the clueless</td>
+    <td>Beta(1, 1)</td>
+    <td>Beta(10, 12)</td>
+  </tr>
+  <tr>
+    <td>the optimist</td>
+    <td>Beta(14, 1)</td>
+    <td>Beta(23, 12)</td>
+  </tr>
+</tbody>
+</table>
+</center>
+
+- Let's now explore what the posteriors look like.
+
+```{r}
+#| eval: false
+plot_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20) + theme_bw()
+plot_beta_binomial(alpha = 1, beta = 1, y = 9, n = 20) + theme_bw()
+plot_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20) + theme_bw()
+```
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's now explore what the posteriors look like.
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20) + theme_bw() + ggtitle("The feminist: Beta(5, 11)")
+```
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's now explore what the posteriors look like.
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 1, beta = 1, y = 9, n = 20) + theme_bw() + ggtitle("The clueless: Beta(1, 1)")
+```
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's now explore what the posteriors look like.
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20) + theme_bw() + ggtitle("The optimist: Beta(14, 1)")
+```
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- In addition to priors affecting our posterior distributions... the data also affects it.
+
+- Let's now consider three new analysts: they all share the optimistic Beta(14, 1) for $\pi$, however, they have access to different data.
+    - Morteza reviews $n = 13$ movies from the year 1991, among which  $Y=6$ (about 46%) pass the Bechdel.
+    - Nadide reviews $n = 63$ movies from the year 2001, among which  $Y=29$ (about 46%) pass the Bechdel.
+    - Ursula reviews $n = 99$ movies from the year 2013, among which  $Y=46$ (about 46%) pass the Bechdel.
+    
+```{r}
+#| eval: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 6, n = 13, posterior = FALSE) + theme_bw()
+plot_beta_binomial(alpha = 14, beta = 1, y = 29, n = 63, posterior = FALSE) + theme_bw()
+plot_beta_binomial(alpha = 14, beta = 1, y = 46, n = 99, posterior = FALSE) + theme_bw()
+```    
+    
+- How will the different data affect the posterior distributions?   
+
+    - Which posterior will be the most in sync with their data?
+    - Which posterior will be the least in sync with their data?
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- How will the different data affect the posterior distributions?   
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 6, n = 13, posterior = FALSE) + theme_bw() + ggtitle("Morteza: Y = 6 of n = 13")
+```   
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- How will the different data affect the posterior distributions?   
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 29, n = 63, posterior = FALSE) + theme_bw() + ggtitle("Nadide: Y = 29 of n = 63")
+```   
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- How will the different data affect the posterior distributions?   
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 46, n = 99, posterior = FALSE) + theme_bw() + ggtitle("Ursula: Y = 46 of n = 99")
+```   
+</center>
+    
+## **Different Priors $\to$ Different Posteriors**  
+
+- Find the posterior distributions. (i.e., What are the updated parameters?)
+
+    - Recall that all use the Beta(14, 1) prior.    
+
+<center>
+<table><thead>
+  <tr>
+    <th><center>Analyst</center></th>
+    <th><center>Data</center></th>
+    <th><center>Posterior</center></th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>Morteza</td>
+    <td>$Y=6$ of $n=13$</td>
+    <td>Beta(20, 8)</td>
+  </tr>
+  <tr>
+    <td>Nadide</td>
+    <td>$Y=29$ of $n=63$</td>
+    <td>Beta(45, 35)</td>
+  </tr>
+  <tr>
+    <td>Ursula</td>
+    <td>$Y=46$ of $n=99$</td>
+    <td>Beta(60, 54)</td>
+  </tr>
+</tbody>
+</table>
+</center>
+
+- Let's also explore what the posteriors look like.
+
+```{r}
+#| eval: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 6, n = 13) + theme_bw() 
+plot_beta_binomial(alpha = 14, beta = 1, y = 29, n = 63) + theme_bw()
+plot_beta_binomial(alpha = 14, beta = 1, y = 46, n = 99) + theme_bw()
+```    
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's explore what the posteriors look like.
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 6, n = 13) + theme_bw() + ggtitle("Morteza: Y = 6 of n = 13")
+```    
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's explore what the posteriors look like.
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 29, n = 63) + theme_bw() + ggtitle("Nadide: Y = 29 of n = 63")
+```    
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- Let's explore what the posteriors look like.
+
+<center>
+```{r}
+#| echo: false
+plot_beta_binomial(alpha = 14, beta = 1, y = 46, n = 99) + theme_bw() + ggtitle("Ursula: Y = 46 of n = 99")
+```    
+</center>
+
+## **Different Priors $\to$ Different Posteriors**  
+
+- What did we observe?
+    - As $n \to \infty$, variance in the likelihood $\to 0$.
+        - In Morteza's small sample of 13 movies, the likelihood function is wide.
+        - In Ursula's larger sample size of 99 movies, the likelihood function is narrower.
+    - We see that the narrower the likelihood, the more influence the data holds over the posterior. 
+    
+## **Striking a Balance**  
+
+![](images/W07-L2-a.png){fig-align="center"}        
+
+- Overall message: no matter the strength of and discrepancies among their prior understanding of $\pi$, analysts will come to a common posterior understanding in light of strong data.
+
+## **Striking a Balance**  
+
+- The posterior can either favor the data or the prior.
+    - The rate at which the posterior balance tips in favor of the data depends upon the *prior*. 
+    
+- Left to right on the graph, the sample size increases from $n=13$ to $n=99$ movies, while preserving the proportion that pass ($\approx$ 0.46).
+    - The likelihood's insistence and the data's influence over the posterior increase with sample size.
+    - This also means that the influence of our prior understanding diminishes as we gather new data.
+
+- Top to bottom on the graph, priors move from informative (Beta(14,1)) to vague (Beta(1,1)).
+    - Naturally, the more informative the prior, the greater its influence on the posterior.
+  
+## **Introduction: Sequentiality**
+
+- Let's now turn our thinking to - okay, we've updated our beliefs... but now we have new data!
+
+- The evolution in our posterior understanding happens incrementally, as we accumulate new data. 
+    - Scientists' understanding of climate change has evolved over the span of decades as they gain new information.
+    - Presidential candidates' understanding of their chances of winning an election evolve over months as new poll results become available. 
+    
+## **Introduction: Sequentiality**
+    
+- Let's revisit Milgram's behavioral study of obedience from Chapter 3. Recall, $\pi$ represents the proportion of people that will obey authority, even if it means bringing harm to others. 
+    
+- Prior to Milgram's experiments, our fictional psychologist expected that few people would obey authority in the face of harming another: $\pi \sim \text{Beta}(1,10)$.
+
+- Now, suppose that the psychologist collected the data incrementally, day by day, over a three-day period. 
+
+- Find the following posterior distributions, each building off the last:
+    - Day 0: $\text{Beta}(1,10)$.
+    - Day 1: $Y=1$ out of $n=10$.
+    - Day 2: $Y=17$ out of $n=20$.
+    - Day 3: $Y=8$ out of $n=10$.
+    
+## **Introduction: Sequentiality**
+    
+- Let's revisit Milgram's behavioral study of obedience from Chapter 3. Recall, $\pi$ represents the proportion of people that will obey authority, even if it means bringing harm to others. 
+    
+- Prior to Milgram's experiments, our fictional psychologist expected that few people would obey authority in the face of harming another: $\pi \sim \text{Beta}(1,10)$.
+
+- Now, suppose that the psychologist collected the data incrementally, day by day, over a three-day period. 
+
+- Find the following posterior distributions, each building off the last:
+
+    - Day 0: $\text{Beta}(1,10)$.
+    - Day 1: $Y=1$ out of $n=10$: <font color = "#cf63cd">$\text{Beta}(1,10) \to \text{Beta}(2, 19)$.</font>
+    - Day 2: $Y=17$ out of $n=20$: <font color = "#cf63cd">$\text{Beta}(2, 19) \to \text{Beta}(19, 22)$.</font>
+    - Day 3: $Y=8$ out of $n=10$: <font color = "#cf63cd">$\text{Beta}(19, 22) \to \text{Beta}(27, 24)$.</font> 
+    
+- Recall from Chapter 3, our posterior was $\text{Beta}(27,24)$!    
+
+## **Sequential Bayesian Analysis or Bayesian Learning** 
+
+- In a sequential Bayesian analysis, a posterior model is updated incrementally as more data come in. 
+    - With each new piece of data, the previous posterior model reflecting our understanding prior to observing this data becomes the new prior model.
+    
+- This is why we love Bayesian! 
+    - We evolve our thinking as new data come in. 
+    
+- These types of sequential analyses also uphold two fundamental properties:
+    1. The final posterior model is data order invariant,     
+    2. The final posterior only depends upon the cumulative data.
+
+## **Sequential Bayesian Analysis or Bayesian Learning** 
+
+- In order:
+    - Day 0: $\text{Beta}(1,10)$.
+    - Day 1: $Y=1$ out of $n=10$: <font color = "#cf63cd">$\text{Beta}(1,10) \to \text{Beta}(2, 19)$.</font>
+    - Day 2: $Y=17$ out of $n=20$: <font color = "#cf63cd">$\text{Beta}(2, 19) \to \text{Beta}(19, 22)$.</font>
+    - Day 3: $Y=8$ out of $n=10$: <font color = "#cf63cd">$\text{Beta}(19, 22) \to \text{Beta}(27, 24)$.</font>  
+    
+- Out of order:
+    - Day 0: $\text{Beta}(1,10)$.
+    - Day 3: $Y=8$ out of $n=10$: <font color = "#cf63cd">$\text{Beta}(1,10) \to \text{Beta}(9, 12)$.</font>
+    - Day 2: $Y=17$ out of $n=20$: <font color = "#cf63cd">$\text{Beta}(9, 12) \to \text{Beta}(26, 15)$.</font>
+    - Day 1: $Y=1$ out of $n=10$: <font color = "#cf63cd">$\text{Beta}(26, 15) \to \text{Beta}(27, 24)$.</font>     
+    
+## **Sequential Bayesian Analysis or Bayesian Learning** 
+
+![](images/W08-L1-a.png){fig-align="center"}
+
+![](images/W08-L1-b.png){fig-align="center"}
+
+## **Proving Data Order Invariance** 
+
+- **Data order invariance**:
+    - Let $\theta$ be any parameter of interest with prior pdf $f(\theta)$.
+    - Then a sequential analysis in which we first observe a data point $y_1$, and then a second data point $y_2$ will produce the same posterior model of $\theta$ as if we first observe $y_2$ and then $y_1$.
+
+$$f(\theta|y_1,y_2) = f(\theta|y_2,y_1)$$ 
+
+- Similarly, the posterior model is invariant to whether we observe the data all at once or sequentially.
+
+## **Proving Data Order Invariance** 
+
+- Let's first specify the structure of posterior pdf $f(\theta|y_1,y_2)$, which evolves by sequentially observing data $y_1$, followed by $y_2$.
+
+- In step one, we construct the posterior pdf from our original prior pdf, $f(\theta)$, and the likelihood function of  $\theta$ given the first data point $y_1$, $L(\theta|y_1)$.
+
+$$
+\begin{align*}
+f(\theta|y_1) &= \frac{\text{prior} \cdot \text{likelihood}}{\text{normalizing constant}} \\
+&= \frac{f(\theta)L(\theta|y_1)}{f(y_1)}
+\end{align*}
+$$
+
+## **Proving Data Order Invariance** 
+
+- In step two, we update our model in light of observing new data, $y_2$.
+
+    - Don't forget that we start from the prior model specified by $f(\theta|y_1)$.
+
+    
+$$
+\begin{align*}
+f(\theta|y_2) &= \frac{\text{prior} \cdot \text{likelihood}}{\text{normalizing constant}} \\
+&= \frac{\frac{f(\theta)L(\theta|y_1)}{f(y_1)}L(\theta|y_2)}{f(y_2)} \\
+&= \frac{f(\theta)L(\theta|y_1)L(\theta|y_2)}{f(y_1)f(y_2)}
+\end{align*}
+$$
+
+## **Proving Data Order Invariance** 
+
+- What happens when we observe the data in the opposite order?
+
+$$
+\begin{align*}
+f(\theta|y_2) &= \frac{\text{prior} \cdot \text{likelihood}}{\text{normalizing constant}} \\
+&= \frac{f(\theta)L(\theta|y_2)}{f(y_2)}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+f(\theta|y_1) &= \frac{\text{prior} \cdot \text{likelihood}}{\text{normalizing constant}} \\
+&= \frac{\frac{f(\theta)L(\theta|y_2)}{f(y_2)}L(\theta|y_1)}{f(y_1)} \\
+&= \frac{f(\theta)L(\theta|y_2)L(\theta|y_1)}{f(y_2)f(y_1)}
+\end{align*}
+$$
+
+## **Proving Data Order Invariance** 
+
+- Finally, not only does the order of the data not influence the ultimate posterior model of $\theta$, but it doesn't matter whether we observe the data all at once or sequentially. 
+
+- Suppose we start with the original $f(\theta)$ prior and observe data $(y_1, y_2)$ together, not sequentially. 
+
+- Further, assume that these data points are independent, thus,
+
+$$f(y_1, y_2) = f(y_1) f(y_2) \text{ and } f(y_1,y_2|\theta) = f(y_1|\theta) f(y_2|\theta)$$
+
+## **Proving Data Order Invariance** 
+
+- Then, the posterior pdf is the same as the one resulting from sequential analysis,
+
+$$
+\begin{align*}
+f(\theta|y_1,y_2) &= \frac{f(\theta)L(\theta|y_1,y_2)}{f(y_1,y_2)} \\
+&= \frac{f(\theta)f(y_1,y_2|\theta)}{f(y_1)f(y_2)} \\
+&= \frac{f(\theta)f(y_1|\theta)f(y_2|\theta)}{f(y_1)f(y_2)} \\
+&= \frac{f(\theta)L(\theta|y_1)L(\theta|y_2)}{f(y_1)f(y_2)}
+\end{align*}
+$$
+
+## **Homework** 
+
+- 4.3
+
+- 4.4 
+
+- 4.6
+
+- 4.9
+
+- 4.15
+
+- 4.16
+
+- 4.17
+
+- 4.18
+
+- 4.19

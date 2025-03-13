@@ -1,0 +1,395 @@
+---
+title: "**Bayesian Thinking and Bayes Rule**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Thinking Like a Bayesian**  
+
+- Bayesian analysis involves updating beliefs based on observed data.
+
+![](images/W05-L1-a.png){fig-align="center"} 
+
+## **Thinking Like a Bayesian**  
+
+- This is the natural Bayesian knowledge-building process of:
+    - acknowledging your preconceptions (prior distribution),
+    - using data (data distribution) to update your knowledge (posterior distribution), and 
+    - repeating (posterior distribution $\to$ new prior distribution)
+
+![](images/W05-L1-b.png){fig-align="center"} 
+
+## **Thinking Like a Bayesian**  
+
+- Bayesian and frequentist analyses share a common goal: to learn from data about the world around us. 
+    - Both Bayesian and frequentist analyses use data to fit models, make predictions, and evaluate hypotheses. 
+    - When working with the same data, they will typically produce a similar set of conclusions. 
+    
+- Statisticians typically identify as either a "Bayesian" or "frequentist" ...
+    - 🚫 We are not going to "take sides." 
+    - ✅ We will see these as tools in our toolbox.
+
+## **Thinking Like a Bayesian**  
+    
+- Bayesian probability: the relative plausibility of an event.
+    - Considers prior belief.
+
+![](images/W05-L1-b.png){fig-align="center"}     
+    
+## **Thinking Like a Bayesian**  
+
+- Frequentist probability: the long-run relative frequency of a repeatable event.
+    - Does not consider prior belief.   
+    
+![](images/W05-L1-c.png){fig-align="center"} 
+
+## **Thinking Like a Bayesian**  
+
+- The Bayesian framework depends upon prior information, data, and the balance between them.
+
+    - The balance between the prior information and data is determined by the relative strength of each
+
+![](images/W05-L1-d.png){fig-align="center"} 
+
+- When we have little data, our posterior can rely more on prior knowledge. 
+
+- As we collect more data, the prior can lose its influence.
+
+## **Thinking Like a Bayesian**  
+
+- We can also use this approach to combine analysis results.
+
+![](images/W05-L1-e.png){fig-align="center"} 
+
+## **Bayes Rule**  
+
+- We will use an example to work through Bayesian logic.
+
+- The Collins Dictionary named "fake news" the 2017 term of the year. 
+
+    - Fake, misleading, and biased news has proliferated along with online news and social media platforms which allow users to post articles with little quality control. 
+    
+- We want to flag articles as "real" or "fake." 
+
+- We'll examine a sample of 150 articles which were posted on Facebook and fact checked by five BuzzFeed journalists (Shu et al. 2017). 
+
+## **Bayes Rule**  
+
+- Information about each article is stored in the `fake_news` dataset in the `bayesrules` package. 
+
+```{r}
+fake_news <- bayesrules::fake_news
+print(colnames(fake_news))
+```
+
+- We could build a simple news filter which uses the following rule: since most articles are real, we should read and believe all articles. 
+    - While this filter would solve the problem of disregarding real articles, we would read lots of fake news. 
+    - It also only takes into account the overall rates of, not the typical features of, real and fake news.
+
+## **Thinking Like a Bayesian**  
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(janitor)
+```
+
+- Suppose that the most recent article posted to a social media platform is titled: *The president has a funny secret!*
+    - Some features of this title probably set off some red flags. 
+    - For example, the usage of an exclamation point might seem like an odd choice for a real news article. 
+
+- In the dataset, what is the split of real and fake articles?
+
+```{r}
+fake_news %>% tabyl(type)
+```
+
+- Our data backs up our instinct on the article, 
+
+```{r}
+fake_news %>% tabyl(title_has_excl, type) %>%
+  adorn_percentages("col") %>%
+  adorn_pct_formatting(digits = 2) %>%
+  adorn_ns()
+```
+    
+- In this dataset, 26.67% (16 of 60) of fake news titles but only 2.22% (2 of 90) of real news titles use an exclamation point.
+    
+## **Thinking Like a Bayesian**  
+
+- We now have two pieces of contradictory information. 
+    - Our prior information suggested that incoming articles are most likely real. 
+    - However, the exclamation point data is more consistent with fake news. 
+
+![](images/W05-L1-f.png){fig-align="center"} 
+
+- Thinking like Bayesians, we know that balancing both pieces of information is important in developing a posterior understanding of whether the article is fake.
+
+## **Building a Bayesian Model**  
+
+- Our fake news analysis studies two variables: 
+    - an article's fake vs real status and 
+    - its use of exclamation points. 
+    
+- We can represent the randomness in these variables using probability models. 
+
+- We will now build: 
+    - a prior probability model for our prior understanding of whether the most recent article is fake; 
+    - a model for interpreting the exclamation point data; and, eventually, 
+    - a posterior probability model which summarizes the posterior plausibility that the article is fake.
+
+## **Building a Bayesian Model**  
+
+- Let's now formalize our prior understanding of whether the new article is fake. 
+
+- Based on our `fake_news` data, we saw that 40% of articles are fake and 60% are real. 
+
+    - Before reading the new article, there’s a 0.4 prior probability that it's fake and a 0.6 prior probability it's not.
+    
+$$P\left[B\right] = 0.40 \text{ and } P\left[B\right] = 0.40$$    
+
+- Remember that a valid probability model must: 
+
+    1. account for all possible events (all articles must be fake or real); 
+    2. it assigns prior probabilities to each event; and 
+    3. the probabilities sum to one.
+    
+## **Building a Bayesian Model**  
+    
+- Now we will summarize the insights from the data we collected on the new article.
+    - We want to formalize our observation that the exclamation point data is more compatible with fake news than with real news. 
+    
+```{r}
+#| echo: false
+library(gt)
+fake_news %>% tabyl(title_has_excl, type) %>%
+  adorn_percentages("col") %>%
+  adorn_pct_formatting(digits = 1) %>%
+  adorn_ns() %>%
+  gt()
+```       
+    
+- We have the following conditional probabilities:
+    - If an article is fake ($B$), then there’s a roughly 26.67% chance it uses exclamation points in the title. 
+    - If an article is real ($B^c$), then there’s only a roughly 2.22% chance it uses exclamation points. 
+    
+- Looking at the probabilities, we can see that 26.67% of fake articles vs. 2.22% of real articles use exclamation points.
+    - Exclamation point usage is much more likely among fake news than real news.
+    - We have evidence that the article is fake.    
+    
+
+## **Building a Bayesian Model**  
+
+- Note that we know that the incoming article used exclamation points ($A$), but we do not actually know if the article is fake ($B$ or $B^c$).
+
+- In this case, we compared $P[A|B]$ and $P[A|B^c]$ to ascertain the relative likelihood of observing $A$ under different scenarios.
+
+$$L\left[B|A\right] = P\left[A|B\right] \text{ and } L\left[B^c|A\right] = P\left[A|B^c\right]$$
+
+| Event | *B* | *B^c^* | Total |
+|--|:--:|:--:|:--:|
+| Prior Probability | 0.4 | 0.6 | 1.0 |
+| Likelihood | 0.2667 | 0.0222 | 0.2889 |
+
+- It is important for us to note that the likelihood function is *not* a probability function.
+    - This is a framework to compare the relative comparability of our exclamation point data with $B$ and $B^c$.
+
+## **Building a Bayesian Model**  
+
+| Event | *B* (fake) | *B^c^* (real) | Total |
+|--|:--:|:--:|:--:|
+| Prior Probability | 0.4 | 0.6 | 1.0 |
+| Likelihood | 0.2667 | 0.0222 | 0.2889 |
+
+- The prior evidence suggested the article is most likely real,
+
+$$P[B] = 0.4 < P[B^c] = 0.6$$
+
+- The data, however, is more consistent with the article being fake,
+
+$$L[B|A] = 0.2667 > L[B^c|A] = 0.0222$$
+
+## **Building a Bayesian Model**  
+
+- We can summarize our probabilities in a table, but some calculations are required.
+
+- Here's what we know,
+
+|           | $B$ | $B^c$ | Total |
+|-----------|:---:|:-----:|:-----:|
+| $A$       |     |       |       |
+| $A^c$     |     |       |       |
+| **Total** | 0.4 | 0.6   | 1     |
+
+- We also know $P[A|B] = 0.2667$ and $P[A|B^c]=0.0222$.
+
+- Thus,
+
+$$
+\begin{align*}
+P[A \cap B] &= P[A|B] \times P[B] \\
+&= 0.2667 \times 0.4 \\
+&= 0.1067
+\end{align*}
+$$
+
+
+## **Building a Bayesian Model**  
+
+- Here's what we know,
+
+|           | $B$ | $B^c$ | Total |
+|-----------|:---:|:-----:|:-----:|
+| $A$       | 0.1067    |       |       |
+| $A^c$     |     |       |       |
+| **Total** | 0.4 | 0.6   | 1     |
+
+- We also know $P[A|B] = 0.2667$ and $P[A|B^c]=0.0222$.
+
+- Thus,
+
+$$
+\begin{align*}
+P[A^c \cap B] &= P(A^c|B) \times P[B]  \\
+&= (1-P[A|B]) \times P[B] \\
+&= (1-0.2667) \times 0.4 \\
+&= 0.2933
+\end{align*}
+$$
+
+## **Building a Bayesian Model**  
+
+- Here's what we know,
+
+|           | $B$ | $B^c$ | Total |
+|-----------|:---:|:-----:|:-----:|
+| $A$       | 0.1067 |       |       |
+| $A^c$     | 0.2933 |       |       |
+| **Total** | 0.4 | 0.6   | 1     |
+
+- We also know $P[A|B] = 0.2667$ and $P[A|B^c]=0.0222$.
+
+- Thus,
+
+$$
+\begin{align*}
+P[A \cap B^c] &= P[A|B^c] \times P[B^c]  \\
+&= 0.0222 \times 0.6 \\
+&= 0.0133
+\end{align*}
+$$
+
+## **Building a Bayesian Model**  
+
+- Here's what we know,
+
+|           | $B$ | $B^c$ | Total |
+|-----------|:---:|:-----:|:-----:|
+| $A$       | 0.1067 | 0.0133 |       |
+| $A^c$     | 0.2933 |       |       |
+| **Total** | 0.4 | 0.6   | 1     |
+
+- We also know $P[A|B] = 0.2667$ and $P[A|B^c]=0.0222$.
+
+- Thus,
+
+$$
+\begin{align*}
+P[A^c \cap B^c] &= P[A^c|B^c] \times P[B^c]  \\
+&= 0.9778 \times 0.6 \\
+&= 0.5867
+\end{align*}
+$$
+
+## **Building a Bayesian Model**  
+
+- Here's what we know,
+
+|           | $B$ | $B^c$ | Total |
+|-----------|:---:|:-----:|:-----:|
+| $A$       | 0.1067 | 0.0133 |       |
+| $A^c$     | 0.2933 | 0.5867 |       |
+| **Total** | 0.4 | 0.6   | 1     |
+
+- Finally,
+
+$$
+\begin{align*}
+&P[A] = 0.1067 + 0.0133 = 0.12 \\
+&P[A^c] = 0.2933 + 0.5867 = 0.88
+\end{align*}
+$$
+
+## **Building a Bayesian Model**   
+
+- Using rules of probability, we have completed the table.
+
+|           | $B$ | $B^c$ | Total |
+|-----------|:---:|:-----:|:-----:|
+| $A$       | 0.1067 | 0.0133 | 0.12 |
+| $A^c$     | 0.2933 | 0.5867 | 0.88 |
+| **Total** | 0.4 | 0.6   | 1     |
+
+## **Building a Bayesian Model**   
+
+- With more information, we can answer the question: what is the probability that the latest article is fake?
+
+- We will use the posterior probability, $P[B|A]$, which is found using Bayes' Rule.
+
+- **Bayes' Rule**: For events $A$ and $B$, 
+
+$$P[B|A] = \frac{P[A \cap B]}{P[A]} = \frac{P[B] \times L[B|A]}{P[A]}$$
+
+- But really, we can think about it like this,
+
+$$\text{posterior} = \frac{\text{prior} \times \text{likelihood}}{\text{normalizing constant}}$$
+
+## **Homework**  
+
+- 1.3
+- 1.4
+- 1.8
+- 2.4
+- 2.9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

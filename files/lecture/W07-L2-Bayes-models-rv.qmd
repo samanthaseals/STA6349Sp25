@@ -1,0 +1,242 @@
+---
+title: "**Bayesian Modeling for Random Variables**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Example**  
+
+- In 1996, Gary Kasparov played a six-game chess match against the IBM supercomputer Deep Blue. 
+    - Of the six games, Kasparov won three, drew two, and lost one. 
+    - Thus, Kasparov won the overall match. 
+
+- Kasparov and Deep Blue were to meet again for a six-game match in 1997. 
+
+- Let $\pi$ denote Kasparov's chances of winning any particular game in the re-match.
+    - Thus, $\pi$ is a measure of his overall skill relative to Deep Blue. 
+    - Given the complexity of chess, machines, and humans, $\pi$ is unknown and can vary over time.
+        - i.e., $\pi$ is a *random variable*.
+
+- Our first step is to start with a prior model. This model
+    - Identifies what values $\pi$ can take,
+    - assigns a prior weight or probability to each, and
+    - these probabilities sum to 1.
+
+## **Example**  
+
+- Based on what we were told, the prior model for $\pi$ in our example,
+
+| $\pi$    | 0.2  | 0.5  | 0.8  | Total |
+|----------|:----:|:----:|:----:|:----:|
+| $f(\pi)$ | 0.10 | 0.25 | 0.65 | 1     |
+
+- Note that this is an incredibly simple model.
+    - The win probability can technically be any number $\in [0, 1]$.
+    - However, this prior assumes that $\pi$ has a discrete set of possibilities: 20%, 50%, or 80%.
+
+## **Example** 
+
+- In the second step of our analysis, we collect and process data which can inform our understanding of  $\pi$.
+ 
+- Here, $Y$ = the number of the six games in the 1997 re-match that Kasparov wins.
+    - As chess match outcome isn’t predetermined, $Y$ is a random variable that can take any value in $\{1, 2, 3, 4, 5, 6\}$.
+    
+- Note that $Y$ inherently depends upon $\pi$.
+    - If $\pi = 0.80$, $Y$ would also be high (on average).
+    - If $\pi = 0.20$, $Y$ would also be low (on average).
+    
+- Thus, we must model this dependence of $Y$ on $\pi$ using a conditional probability model.
+
+## **Binomial Data Model**  
+
+- We must make two assumptions about the chess match:
+    - Games are independent (the outcome of one game does not influence the outcome of another).
+    - Kasparov has an equal probability of winning any game in the match.
+        - i.e., probability of winning does not increase or decrease as the match goes on.
+
+- We will use a binomial model for this problem.
+    - Recall the binomial pmf,
+    
+$$f(y|\pi) = {n \choose y} \pi^y (1-\pi)^{n-y}, $$    
+
+- In our case,
+
+$$Y|\pi \sim \text{Bin}(6, \pi)$$
+
+## **Binomial Data Model**  
+
+- Let's assume $\pi = 0.8$.
+
+- The probability that he would win all 6 games is approximately 26%.
+
+$$f(y=6|\pi=0.8) = {6 \choose 6} 0.8^6 (1-0.8)^{6-6}, $$  
+
+```{r}
+dbinom(6, 6, 0.8)
+```
+
+
+- The probability that he would win none of the games is approximately 0%.
+
+$$f(y=0|\pi=0.8) = {6 \choose 0} 0.8^0 (1-0.8)^{6-0}, $$  
+
+```{r}
+dbinom(0, 6, 0.8)
+```
+
+
+## **Binomial Data Model**  
+
+- Your turn!
+
+- We want to reproduce Figure 2.5 from the [Bayes Rules! textbook (from Section 2.3.2)](https://www.bayesrulesbook.com/chapter-2#cousin-cole).
+
+![](images/fig2-5.png){fig-align="center"} 
+
+- Work with your group to come up with that graph.
+
+- *Pick one person to present in 15 minutes*.
+
+## **Binomial Data Model**  
+
+- Note that the Binomial gives us the *theoretical* model of the data we might observe. 
+
+    - In the end, Kasparov only won one of the six games against Deep Blue in 1997 ($Y=1$).
+    
+- Next step: how compatible this particular data is with the various possible $\pi$?
+
+    - What is the likelihood of Kasparov winning $Y=1$ game under each possible $\pi$?
+    
+- Recall, $f(y|\pi) = L(\pi|Y=y)$. When $Y=1$,
+
+$$
+\begin{align*}
+L(\pi | y = 1) &= f(y=1|\pi) \\
+&= {6 \choose 1} \pi^1 (1-\pi)^6-1 \\
+&= 6\pi(1-\pi)^5
+\end{align*}
+$$
+
+- Note that <u>we do not expect all likelihoods to sum to 1</u>.
+    
+## **Binomial Data Model** 
+
+- Your turn! 
+
+- Use your results from earlier to tell me the resulting likelihood values.
+
+| $\pi$        | 0.2    | 0.5    | 0.8 |
+|--------------|:------:|:------:|:----:|
+| $L(\pi|y=1)$ | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
+
+## **Binomial Data Model** 
+
+- Your turn! 
+
+- Use your results from earlier to tell me the resulting likelihood values.
+    
+| $\pi$        | 0.2    | 0.5    | 0.8    |
+|--------------|:------:|:------:|:----:|
+| $L(\pi|y=1)$ | 0.3932 | 0.0938 | 0.0015 |
+
+- As we can see, the likelihoods do not sum to 1.
+
+## **Normalizing Constant** 
+
+- Bayes' Rule requires three pieces of information:
+    - Prior
+    - Likelihood
+    - Normalizing constant
+    
+- **Normalizing constant**: a value that ensures that the sum of all probabilities is equal to 1.
+    - It can be a scalar or a function.
+    - Every probability distribution that does not sum to 1 will ahve a normalizing constant.
+    
+## **Normalizing Constant**     
+    
+- We now must determine the total probability that Kasparov would win $Y=1$ games across all possible win probabilities $\pi$, $f(y=1)$.
+
+$$
+\begin{align*}
+f(y=1) &= \sum_{\pi \in \{0.2, 0.5, 0.8 \}} L(\pi |y=1)f(\pi) \\
+&= L(\pi=0.2|y=1)f(\pi=0.2) + L(\pi=0.5|y=1)f(\pi=0.5) + L(\pi=0.8|y=1)f(\pi=0.8) \\
+&= \ ...
+\end{align*}
+$$
+
+- Work with your group to find the normalizing constant.
+
+## **Normalizing Constant**     
+    
+- We now must determine the total probability that Kasparov would win $Y=1$ games across all possible win probabilities $\pi$, $f(y=1)$.
+
+$$
+\begin{align*}
+f(y=1) &= \sum_{\pi \in \{0.2, 0.5, 0.8 \}} L(\pi |y=1)f(\pi) \\
+&= L(\pi=0.2|y=1)f(\pi=0.2) + L(\pi=0.5|y=1)f(\pi=0.5) + L(\pi=0.8|y=1)f(\pi=0.8) \\
+&\approx 0.3932 \cdot 0.10 + 0.0938 \cdot 0.25 + 0.0015 \cdot 0.65 \\
+&\approx 0.0637
+\end{align*}
+$$
+
+- Across all possible values of $\pi$, there is about a 6% chance that Kasparov would have won only one game.
+
+## **Posterior Probability Model**   
+
+- Now recall,
+
+$$\text{posterior} = \frac{\text{prior} \times \text{likelihood}}{\text{normalizing constant}}$$
+
+- In our example, where $y = 1$,
+
+$$f(\pi | y=1) = \frac{f(\pi) L(\pi | y = 1)}{f(y=1)} \  \text{for} \ \pi \in \{ 0.2, 0.5, 0.8\}$$
+
+- Work with your group to find the posterior probabilities.
+
+    - You will have one posterior probability for each value of $\pi$.
+
+## **Posterior Probability Model** 
+
+- Note!! We do not have to calculate the normalizing constant!
+
+- We can note that $f(Y=y) = 1/c$.
+
+- Then, we say that 
+
+$$
+\begin{align*}
+f(\pi | y) &= \frac{f(\pi) L(\pi|y)}{f(y)} \\
+& \propto  f(\pi) L(\pi|y) \\
+\\
+\text{posterior} &\propto \text{prior} \cdot \text{likelihood}
+\end{align*}
+$$
+
+## **Wrap Up** 
+
+- Today we have gone through how to find posterior probabilities using the binomial distribution.
+
+- Next week, we will learn about the Beta-Binomial model.
+
+
+
+
+
+

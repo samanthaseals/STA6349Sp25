@@ -1,0 +1,440 @@
+---
+title: "**Discrete Random Variables and Their Probability Distributions**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Introduction**
+
+- The first few lectures come from [Mathematical Statistics with Applications](https://www.cengage.com/c/mathematical-statistics-with-applications-7e-wackerly/9780495110811/), by Wackerly.
+    - We must understand the underlying probability and random variable theory before moving into the Bayesian world.
+    
+- We will be covering the following chapters:
+    - Chapter 2: probability theory
+    - <font color = "#965dc7">Chapter 3: discrete random variables</font>
+    - Chapter 4: continuous random variables
+
+## **3.1: Basic Definitions**
+
+- *Discrete random variable*: a variable that can assume only a finite or countably infinite number of distinct values. 
+
+- *Probability distribution of a random variable*: collection of probabilities for each value of the random variable.
+
+- Notation:
+    - Uppercase letter (e.g., $Y$) denotes a random variable.
+    - Lowercase letter (e.g., $y$) denotes a particular value that the random variable may assume.
+        - The specific observed value, $y$, is not random.
+
+## **3.2: Probability Distributions for Discrete RV**
+
+- *probability function for $Y$*: sum of the the probabilities of all sample points in $S$ that are assigned the value $y$
+    - $P[Y = y] = p(y)$: the probability that $Y$ takes on the value $y$.
+    
+- *probability distribution for $Y$*: a formula, table, or graph that provides $p(y) = P[Y = y]$ $\forall$ $y$.
+
+- **Theorem**:
+    - For any discrete probability distribution, the following must be true:
+        - $0 \le p(y) \le 1 \  \forall \ y$
+        - $\sum_y p(y) = 1 \ \forall \ p(y) > 0$.
+
+## **3.2: Probability Distributions for Discrete RV**
+
+- A supervisor in a manufacturing plant has three men and three women working for them. The supervisor wants to choose two workers for a special job. Not wishing to show any biases in their selection, they decides to select the two workers at random. 
+
+- Let $Y$ denote the number of women in his selection.  Find the probability distribution for $Y$.
+
+## **3.2: Probability Distributions for Discrete RV**
+
+- When the health department tested private wells in a county for two impurities commonly found in drinking water, it found that:
+    - 20% of the wells had neither impurity, 
+    - 40% had impurity A, and 
+    - 50% had impurity B. 
+    
+- If a well is randomly chosen from those in the county, find the probability distribution for $Y$, the number of impurities found in the well.
+    - Hint: some wells had both impurities...
+
+## **3.3: Expected Values**
+
+- *Expected value*: Let $Y$ be a discrete random variable with the probability function, $p(y)$. Then, the *expected value* of $Y$, $E[Y]$, is defined to be
+
+$$
+E(Y) = \sum_{y} y p(y)
+$$
+
+- When $p(y)$ is an accurate characterization of the population frequency distribution, then the expected value is the population mean.
+
+$$
+E[Y] = \mu
+$$
+  
+- **Theorem**: 
+
+    - Let $Y$ be a discrete random variable with probability function $p(y)$ and $g(Y)$ be a real-valued function of $Y$ (i.e., a *transformed* variable). Then the expected value of $g(Y)$ is given by
+    
+$$
+E[g(Y)] = \sum_{y} g(y) p(y)
+$$
+
+## **3.3: Expected Values**
+
+- *Variance*: if $Y$ is a random variable with mean $E[Y] = \mu$, the variance of a random variable $Y$ is defined to be the expected value of $(Y-\mu)^2$.
+
+$$
+V[Y] = E\left[ (Y-\mu)^2 \right]
+$$
+
+- If $p(y)$ is an accurate characterization of the population frequency distribution, then $V(Y)$ is the population variance,
+
+$$
+V[Y] = \sigma^2
+$$
+
+- *Standard deviation*: the positive square root of $V[Y]$.
+
+## **3.3: Expected Values** 
+
+- The probability distribution for a random variable $Y$ is given below. 
+
+![](images/W03-L1-a.png){fig-align="center" width="50%"} 
+
+- Find the mean, variance, and standard deviation of $Y$.
+
+<!-- 
+![](images/W03-L1-b.png){fig-align="center"} 
+-->
+
+## **3.3: Expected Values**
+
+- **Theorem**: 
+
+    - Let $Y$ be a discrete random variable with probability function $p(y)$ and $c$ be a constant. Then, 
+    
+$$E(c) = c$$
+    
+- **Theorem**:
+
+    - Let $Y$ be a discrete random variable with probability function $p(y)$, $g(Y)$ be a function of $Y$, and $c$ be a constant. Then,
+    
+$$E[cg(Y)] = cE[g(Y)]$$
+
+- **Theorem**:
+
+    - Let $Y$ be a discrete random variable with probability function $p(y)$, and $g_1(Y), g_2(Y), ..., g_k(Y)$ be $k$ functions of $Y$. Then,
+    
+$$E[g_1(Y) + g_2(Y) + ... + g_k(Y)] = E[g_1(Y)] + E[g_2(Y)] + ... + E[g_k(Y)]$$    
+
+
+## **3.3: Expected Values** 
+
+- Putting the previous theorems into one:
+
+- **Theorem**:
+
+    - Let $Y$ be a discrete random variable with probability function $p(y)$ and mean $E[Y] = \mu$. Then,
+    
+$$V[Y] = \sigma^2 = E\left[(Y-\mu)^2\right] = E\left[Y^2\right] - \mu^2 $$    
+
+## **3.3: Expected Values** 
+
+- The probability distribution for a random variable $Y$ is given below. 
+
+![](images/W03-L1-a.png){fig-align="center" width="40%"} 
+
+- Use the previous theorem to find $V[Y]$ and compare to our previous answer.
+
+    - Recall that $\mu=1.75$.
+
+## **3.3: Expected Values** 
+
+- Let $Y$ be a random variable with $p(y)$ in the table below.
+
+![](images/W03-L1-b.png){fig-align="center"} 
+
+- Find
+    - $E[Y]$ <br><br>
+    - $E[1/Y]$ <br><br>
+    - $E\left[Y^2-1\right]$ <br><br>
+    - $V[Y]$
+    
+## **3.3: Expected Values** 
+
+- $E[Y]$ <br><br><br><br><br>
+- $E[1/Y]$ <br><br><br><br><br>
+- $E\left[Y^2-1\right]$ <br><br><br><br><br>
+- $V[Y]$    
+
+## **3.4: Binomial Probability Distribution**
+
+- *Binomial experiment*:
+
+    1. The experiment consists of a fixed number, $n$, of identical trials.
+    
+    2. Each trial results in one of two outcomes: success ($S$) or failure ($F$).
+    
+    3. The probability of success on a single trial is equal to some value $p$ and remains the same from trial to trial. 
+    
+        - The probability of failure is equal to $q = (1-p)$.
+        
+    4. The trials are independent.
+    
+    5. The random variable of interest is $Y$, the number of successes observed during the $n$ trials.
+
+## **3.4: Binomial Probability Distribution**
+
+- **Binomial Distribution**
+
+    - A random variable $Y$ is said to have a *binomial distribution* based on $n$ trials with success probability $p$ [iff](https://en.wikipedia.org/wiki/If_and_only_if)
+    
+$$
+p(y) = {n \choose y}p^y q^{n-y}, \text{ where } y = 0, 1, 2, ..., n, \text{ and } 0 \le p \le1
+$$
+
+- **Theorem**:
+
+    - Let $Y$ be a binomial random variable based on n trials and success probability $p$. Then
+    
+$$
+E[Y] = \mu = np \ \ \ \text{and} \ \ \ V[Y] = \sigma^2 = npq
+$$
+
+- See Wackerly pg. 107 for derivation.
+
+```{r}
+#| echo: false
+
+# CREATE DATA FOR GRAPHING #
+
+library(tidyverse)
+n10 <- tibble(success = 0:10) %>%
+  mutate(p10 = dbinom(success, size=10, prob=.10),
+         p25 = dbinom(success, size=10, prob=.25),
+         p50 = dbinom(success, size=10, prob=.50),
+         p75 = dbinom(success, size=10, prob=.75),
+         p90 = dbinom(success, size=10, prob=.90))
+n25 <- tibble(success = 0:25) %>% mutate(p50 = dbinom(success, size=25, prob=.50))
+n50 <- tibble(success = 0:50) %>% mutate(p50 = dbinom(success, size=50, prob=.50))
+n100 <- tibble(success = 0:100) %>% mutate(p50 = dbinom(success, size=100, prob=.50))
+```
+
+## **3.4: Binomial Probability Distribution** 
+
+$p=0.10$
+
+<center>
+```{r}
+#| echo: false
+(g1 <- n10 %>% ggplot(aes(x = as.factor(success), y = p10)) +
+    geom_bar(stat = "identity") +
+    labs(x="Number of Successes", y = "p(y)") +
+    ylim(min = 0, max = 0.4) +
+    theme_bw())
+```
+</center>
+
+## **3.4: Binomial Probability Distribution**
+
+$p=0.25$
+
+<center>
+```{r}
+#| echo: false
+(g2 <- n10 %>% ggplot(aes(x = as.factor(success), y = p25)) +
+    geom_bar(stat = "identity") +
+    labs(x="Number of Successes", y = "p(y)") +
+    ylim(min = 0, max = 0.4) +
+    theme_bw())
+```
+</center>
+
+## **3.4: Binomial Probability Distribution**
+
+$p=0.50$
+
+<center>
+```{r}
+#| echo: false
+n10 %>% ggplot(aes(x = as.factor(success), y = p50)) +
+  geom_bar(stat = "identity") +
+  labs(x="Number of Successes", y = "p(y)") +
+  ylim(min = 0, max = 0.4) +
+  theme_bw()
+```
+</center>
+
+## **3.4: Binomial Probability Distribution**
+
+$p=0.75$
+
+<center>
+```{r}
+#| echo: false
+(g3 <- n10 %>% ggplot(aes(x = as.factor(success), y = p75)) +
+    geom_bar(stat = "identity") +
+    labs(x="Number of Successes", y = "p(y)") +
+    ylim(min = 0, max = 0.4) +
+    theme_bw())
+```
+</center>
+
+## **3.4: Binomial Probability Distribution**
+
+$p=0.90$
+
+<center>
+```{r}
+#| echo: false
+(g4 <- n10 %>% ggplot(aes(x = as.factor(success), y = p90)) +
+    geom_bar(stat = "identity") +
+    labs(x="Number of Successes", y = "p(y)") +
+    ylim(min = 0, max = 0.4) +
+    theme_bw())
+```
+</center>
+
+## **3.4: Binomial Probability Distribution**
+
+- What do you notice when comparing distributions under $p$ vs. $1-p$?
+
+<center>
+```{r}
+#| echo: false
+library(ggpubr)
+
+ggarrange(g1, g4, g2, g3, ncol=2, nrow=2)
+```
+</center>
+
+## **3.4: Binomial Probability Distribution**
+
+- What do you notice as $n$ increases?
+
+<center>
+```{r}
+#| echo: false
+g1 <- n10 %>% ggplot(aes(x = as.factor(success), y = p50)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Number of Successes", 
+       y = "p(y)", 
+       title = "n = 10") +
+  ylim(min = 0, max = 0.25) +
+  theme_bw()
+
+g2 <- n25 %>% ggplot(aes(x = as.factor(success), y = p50)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Number of Successes", 
+       y = "p(y)", 
+       title = "n = 25") +
+  ylim(min = 0, max = 0.25) +
+  theme_bw()
+
+g3 <- n50 %>% ggplot(aes(x = as.factor(success), y = p50)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Number of Successes", 
+       y = "p(y)", 
+       title = "n = 50") +
+  ylim(min = 0, max = 0.25) +
+  theme_bw()
+
+g4 <- n100 %>% ggplot(aes(x = as.factor(success), y = p50)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Number of Successes", 
+       y = "p(y)", 
+       title = "n = 100") +
+  ylim(min = 0, max = 0.25) +
+  theme_bw()
+
+ggarrange(g1, g2, g3, g4, ncol=2, nrow=2)
+```
+</center>
+
+## **3.4: Binomial Probability Distribution**
+
+- The manufacturer of a low-calorie dairy drink wishes to compare the taste appeal of a new formula (formula $B$) with that of the standard formula (formula $A$). Each of four judges is given three glasses in random order, two containing formula $A$ and the other containing formula $B$. Each judge is asked to state which glass he or she most enjoyed. Suppose that the two formulas are equally attractive. Let $Y$ be the number of judges stating a preference for the new formula.
+
+    a. Find the probability function for $Y$. <br><br><br>
+    
+    b. What is the probability that at least three of the four judges state a preference for the new formula?<br><br><br>
+    
+    c. Find the expected value of $Y$.<br><br><br>
+    
+    d. Find the variance of $Y$.
+  
+<!-- 
+![](images/W03-L1-b.png){fig-align="center"} 
+-->
+
+## **3.8: Poisson Probability Distribution**
+
+- The Poisson probability distribution often provides a good model for the probability distribution of the number $Y$ of rare events that occur in space, time, volume, or any other dimension. 
+
+- **Poisson Distribution**:
+
+    - A random variable $Y$ is said to have a *Poisson probability distribution* [iff](https://en.wikipedia.org/wiki/If_and_only_if)
+    
+$$
+p(y) = \frac{\lambda^y}{y!}e^{-\lambda}, \text{ where } y=0,1,2,..., \text{ and } \lambda > 0
+$$
+
+- **Theorem**
+
+  - If $Y$ is a random variable with a Poisson distribution with parameter $\lambda$, then
+  
+$$
+E[Y] = \mu = \lambda \text{ and } V[Y] = \sigma^2 = \lambda
+$$
+
+- See Wackerly pg. 134 for derivation.
+  
+<!-- 
+![](images/W03-L1-b.png){fig-align="center"} 
+-->
+
+## **3.8: Poisson Probability Distribution**
+
+- Customers arrive at a checkout counter in a department store according to a Poisson distribution at an average of seven per hour. During a given hour, what are the probabilities that
+
+    a. no more than three customers arrive? <br><br><br><br><br>
+
+    b. at least two customers arrive? <br><br><br><br><br>
+
+    c. exactly five customers arrive? <br><br><br><br><br>
+
+
+## **Homework**
+
+- 3.6
+- 3.10
+- 3.15
+- 3.22
+- 3.34
+- 3.60
+- 3.128
+- 3.129
+- 3.136
+
+
+
+
+
+
+
+
+
+

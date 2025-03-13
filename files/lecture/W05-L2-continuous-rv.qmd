@@ -1,0 +1,391 @@
+---
+title: "**Continuous Random Variables and Their Probability Distributions**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Introduction**  
+
+- The first few lectures come from [Mathematical Statistics with Applications](https://www.cengage.com/c/mathematical-statistics-with-applications-7e-wackerly/9780495110811/), by Wackerly.
+    - We must understand the underlying probability and random variable theory before moving into the Bayesian world.
+
+- We will be covering the following chapters:
+    - Chapter 2: probability theory
+    - Chapter 3: discrete random variables
+    - <font color = "#965dc7">Chapter 4: continuous random variables</font>
+
+## **4.2: Probability Distributions for Continuous RV**  
+
+- *Distribution function*: 
+
+    - Let $Y$ denote any random variable. The *distribution function* of $Y$, denoted by $F(y)$, is such that 
+    
+$$F(y) = P[Y \le y] \text{ for } -\infty < y < \infty$$
+
+- **Theorem**: Properties of a Distribution Function
+    - If $F(y)$ is a distribution function, then
+        - $F(-\infty) 	\equiv \underset{y \to -\infty}{\lim} F(y) = 0$
+        - $F(\infty) 	\equiv \underset{y \to \infty}{\lim} F(y) = 1$
+        - $F(y)$ is a nondecreasing function of $y$.
+            - If $y_1$ and $y_2$ are any values such that $y_1 < y_2$, then $F(y_1) \le F(y_2)$.
+            
+- Note: To be rigorous, if $F(y)$ is a valid distribution function, then $F(y)$ also must be right continuous.            
+            
+## **4.2: Probability Distributions for Continuous RV**  
+
+- *Continuous random variable*: 
+    - A random variable $Y$ with distribution function $F(y)$ is said to be *continuous* if $F(y)$ is continuous for $-\infty < y < \infty$.
+        - Note: To be mathematically precise, we also need the first derivative of $F(y)$ to exist and be continuous.
+    
+- If $Y$ is a continuous random variable, then for any real number $y$, $P[Y = y] = 0$.
+    - i.e., we must remember to find the probability of an interval.
+    
+![](images/W04-L1-a.png){fig-align="center"}     
+    
+## **4.2: Probability Distributions for Continuous RV**      
+    
+- *Probability density function*: 
+
+    - Let $F(y)$ be the cumulative density function for a continuous random variable, $Y$. Then 
+    
+$$p[Y = y] = f(y) = \frac{dF(y)}{dy} = F'(y).$$
+    
+- **Theorem**: Properties of a Density Function
+    - If $f(y)$ is a density function for a continuous random variable, then 
+        - $f(y) \ge 0 \ \forall y, \ -\infty < y < \infty$.
+        - $\int_{-\infty}^{\infty} f(y) dy = 1$.    
+
+## **4.2: Probability Distributions for Continuous RV**  
+
+- *Cumulative density function*: 
+
+    - Let $f(y)$ be the probability density function for a continuous random variable, $Y$. Then 
+    
+$$P[Y \le y] = F(y) = \int_{-\infty}^y f(t) dt, \text{ for } y \in {\rm I\!R}.$$ 
+    
+![](images/W04-L1-b.png){fig-align="center"}   
+
+## **4.2: Probability Distributions for Continuous RV**    
+
+- Suppose that 
+$$
+F(x) = 
+\begin{cases}
+  0, & y < 0 \\
+  y, & 0 \leq y \leq 1 \\
+  1, & y > 1 
+\end{cases}
+$$
+
+- Find the probability density function for $Y$.
+
+## 4.2: Probability Distributions for Continuous RV   
+
+- **Theorem**
+
+    - If the random variable $Y$ has density function $f(y)$ and $a < b$, then the probability that $Y$ falls in the interval $[a, b]$ is
+    
+$$
+P[a \le Y \le b] = \int_a^b f(y) dy.
+$$
+
+<center>
+![](images/W04-L1-c.png){fig-align="center" width="50%"} 
+</center>
+
+## **4.2: Probability Distributions for Continuous RV**    
+
+- Given $f(y) = cy^2$, where $0 \le y \le 2$ and $f(y)=0$ elsewhere, 
+
+    a. Find the value of $c$ for which $f(y)$ is a valid density function. <br><br><br><br><br><br><br><br>
+    
+    b. Find $P[1 \le Y \le 2]$. 
+
+## **4.3: Expected Values for Continuous RV**   
+
+- *Expected value*: 
+
+    - The expected value of a continuous variable $Y$ is
+    
+$$
+E[Y] = \int_{-\infty}^{\infty} y f(y) \ dy
+$$
+
+- This is the continuous version of the expected mean for a discrete random variable,
+
+$$
+E[Y] = \sum_y y p(y)
+$$
+
+## **4.3: Expected Values for Continuous RV**   
+
+- **Theorem**: 
+
+    - Let $g(Y)$ be a function of $Y$; then the expected value of $g(Y)$ is given by
+    
+$$
+E\left[ g(Y) \right] = \int_{-\infty}^{\infty} g(y) f(y) \ dy
+$$
+
+- **Theorem**:
+    - Let $c$ be a constant and let $g(Y)$, $g_1(Y)$, $g_2(Y)$, ..., $g_k(Y)$ be functions of a continuous random variable, $Y$. Then the following results hold:
+        - $E[c] = c$
+        - $E\left[cg(Y)] = cE[g(Y)\right]$
+        - $E\left[g_1(Y)+g_2(Y)+...+g_k(Y)\right] = E\left[ g_1(Y) \right] + E\left[ g_2(Y) \right] + ... + E\left[ g_k(Y) \right]$
+
+## **4.3: Expected Values for Continuous RV**   
+
+- In a previous example, we determined that $f(y) = \frac{3}{8}y^2$ for $0 \le y \le 2$ and $f(y) = 0$ elsewhere is a valid density function.
+
+- If the random variable $Y$ has this density function, find $\mu = E[y]$ and $\sigma^2 = V[Y]$
+
+## **4.4: Uniform Probability Distribution**  
+
+- **Uniform Distribution**
+
+![](images/W04-L2-a.png){fig-align="center"} 
+
+## **4.4: Uniform Probability Distribution**  
+
+- **Uniform Distribution**
+
+    - If $\theta_1 < \theta_2$, a random variable $Y$ is said to have a *uniform distribution* on the interval $(\theta_1, \theta_2)$  [iff](https://en.wikipedia.org/wiki/If_and_only_if)
+    
+$$
+f(y) = \begin{cases} 
+      \frac{1}{\theta_2 - \theta_1}, & \theta_1 \le y \le \theta_2 \\
+      0, & \text{elsewhere}
+\end{cases}
+$$
+
+- **Theorem**:
+
+    - If $\theta_1 < \theta_2$ and $Y$ is a random variable uniformly distributed on the interval $(\theta_1, \theta_2)$, then
+    
+$$
+E[Y] = \mu = \frac{\theta_1+\theta_2}{2} \ \ \ \text{and} \ \ \ V[Y] = \sigma^2 = \frac{(\theta_2-\theta_1)^2}{12}
+$$
+
+- See Wackerly pg. 176 for derivation.
+
+## **4.4: Uniform Probability Distribution**  
+
+- The change in depth of a river from one day to the next, measured in feet, at a specific location is a random variable, $Y$, with the following density function:
+
+$$
+f(y) = \begin{cases} 
+      k, & -2 \le y \le 2 \\
+      0, & \text{elsewhere}
+\end{cases}
+$$
+
+a. Determine the value of $k$. <br><br><br><br><br><br>
+
+b. Find the distribution function for $Y$. 
+
+## **4.4: Uniform Probability Distribution**  
+
+- The change in depth of a river from one day to the next, measured in feet, at a specific location is a random variable, $Y$, with the following density function:
+
+$$
+f(y) = \begin{cases} 
+      k, & -2 \le y \le 2 \\
+      0, & \text{elsewhere}
+\end{cases}
+$$
+
+c. What is the mean of the distribution? <br><br><br><br><br><br>
+
+d. What is the variance of the distribution?
+
+## **4.5: Normal Probability Distribution**  
+
+- **Normal Distribution**
+
+![](images/W04-L2-b.png){fig-align="center"} 
+
+
+## **4.5: Normal Probability Distribution**  
+
+- **Normal Distribution**
+
+    - A random variable $Y$ is said to have a *normal distribution* [iff](https://en.wikipedia.org/wiki/If_and_only_if), for $\sigma > 0$ and $-\infty < \mu < \infty$,
+    
+$$
+f(y) = \frac{1}{\sigma \sqrt{2\pi}} e^{-(y-\mu)^2/(2\sigma^2)}
+$$
+
+- **Theorem**:
+
+    - If $Y$ is a random variable normally distributed with parameters $\mu$ and $\sigma$, then
+    
+$$
+E[Y] = \mu =  \ \ \ \text{and} \ \ \ V[Y] = \sigma^2 
+$$
+
+## **4.5: Normal Probability Distribution**
+
+- The weekly amount of money spent on maintenance and repairs by a company was observed over a long period of time to be approximately normally distributed with mean \$400 and standard deviation \$20. 
+
+a. If \$450 is budgeted for next week, what is the probability that the actual costs will exceed the budgeted amount? <br><br><br><br><br><br>
+
+b. How much should be budgeted for weekly repairs and maintenance to provide that the probability the budgeted amount will be exceeded in a given week is only 0.10?
+
+## **4.6: Gamma Probability Distribution** 
+
+- **Gamma Distribution**
+
+![](images/W04-L2-c.png){fig-align="center"} 
+
+## **4.6: Gamma Probability Distribution** 
+
+- **Gamma Distribution**
+
+    - A random variable $Y$ is said to have a *gamma distribution* with parameters $\alpha > 0$ and $\beta > 0$ [iff](https://en.wikipedia.org/wiki/If_and_only_if), 
+    
+$$
+f(y) = \begin{cases} 
+      \frac{y^{\alpha-1} e^{-y/\beta}}{\beta^{\alpha} \Gamma(\alpha)}, & 0 \le y < \infty \\
+      0, & \text{elsewhere}
+\end{cases}
+$$
+
+- Note that $\Gamma(\alpha) = \int_{0}^{\infty} y^{\alpha-1} e^{-y} \ dy$.
+
+- **Theorem**:
+
+    - If $Y$  has a gamma distribution with parameters $\alpha$ and $\beta$, then
+    
+$$
+E[Y] = \mu = \alpha\beta \ \ \ \text{and} \ \ \ V[Y] = \sigma^2  = \alpha\beta^2
+$$
+
+- See Wackerly pg. 187 for derivation.
+
+## **4.6: Gamma Probability Distribution** 
+
+- Annual incomes for heads of household in a section of a city have approximately a gamma distribution with $\alpha=20$ and $\beta=1000$.
+
+    a. What is $f(y)$?<br><br><br><br>
+    
+    b. What is the mean of $Y$?<br><br><br><br>
+    
+    c. What is the variance of $Y$?<br><br><br><br>
+    
+    d. What proportion of heads of households in this section of the city have incomes in excess of $30,000?
+    
+## **4.7: Beta Probability Distribution** 
+
+- **Beta Distribution**
+
+![](images/W04-L2-d.png){fig-align="center"} 
+
+## **4.7: Beta Probability Distribution** 
+
+- **Beta Distribution**
+
+    - A random variable $Y$ is said to have a *beta distribution* with parameters $\alpha > 0$ and $\beta > 0$ [iff](https://en.wikipedia.org/wiki/If_and_only_if), 
+    
+$$
+f(y) = \begin{cases} 
+      \frac{y^{\alpha-1}(1-y)^{\beta-1}}{B(\alpha,\beta)}, & 0 \le y \le 1 \\
+      0, & \text{elsewhere}
+\end{cases}
+$$
+
+- Note that $B(\alpha,\beta) = \int_0^1 y^{\alpha-1}(1-y)^{\beta-1} \ dy = \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha+\beta)}.$
+
+- **Theorem**:
+
+    - If $Y$  has a beta distribution with parameters $\alpha > 0$ and $\beta > 0$, then
+    
+$$
+E[Y] = \mu = \frac{\alpha}{\alpha+\beta} \ \ \ \text{and} \ \ \ V[Y] = \sigma^2  = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}
+$$
+
+## **4.7: Beta Probability Distribution** 
+
+- The percentage of impurities per batch in a chemical product is a random variable $Y$ with density function
+
+$$
+f(y) = \begin{cases} 
+      12y^2(1-y), & 0 \le y \le 1 \\
+      0, & \text{elsewhere}
+\end{cases}
+$$
+
+- A batch with more than 40% impurities cannot be sold.
+
+a. Use [integration](https://www.wolframalpha.com/calculators/integral-calculator/) to determine the probability that a randomly selected batch cannot be sold because of excessive impurities. <br><br><br><br><br>
+
+b. Use `R` to find the answer to part (a).
+
+## **4.7: Beta Probability Distribution** 
+
+- The percentage of impurities per batch in a chemical product is a random variable $Y$ with density function
+
+$$
+f(y) = \begin{cases} 
+      12y^2(1-y), & 0 \le y \le 1 \\
+      0, & \text{elsewhere}
+\end{cases}
+$$
+
+- A batch with more than 40% impurities cannot be sold.
+
+c. Find the mean of the percentage of impurities in a randomly selected batch of the chemical. <br><br><br><br><br>
+
+c. Find the variance of the percentage of impurities in a randomly selected batch of the chemical.
+
+
+## **Homework**  
+
+::: {layout="[ 0.5, -0.05, 0.45 ]"}
+
+:::: {#first-column}
+- 4.11
+- 4.14
+- 4.17
+- 4.21
+- 4.28
+- 4.45
+- 4.46
+- 4.48
+- 4.68
+::::
+
+:::: {#second-column}
+- 4.69
+- 4.70
+- 4.97
+- 4.98
+- 4.102
+- 4.124
+- 4.125
+- 4.128
+- 4.131
+::::
+:::
+
+
+
+
+
+
