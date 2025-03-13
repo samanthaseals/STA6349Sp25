@@ -10,36 +10,38 @@ title-block-banner: false
 ### Tentative Schedule 
 
 
-| Day | Topic | Slides | In Class |
+| Day | Topic | Slides |
 |----|-------------|:--:|:--:|
-| W 01/09 | Introduction to R | <a href="files/lecture/W01-L1-intro-to-R.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W01-L1-intro-to-R.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |  <a href="files/assignments/Assignment0.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/assignments/Assignment0.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
-| M 01/13 | Probability Theory: Part 1 | <a href="files/lecture/W02-L1-intro-prob-pt1.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W02-L1-intro-prob-pt1.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> | |
-| W 01/15 | Probability Theory: Part 2 | | |
-| M 01/20 | MLK Holiday - campus closed |  | |
-| W 01/22 | Discrete Random Variables | | |
-| M 01/27 | Continuous Random Variables | | |
-| W 01/29 | Assignment 1 | | |
-| M 02/03 | Bayesian Thinking and Bayes' Rule  | | |
-| W 02/05 | Bayesian Modeling for Random Variables | | |
+| W 01/09 | Introduction to R | <a href="files/lecture/W01-L1-intro-to-R.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W01-L1-intro-to-R.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |  
+| M 01/13 | Probability Theory: Part 1 | <a href="files/lecture/W02-L1-intro-prob-pt1.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W02-L1-intro-prob-pt1.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> | 
+| W 01/15 | Probability Theory: Part 2 | <a href="files/lecture/W02-L2-intro-prob-pt2.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W02-L2-intro-prob-pt2.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> | 
+| M 01/20 | MLK Holiday - campus closed | |
+| W 01/22 | snow week! | |
+| M 01/27 | Dr. Seals sick | |
+| W 01/29 | Dr. Seals sick | |
+| M 02/03 | Discrete Random Variables | <a href="files/lecture/W05-L1-discrete-rv.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W05-L1-discrete-rv.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> | 
+| W 02/05 | Continuous Random Variables | <a href="files/lecture/W05-L2-continuous-rv.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W05-L2-continuous-rv.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> | 
 | M 02/10 | Dr. Seals out (conference) | | |
-| W 02/12 | Beta-Binomial Conjugage Family | | |
-| M 02/17 | Balance and Sequentiality | | |
-| W 02/19 | Gamma-Poisson and Normal-Normal Conjugate Families | | |
-| M 02/24 | Approximating the Posterior | | |
-| W 02/26 | Posterior Inference & Prediction | | |
-| M 03/03 | Assignment 2 | | |
-| W 03/05 | Project 1 (in class group work) | | |
-| M 03/10 | Project 1 (in class group work) | | |
-| W 03/12 | Project 1 (presentations) | | |
-| M 03/17 | Spring Break! | | |
-| W 03/19 | Spring Break! | | | 
-| M 03/24 | Simple Normal Regression | | |
-| W 03/26 | Simple Normal Regression | | |
-| M 03/31 | Evaluating Regression Models | | |
-| W 04/02 | Including Multiple Predictors | | |
-| M 04/07 | Interaction terms | | |
-| W 04/09 | Assignment 3 | | |
-| M 04/14 | Project 2 (in class group work) | | |
-| W 04/16 | Project 2 (in class group work) | | | 
-| M 04/20 | Project 2 (presentations) | | |
-| W 04/23 | Catch up | | |
+| W 02/12 | Continuous Random Variables | <a href="files/lecture/W05-L2-continuous-rv.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W05-L2-continuous-rv.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
+| M 02/17 | Bayesian Thinking and Bayes' Rule | <a href="files/lecture/W07-L1-Bayesian-thinking.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W07-L1-Bayesian-thinking.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
+| W 02/19 | Bayesian Modeling for Random Variables | <a href="files/lecture/W07-L2-Bayes-models-rv.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W07-L2-Bayes-models-rv.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
+| M 02/24 | Beta-Binomial Conjugage Family | <a href="files/lecture/W08-L1-beta-binomial.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W08-L2-beta-binomial.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
+| W 02/26 | Beta-Binomial Conjugage Family | <a href="files/lecture/W08-L1-beta-binomial"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W08-L2-beta-binomial"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
+| M 03/03 | Balance and Sequentiality | <a href="files/lecture/W08-L2-balance-and-sequentiality.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W08-L2-balance-and-sequentiality.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
+| W 03/05 | Write a biography for a Bayesian statistician! |
+| M 03/10 | Gamma-Poisson and Normal-Normal | <a href="files/lecture/W10-L1-conjugate-families.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W10-L1-conjugate-families.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> |
+| W 03/12 | Assignment 2 |
+| M 03/17 | Spring Break! | 
+| W 03/19 | Spring Break! |  
+| M 03/24 | Approximating the Posterior |
+| W 03/26 | Posterior Inference & Prediction | 
+| M 03/31 | Project 1 (in class work) |
+| W 04/02 | Project 1 (presentation) |
+| M 04/07 | Simple Normal Regression |
+| W 04/09 | Evaluating Regression Models |
+| M 04/14 | Multiple Regression |
+| W 04/16 | Assignment 3 |
+| M 04/21 | Project 2 (in class work)
+| W 04/23 | Project 2 (presentation)
+| M 04/28 | Final Exam - in class (4/404) - 6:00--8:30 pm
+
