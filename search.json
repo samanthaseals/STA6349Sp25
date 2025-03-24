@@ -812,447 +812,6 @@
     "text": "Wrap Up\n\nToday we have gently introduced data management in R.\nI do not expect you to become an expert R programmer, but the more you practice, the easier it becomes.\nToday’s activity: Assignment 0"
   },
   {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction",
-    "text": "Introduction\n\nOn Monday, we talked about the Beta-Binomial model for binary outcomes with an unknown probability of success, \\pi.\nWe will now discuss sequentality in Bayesian analyses.\nWorking example:\n\nIn Alison Bechdel’s 1985 comic strip The Rule, a character states that they only see a movie if it satisfies the following three rules (Bechdel 1986):\n\nthe movie has to have at least two women in it;\nthese two women talk to each other; and\nthey talk about something besides a man.\n\nThese criteria constitute the Bechdel test for the representation of women in film.\n\nThinking of movies you’ve watched, what percentage of all recent movies do you think pass the Bechdel test? Is it closer to 10%, 50%, 80%, or 100%?"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-1",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-1",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction",
-    "text": "Introduction\n\nLet \\pi, a random value between 0 and 1, denote the unknown proportion of recent movies that pass the Bechdel test.\nThree friends - the feminist, the clueless, and the optimist - have some prior ideas about \\pi.\n\nReflecting upon movies that he has seen in the past, the feminist understands that the majority lack strong women characters.\nThe clueless doesn’t really recall the movies they’ve seen, and so are unsure whether passing the Bechdel test is common or uncommon.\nLastly, the optimist thinks that the Bechdel test is a really low bar for the representation of women in film, and thus assumes almost all movies pass the test.\n\n\n\nplot_beta(alpha = 1, beta = 1)\nplot_beta(alpha = 5, beta = 11)\nplot_beta(alpha = 14, beta = 1)\n\n\nWhich one is which?"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-2",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-2",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction",
-    "text": "Introduction\n\nplot_beta(alpha = 1, beta = 1)\nplot_beta(alpha = 5, beta = 11)\nplot_beta(alpha = 14, beta = 1)\n\n\nWhich one is which?\n\nReflecting upon movies that he has seen in the past, the feminist understands that the majority lack strong women characters.\nThe clueless doesn’t really recall the movies they’ve seen, and so are unsure whether passing the Bechdel test is common or uncommon.\nLastly, the optimist thinks that the Bechdel test is a really low bar for the representation of women in film, and thus assumes almost all movies pass the test."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-3",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-3",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction",
-    "text": "Introduction\n\n\nplot_beta(alpha = 1, beta = 1) + theme_bw() + ggtitle(\"Beta(1, 1)\")\n\n\n\n\n\n\n\n\n\n\nThe clueless doesn’t really recall the movies they’ve seen, and so are unsure whether passing the Bechdel test is common or uncommon."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-4",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-4",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction",
-    "text": "Introduction\n\n\nplot_beta(alpha = 5, beta = 11) + theme_bw() + ggtitle(\"Beta(5, 11)\")\n\n\n\n\n\n\n\n\n\n\nReflecting upon movies that he has seen in the past, the feminist understands that the majority lack strong women characters."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-5",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-5",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction",
-    "text": "Introduction\n\n\nplot_beta(alpha = 14, beta = 1) + theme_bw() + ggtitle(\"Beta(14, 1)\")\n\n\n\n\n\n\n\n\n\n\nLastly, the optimist thinks that the Bechdel test is a really low bar for the representation of women in film, and thus assumes almost all movies pass the test."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-6",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-6",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction",
-    "text": "Introduction\n\nThe analysts agree to review a sample of n recent movies and record Y, the number that pass the Bechdel test.\n\nBecause the outcome is yes/no, the binomial distribution is appropriate for the data distribution.\nWe aren’t sure what the population proportion, \\pi, is, so we will not restrict it to a fixed value.\n\nBecause we know \\pi \\in [0, 1], the beta distribution is appropriate for the prior distribution.\n\n\n\n\n\\begin{align*}\nY|\\pi &\\sim \\text{Bin}(n, \\pi) \\\\\n\\pi &\\sim \\text{Beta}(\\alpha, \\beta)\n\\end{align*}\n\n\nFrom the previous chapter, we know that this results in the following posterior distribution\n\n\n\\pi | (Y=y) \\sim \\text{Beta}(\\alpha+y, \\beta+n-y)"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-7",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-7",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction",
-    "text": "Introduction\n\nWait!!\n\nEveryone gets their own prior?\n… is there a “correct” prior?\n…… is the Bayesian world always this subjective?"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-8",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-8",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction",
-    "text": "Introduction\n\nWait!!\n\nEveryone gets their own prior?\n… is there a “correct” prior?\n…… is the Bayesian world always this subjective?\n\nMore clearly defined questions that we can actually answer:\n\nTo what extent might different priors lead the analysts to three different posterior conclusions about the Bechdel test?\n\nHow might this depend upon the sample size and outcomes of the movie data they collect?\n\nTo what extent will the analysts’ posterior understandings evolve as they collect more and more data?\nWill they ever come to agreement about the representation of women in film?!"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\n\n\n\n\n\n\n\n\n\n\n\nThe differing prior means show disagreement about whether \\pi is closer to 0 or 1.\nThe differing levels of prior variability show that the analysts have different degrees of certainty in their prior information.\n\nThe more certain we are about the prior information, the smaller the prior variability."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-1",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-1",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\n\n\n\n\n\n\n\n\n\n\n\nInformative prior: reflects specific information about the unknown variable with high certainty, i.e., low variability."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-2",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-2",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\n\n\n\n\n\n\n\n\n\n\n\nVague or diffuse prior: reflects little specific information about the unknown variable.\n\nA flat prior, which assigns equal prior plausibility to all possible values of the variable, is a special case.\nThis is effectively saying “🤷.”"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-3",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-3",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nOkay, great - we have different priors.\n\nHow do the different priors affect the posterior?\n\nWe have data from FiveThirtyEight, reporting results of the Bechdel test.\n\n\nset.seed(65821)\nbechdel20 &lt;- bayesrules::bechdel %&gt;% sample_n(20)\nhead(bechdel20, n = 3)\n\n# A tibble: 3 × 3\n   year title               binary\n  &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt; \n1  2013 Her                 FAIL  \n2  1997 Grosse Pointe Blank PASS  \n3  2006 Volver              PASS"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-4",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-4",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nSo how many pass the test in this sample?\n\n\nbechdel20 %&gt;% tabyl(binary) %&gt;% adorn_totals(\"row\")\n\n binary  n percent\n   FAIL 11    0.55\n   PASS  9    0.45\n  Total 20    1.00"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-5",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-5",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s look at the graphs of just the prior and likelihood.\n\n\nplot_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20, posterior = FALSE) + theme_bw()\nplot_beta_binomial(alpha = 1, beta = 1, y = 9, n = 20, posterior = FALSE) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20, posterior = FALSE) + theme_bw()\n\n\nQuestions to think about:\n\nWhose posterior do you anticipate will look the most like the scaled likelihood?\nWhose do you anticipate will look the least like the scaled likelihood?"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-6",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-6",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s look at the graphs of just the prior and likelihood."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-7",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-7",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s look at the graphs of just the prior and likelihood."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-8",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-8",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s look at the graphs of just the prior and likelihood."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-9",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-9",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nFind the posterior distributions. (i.e., What are the updated parameters?)\n\n\n\n\n\n\nAnalyst\n\n\nPrior\n\n\nPosterior\n\n\n\n\n\n\nthe feminist\n\n\nBeta(5, 11)\n\n\nBeta(14, 22)\n\n\n\n\nthe clueless\n\n\nBeta(1, 1)\n\n\nBeta(10, 12)\n\n\n\n\nthe optimist\n\n\nBeta(14, 1)\n\n\nBeta(23, 12)\n\n\n\n\n\n\nLet’s now explore what the posteriors look like.\n\n\nplot_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20) + theme_bw()\nplot_beta_binomial(alpha = 1, beta = 1, y = 9, n = 20) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20) + theme_bw()"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-10",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-10",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s now explore what the posteriors look like."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-11",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-11",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s now explore what the posteriors look like."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-12",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-12",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s now explore what the posteriors look like."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-13",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-13",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nIn addition to priors affecting our posterior distributions… the data also affects it.\nLet’s now consider three new analysts: they all share the optimistic Beta(14, 1) for \\pi, however, they have access to different data.\n\nMorteza reviews n = 13 movies from the year 1991, among which Y=6 (about 46%) pass the Bechdel.\nNadide reviews n = 63 movies from the year 2001, among which Y=29 (about 46%) pass the Bechdel.\nUrsula reviews n = 99 movies from the year 2013, among which Y=46 (about 46%) pass the Bechdel.\n\n\n\nplot_beta_binomial(alpha = 14, beta = 1, y = 6, n = 13, posterior = FALSE) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 29, n = 63, posterior = FALSE) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 46, n = 99, posterior = FALSE) + theme_bw()\n\n\nHow will the different data affect the posterior distributions?\n\nWhich posterior will be the most in sync with their data?\nWhich posterior will be the least in sync with their data?"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-14",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-14",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nHow will the different data affect the posterior distributions?"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-15",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-15",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nHow will the different data affect the posterior distributions?"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-16",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-16",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nHow will the different data affect the posterior distributions?"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-17",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-17",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nFind the posterior distributions. (i.e., What are the updated parameters?)\n\nRecall that all use the Beta(14, 1) prior.\n\n\n\n\n\n\n\n\nAnalyst\n\n\n\n\nData\n\n\n\n\nPosterior\n\n\n\n\n\n\n\nMorteza\n\n\nY=6 of n=13\n\n\nBeta(20, 8)\n\n\n\n\nNadide\n\n\nY=29 of n=63\n\n\nBeta(45, 35)\n\n\n\n\nUrsula\n\n\nY=46 of n=99\n\n\nBeta(60, 54)\n\n\n\n\n\n\nLet’s also explore what the posteriors look like.\n\n\nplot_beta_binomial(alpha = 14, beta = 1, y = 6, n = 13) + theme_bw() \nplot_beta_binomial(alpha = 14, beta = 1, y = 29, n = 63) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 46, n = 99) + theme_bw()"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-18",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-18",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s explore what the posteriors look like."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-19",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-19",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s explore what the posteriors look like."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-20",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-20",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nLet’s explore what the posteriors look like."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-21",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-21",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Different Priors \\to Different Posteriors",
-    "text": "Different Priors \\to Different Posteriors\n\nWhat did we observe?\n\nAs n \\to \\infty, variance in the likelihood \\to 0.\n\nIn Morteza’s small sample of 13 movies, the likelihood function is wide.\nIn Ursula’s larger sample size of 99 movies, the likelihood function is narrower.\n\nWe see that the narrower the likelihood, the more influence the data holds over the posterior."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#striking-a-balance",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#striking-a-balance",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Striking a Balance",
-    "text": "Striking a Balance\n\n\nOverall message: no matter the strength of and discrepancies among their prior understanding of \\pi, analysts will come to a common posterior understanding in light of strong data."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#striking-a-balance-1",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#striking-a-balance-1",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Striking a Balance",
-    "text": "Striking a Balance\n\nThe posterior can either favor the data or the prior.\n\nThe rate at which the posterior balance tips in favor of the data depends upon the prior.\n\nLeft to right on the graph, the sample size increases from n=13 to n=99 movies, while preserving the proportion that pass (\\approx 0.46).\n\nThe likelihood’s insistence and the data’s influence over the posterior increase with sample size.\nThis also means that the influence of our prior understanding diminishes as we gather new data.\n\nTop to bottom on the graph, priors move from informative (Beta(14,1)) to vague (Beta(1,1)).\n\nNaturally, the more informative the prior, the greater its influence on the posterior."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction: Sequentiality",
-    "text": "Introduction: Sequentiality\n\nLet’s now turn our thinking to - okay, we’ve updated our beliefs… but now we have new data!\nThe evolution in our posterior understanding happens incrementally, as we accumulate new data.\n\nScientists’ understanding of climate change has evolved over the span of decades as they gain new information.\nPresidential candidates’ understanding of their chances of winning an election evolve over months as new poll results become available."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality-1",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality-1",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction: Sequentiality",
-    "text": "Introduction: Sequentiality\n\nLet’s revisit Milgram’s behavioral study of obedience from Chapter 3. Recall, \\pi represents the proportion of people that will obey authority, even if it means bringing harm to others.\nPrior to Milgram’s experiments, our fictional psychologist expected that few people would obey authority in the face of harming another: \\pi \\sim \\text{Beta}(1,10).\nNow, suppose that the psychologist collected the data incrementally, day by day, over a three-day period.\nFind the following posterior distributions, each building off the last:\n\nDay 0: \\text{Beta}(1,10).\nDay 1: Y=1 out of n=10.\nDay 2: Y=17 out of n=20.\nDay 3: Y=8 out of n=10."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality-2",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality-2",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Introduction: Sequentiality",
-    "text": "Introduction: Sequentiality\n\nLet’s revisit Milgram’s behavioral study of obedience from Chapter 3. Recall, \\pi represents the proportion of people that will obey authority, even if it means bringing harm to others.\nPrior to Milgram’s experiments, our fictional psychologist expected that few people would obey authority in the face of harming another: \\pi \\sim \\text{Beta}(1,10).\nNow, suppose that the psychologist collected the data incrementally, day by day, over a three-day period.\nFind the following posterior distributions, each building off the last:\n\nDay 0: \\text{Beta}(1,10).\nDay 1: Y=1 out of n=10: \\text{Beta}(1,10) \\to \\text{Beta}(2, 19).\nDay 2: Y=17 out of n=20: \\text{Beta}(2, 19) \\to \\text{Beta}(19, 22).\nDay 3: Y=8 out of n=10: \\text{Beta}(19, 22) \\to \\text{Beta}(27, 24).\n\nRecall from Chapter 3, our posterior was \\text{Beta}(27,24)!"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Sequential Bayesian Analysis or Bayesian Learning",
-    "text": "Sequential Bayesian Analysis or Bayesian Learning\n\nIn a sequential Bayesian analysis, a posterior model is updated incrementally as more data come in.\n\nWith each new piece of data, the previous posterior model reflecting our understanding prior to observing this data becomes the new prior model.\n\nThis is why we love Bayesian!\n\nWe evolve our thinking as new data come in.\n\nThese types of sequential analyses also uphold two fundamental properties:\n\nThe final posterior model is data order invariant,\n\nThe final posterior only depends upon the cumulative data."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning-1",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning-1",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Sequential Bayesian Analysis or Bayesian Learning",
-    "text": "Sequential Bayesian Analysis or Bayesian Learning\n\nIn order:\n\nDay 0: \\text{Beta}(1,10).\nDay 1: Y=1 out of n=10: \\text{Beta}(1,10) \\to \\text{Beta}(2, 19).\nDay 2: Y=17 out of n=20: \\text{Beta}(2, 19) \\to \\text{Beta}(19, 22).\nDay 3: Y=8 out of n=10: \\text{Beta}(19, 22) \\to \\text{Beta}(27, 24).\n\nOut of order:\n\nDay 0: \\text{Beta}(1,10).\nDay 3: Y=8 out of n=10: \\text{Beta}(1,10) \\to \\text{Beta}(9, 12).\nDay 2: Y=17 out of n=20: \\text{Beta}(9, 12) \\to \\text{Beta}(26, 15).\nDay 1: Y=1 out of n=10: \\text{Beta}(26, 15) \\to \\text{Beta}(27, 24)."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning-2",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning-2",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Sequential Bayesian Analysis or Bayesian Learning",
-    "text": "Sequential Bayesian Analysis or Bayesian Learning"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Proving Data Order Invariance",
-    "text": "Proving Data Order Invariance\n\nData order invariance:\n\nLet \\theta be any parameter of interest with prior pdf f(\\theta).\nThen a sequential analysis in which we first observe a data point y_1, and then a second data point y_2 will produce the same posterior model of \\theta as if we first observe y_2 and then y_1.\n\n\nf(\\theta|y_1,y_2) = f(\\theta|y_2,y_1)\n\nSimilarly, the posterior model is invariant to whether we observe the data all at once or sequentially."
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-1",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-1",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Proving Data Order Invariance",
-    "text": "Proving Data Order Invariance\n\nLet’s first specify the structure of posterior pdf f(\\theta|y_1,y_2), which evolves by sequentially observing data y_1, followed by y_2.\nIn step one, we construct the posterior pdf from our original prior pdf, f(\\theta), and the likelihood function of \\theta given the first data point y_1, L(\\theta|y_1).\n\n\n\\begin{align*}\nf(\\theta|y_1) &= \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_1)}{f(y_1)}\n\\end{align*}"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-2",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-2",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Proving Data Order Invariance",
-    "text": "Proving Data Order Invariance\n\nIn step two, we update our model in light of observing new data, y_2.\n\nDon’t forget that we start from the prior model specified by f(\\theta|y_1).\n\n\n\n\\begin{align*}\nf(\\theta|y_2) &= \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\\\\n&= \\frac{\\frac{f(\\theta)L(\\theta|y_1)}{f(y_1)}L(\\theta|y_2)}{f(y_2)} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_1)L(\\theta|y_2)}{f(y_1)f(y_2)}\n\\end{align*}"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-3",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-3",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Proving Data Order Invariance",
-    "text": "Proving Data Order Invariance\n\nWhat happens when we observe the data in the opposite order?\n\n\n\\begin{align*}\nf(\\theta|y_2) &= \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_2)}{f(y_2)}\n\\end{align*}\n\n\n\\begin{align*}\nf(\\theta|y_1) &= \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\\\\n&= \\frac{\\frac{f(\\theta)L(\\theta|y_2)}{f(y_2)}L(\\theta|y_1)}{f(y_1)} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_2)L(\\theta|y_1)}{f(y_2)f(y_1)}\n\\end{align*}"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-4",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-4",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Proving Data Order Invariance",
-    "text": "Proving Data Order Invariance\n\nFinally, not only does the order of the data not influence the ultimate posterior model of \\theta, but it doesn’t matter whether we observe the data all at once or sequentially.\nSuppose we start with the original f(\\theta) prior and observe data (y_1, y_2) together, not sequentially.\nFurther, assume that these data points are independent, thus,\n\nf(y_1, y_2) = f(y_1) f(y_2) \\text{ and } f(y_1,y_2|\\theta) = f(y_1|\\theta) f(y_2|\\theta)"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-5",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-5",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Proving Data Order Invariance",
-    "text": "Proving Data Order Invariance\n\nThen, the posterior pdf is the same as the one resulting from sequential analysis,\n\n\n\\begin{align*}\nf(\\theta|y_1,y_2) &= \\frac{f(\\theta)L(\\theta|y_1,y_2)}{f(y_1,y_2)} \\\\\n&= \\frac{f(\\theta)f(y_1,y_2|\\theta)}{f(y_1)f(y_2)} \\\\\n&= \\frac{f(\\theta)f(y_1|\\theta)f(y_2|\\theta)}{f(y_1)f(y_2)} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_1)L(\\theta|y_2)}{f(y_1)f(y_2)}\n\\end{align*}"
-  },
-  {
-    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#homework",
-    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#homework",
-    "title": "Balance and Sequentiality in Bayesian Analyses",
-    "section": "Homework",
-    "text": "Homework\n\n4.3\n4.4\n4.6\n4.9\n4.15\n4.16\n4.17\n4.18\n4.19"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "<b>STA6349 - Applied Bayesian Analysis - Spring 2025</b>",
-    "section": "",
-    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\n\n\n\n\n\nW 01/09\nIntroduction to R\n \n\n\n\nM 01/13\nProbability Theory: Part 1\n \n\n\n\nW 01/15\nProbability Theory: Part 2\n \n\n\n\nM 01/20\nMLK Holiday - campus closed\n\n\n\n\nW 01/22\nsnow week!\n\n\n\n\nM 01/27\nDr. Seals sick\n\n\n\n\nW 01/29\nDr. Seals sick\n\n\n\n\nM 02/03\nDiscrete Random Variables\n \n\n\n\nW 02/05\nContinuous Random Variables\n \n\n\n\nM 02/10\nDr. Seals out (conference)\n\n\n\n\nW 02/12\nContinuous Random Variables\n \n\n\n\nM 02/17\nBayesian Thinking and Bayes’ Rule\n \n\n\n\nW 02/19\nBayesian Modeling for Random Variables\n \n\n\n\nM 02/24\nBeta-Binomial Conjugage Family\n \n\n\n\nW 02/26\nBeta-Binomial Conjugage Family\n \n\n\n\nM 03/03\nBalance and Sequentiality\n \n\n\n\nW 03/05\nWrite a biography for a Bayesian statistician!\n\n\n\n\nM 03/10\nGamma-Poisson and Normal-Normal\n \n\n\n\nW 03/12\nAssignment 2\n\n\n\n\nM 03/17\nSpring Break!\n\n\n\n\nW 03/19\nSpring Break!\n\n\n\n\nM 03/24\nApproximating the Posterior\n\n\n\n\nW 03/26\nPosterior Inference & Prediction\n\n\n\n\nM 03/31\nProject 1 (in class work)\n\n\n\n\nW 04/02\nProject 1 (presentation)\n\n\n\n\nM 04/07\nSimple Normal Regression\n\n\n\n\nW 04/09\nEvaluating Regression Models\n\n\n\n\nM 04/14\nMultiple Regression\n\n\n\n\nW 04/16\nAssignment 3\n\n\n\n\nM 04/21\nProject 2 (in class work)\n\n\n\n\nW 04/23\nProject 2 (presentation)\n\n\n\n\nM 04/28\nFinal Exam - in class (4/404) - 6:00–8:30 pm"
-  },
-  {
-    "objectID": "test/LICENSE.html",
-    "href": "test/LICENSE.html",
-    "title": "MIT License",
-    "section": "",
-    "text": "MIT License\nCopyright (c) 2024 Shafayet Khan Shafee\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Example",
-    "text": "Example\n\nIn 1996, Gary Kasparov played a six-game chess match against the IBM supercomputer Deep Blue.\n\nOf the six games, Kasparov won three, drew two, and lost one.\nThus, Kasparov won the overall match.\n\nKasparov and Deep Blue were to meet again for a six-game match in 1997.\nLet \\pi denote Kasparov’s chances of winning any particular game in the re-match.\n\nThus, \\pi is a measure of his overall skill relative to Deep Blue.\nGiven the complexity of chess, machines, and humans, \\pi is unknown and can vary over time.\n\ni.e., \\pi is a random variable.\n\n\nOur first step is to start with a prior model. This model\n\nIdentifies what values \\pi can take,\nassigns a prior weight or probability to each, and\nthese probabilities sum to 1."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example-1",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example-1",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Example",
-    "text": "Example\n\nBased on what we were told, the prior model for \\pi in our example,\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\nTotal\n\n\n\n\nf(\\pi)\n0.10\n0.25\n0.65\n1\n\n\n\n\nNote that this is an incredibly simple model.\n\nThe win probability can technically be any number \\in [0, 1].\nHowever, this prior assumes that \\pi has a discrete set of possibilities: 20%, 50%, or 80%."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example-2",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example-2",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Example",
-    "text": "Example\n\nIn the second step of our analysis, we collect and process data which can inform our understanding of \\pi.\nHere, Y = the number of the six games in the 1997 re-match that Kasparov wins.\n\nAs chess match outcome isn’t predetermined, Y is a random variable that can take any value in \\{1, 2, 3, 4, 5, 6\\}.\n\nNote that Y inherently depends upon \\pi.\n\nIf \\pi = 0.80, Y would also be high (on average).\nIf \\pi = 0.20, Y would also be low (on average).\n\nThus, we must model this dependence of Y on \\pi using a conditional probability model."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nWe must make two assumptions about the chess match:\n\nGames are independent (the outcome of one game does not influence the outcome of another).\nKasparov has an equal probability of winning any game in the match.\n\ni.e., probability of winning does not increase or decrease as the match goes on.\n\n\nWe will use a binomial model for this problem.\n\nRecall the binomial pmf,\n\n\nf(y|\\pi) = {n \\choose y} \\pi^y (1-\\pi)^{n-y}, \n\nIn our case,\n\nY|\\pi \\sim \\text{Bin}(6, \\pi)"
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-1",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-1",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nLet’s assume \\pi = 0.8.\nThe probability that he would win all 6 games is approximately 26%.\n\nf(y=6|\\pi=0.8) = {6 \\choose 6} 0.8^6 (1-0.8)^{6-6}, \n\ndbinom(6, 6, 0.8)\n\n[1] 0.262144\n\n\n\nThe probability that he would win none of the games is approximately 0%.\n\nf(y=0|\\pi=0.8) = {6 \\choose 0} 0.8^0 (1-0.8)^{6-0}, \n\ndbinom(0, 6, 0.8)\n\n[1] 6.4e-05"
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-2",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-2",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nYour turn!\nWe want to reproduce Figure 2.5 from the Bayes Rules! textbook (from Section 2.3.2).\n\n\n\nWork with your group to come up with that graph.\nPick one person to present in 15 minutes."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-3",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-3",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nNote that the Binomial gives us the theoretical model of the data we might observe.\n\nIn the end, Kasparov only won one of the six games against Deep Blue in 1997 (Y=1).\n\nNext step: how compatible this particular data is with the various possible \\pi?\n\nWhat is the likelihood of Kasparov winning Y=1 game under each possible \\pi?\n\nRecall, f(y|\\pi) = L(\\pi|Y=y). When Y=1,\n\n\n\\begin{align*}\nL(\\pi | y = 1) &= f(y=1|\\pi) \\\\\n&= {6 \\choose 1} \\pi^1 (1-\\pi)^6-1 \\\\\n&= 6\\pi(1-\\pi)^5\n\\end{align*}\n\n\nNote that we do not expect all likelihoods to sum to 1."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-4",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-4",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nYour turn!\nUse your results from earlier to tell me the resulting likelihood values.\n\n\n\n\n\n\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\n\n\n\n\nL(\\pi|y=1)"
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-5",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-5",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nYour turn!\nUse your results from earlier to tell me the resulting likelihood values.\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\n\n\n\n\nL(\\pi|y=1)\n0.3932\n0.0938\n0.0015\n\n\n\n\nAs we can see, the likelihoods do not sum to 1."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Normalizing Constant",
-    "text": "Normalizing Constant\n\nBayes’ Rule requires three pieces of information:\n\nPrior\nLikelihood\nNormalizing constant\n\nNormalizing constant: a value that ensures that the sum of all probabilities is equal to 1.\n\nIt can be a scalar or a function.\nEvery probability distribution that does not sum to 1 will ahve a normalizing constant."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-1",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-1",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Normalizing Constant",
-    "text": "Normalizing Constant\n\nWe now must determine the total probability that Kasparov would win Y=1 games across all possible win probabilities \\pi, f(y=1).\n\n\n\\begin{align*}\nf(y=1) &= \\sum_{\\pi \\in \\{0.2, 0.5, 0.8 \\}} L(\\pi |y=1)f(\\pi) \\\\\n&= L(\\pi=0.2|y=1)f(\\pi=0.2) + L(\\pi=0.5|y=1)f(\\pi=0.5) + L(\\pi=0.8|y=1)f(\\pi=0.8) \\\\\n&= \\ ...\n\\end{align*}\n\n\nWork with your group to find the normalizing constant."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-2",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-2",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Normalizing Constant",
-    "text": "Normalizing Constant\n\nWe now must determine the total probability that Kasparov would win Y=1 games across all possible win probabilities \\pi, f(y=1).\n\n\n\\begin{align*}\nf(y=1) &= \\sum_{\\pi \\in \\{0.2, 0.5, 0.8 \\}} L(\\pi |y=1)f(\\pi) \\\\\n&= L(\\pi=0.2|y=1)f(\\pi=0.2) + L(\\pi=0.5|y=1)f(\\pi=0.5) + L(\\pi=0.8|y=1)f(\\pi=0.8) \\\\\n&\\approx 0.3932 \\cdot 0.10 + 0.0938 \\cdot 0.25 + 0.0015 \\cdot 0.65 \\\\\n&\\approx 0.0637\n\\end{align*}\n\n\nAcross all possible values of \\pi, there is about a 6% chance that Kasparov would have won only one game."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Posterior Probability Model",
-    "text": "Posterior Probability Model\n\nNow recall,\n\n\\text{posterior} = \\frac{\\text{prior} \\times \\text{likelihood}}{\\text{normalizing constant}}\n\nIn our example, where y = 1,\n\nf(\\pi | y=1) = \\frac{f(\\pi) L(\\pi | y = 1)}{f(y=1)} \\  \\text{for} \\ \\pi \\in \\{ 0.2, 0.5, 0.8\\}\n\nWork with your group to find the posterior probabilities.\n\nYou will have one posterior probability for each value of \\pi."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model-1",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model-1",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Posterior Probability Model",
-    "text": "Posterior Probability Model\n\nNote!! We do not have to calculate the normalizing constant!\nWe can note that f(Y=y) = 1/c.\nThen, we say that\n\n\n\\begin{align*}\nf(\\pi | y) &= \\frac{f(\\pi) L(\\pi|y)}{f(y)} \\\\\n& \\propto  f(\\pi) L(\\pi|y) \\\\\n\\\\\n\\text{posterior} &\\propto \\text{prior} \\cdot \\text{likelihood}\n\\end{align*}"
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#wrap-up",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#wrap-up",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Wrap Up",
-    "text": "Wrap Up\n\nToday we have gone through how to find posterior probabilities using the binomial distribution.\nNext week, we will learn about the Beta-Binomial model."
-  },
-  {
     "objectID": "files/lecture/W10-L1-conjugate-families.html#introduction-gamma-poisson",
     "href": "files/lecture/W10-L1-conjugate-families.html#introduction-gamma-poisson",
     "title": "Gamma-Poisson and Normal-Normal Models",
@@ -1580,6 +1139,804 @@
     "title": "Gamma-Poisson and Normal-Normal Models",
     "section": "Homework",
     "text": "Homework\n\n5.3\n5.5\n5.6\n5.9\n5.10"
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Example",
+    "text": "Example\n\nIn 1996, Gary Kasparov played a six-game chess match against the IBM supercomputer Deep Blue.\n\nOf the six games, Kasparov won three, drew two, and lost one.\nThus, Kasparov won the overall match.\n\nKasparov and Deep Blue were to meet again for a six-game match in 1997.\nLet \\pi denote Kasparov’s chances of winning any particular game in the re-match.\n\nThus, \\pi is a measure of his overall skill relative to Deep Blue.\nGiven the complexity of chess, machines, and humans, \\pi is unknown and can vary over time.\n\ni.e., \\pi is a random variable.\n\n\nOur first step is to start with a prior model. This model\n\nIdentifies what values \\pi can take,\nassigns a prior weight or probability to each, and\nthese probabilities sum to 1."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example-1",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example-1",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Example",
+    "text": "Example\n\nBased on what we were told, the prior model for \\pi in our example,\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\nTotal\n\n\n\n\nf(\\pi)\n0.10\n0.25\n0.65\n1\n\n\n\n\nNote that this is an incredibly simple model.\n\nThe win probability can technically be any number \\in [0, 1].\nHowever, this prior assumes that \\pi has a discrete set of possibilities: 20%, 50%, or 80%."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example-2",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example-2",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Example",
+    "text": "Example\n\nIn the second step of our analysis, we collect and process data which can inform our understanding of \\pi.\nHere, Y = the number of the six games in the 1997 re-match that Kasparov wins.\n\nAs chess match outcome isn’t predetermined, Y is a random variable that can take any value in \\{1, 2, 3, 4, 5, 6\\}.\n\nNote that Y inherently depends upon \\pi.\n\nIf \\pi = 0.80, Y would also be high (on average).\nIf \\pi = 0.20, Y would also be low (on average).\n\nThus, we must model this dependence of Y on \\pi using a conditional probability model."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nWe must make two assumptions about the chess match:\n\nGames are independent (the outcome of one game does not influence the outcome of another).\nKasparov has an equal probability of winning any game in the match.\n\ni.e., probability of winning does not increase or decrease as the match goes on.\n\n\nWe will use a binomial model for this problem.\n\nRecall the binomial pmf,\n\n\nf(y|\\pi) = {n \\choose y} \\pi^y (1-\\pi)^{n-y}, \n\nIn our case,\n\nY|\\pi \\sim \\text{Bin}(6, \\pi)"
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-1",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-1",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nLet’s assume \\pi = 0.8.\nThe probability that he would win all 6 games is approximately 26%.\n\nf(y=6|\\pi=0.8) = {6 \\choose 6} 0.8^6 (1-0.8)^{6-6}, \n\ndbinom(6, 6, 0.8)\n\n[1] 0.262144\n\n\n\nThe probability that he would win none of the games is approximately 0%.\n\nf(y=0|\\pi=0.8) = {6 \\choose 0} 0.8^0 (1-0.8)^{6-0}, \n\ndbinom(0, 6, 0.8)\n\n[1] 6.4e-05"
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-2",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-2",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nYour turn!\nWe want to reproduce Figure 2.5 from the Bayes Rules! textbook (from Section 2.3.2).\n\n\n\nWork with your group to come up with that graph.\nPick one person to present in 15 minutes."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-3",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-3",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nNote that the Binomial gives us the theoretical model of the data we might observe.\n\nIn the end, Kasparov only won one of the six games against Deep Blue in 1997 (Y=1).\n\nNext step: how compatible this particular data is with the various possible \\pi?\n\nWhat is the likelihood of Kasparov winning Y=1 game under each possible \\pi?\n\nRecall, f(y|\\pi) = L(\\pi|Y=y). When Y=1,\n\n\n\\begin{align*}\nL(\\pi | y = 1) &= f(y=1|\\pi) \\\\\n&= {6 \\choose 1} \\pi^1 (1-\\pi)^6-1 \\\\\n&= 6\\pi(1-\\pi)^5\n\\end{align*}\n\n\nNote that we do not expect all likelihoods to sum to 1."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-4",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-4",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nYour turn!\nUse your results from earlier to tell me the resulting likelihood values.\n\n\n\n\n\n\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\n\n\n\n\nL(\\pi|y=1)"
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-5",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-5",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nYour turn!\nUse your results from earlier to tell me the resulting likelihood values.\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\n\n\n\n\nL(\\pi|y=1)\n0.3932\n0.0938\n0.0015\n\n\n\n\nAs we can see, the likelihoods do not sum to 1."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Normalizing Constant",
+    "text": "Normalizing Constant\n\nBayes’ Rule requires three pieces of information:\n\nPrior\nLikelihood\nNormalizing constant\n\nNormalizing constant: a value that ensures that the sum of all probabilities is equal to 1.\n\nIt can be a scalar or a function.\nEvery probability distribution that does not sum to 1 will ahve a normalizing constant."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-1",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-1",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Normalizing Constant",
+    "text": "Normalizing Constant\n\nWe now must determine the total probability that Kasparov would win Y=1 games across all possible win probabilities \\pi, f(y=1).\n\n\n\\begin{align*}\nf(y=1) &= \\sum_{\\pi \\in \\{0.2, 0.5, 0.8 \\}} L(\\pi |y=1)f(\\pi) \\\\\n&= L(\\pi=0.2|y=1)f(\\pi=0.2) + L(\\pi=0.5|y=1)f(\\pi=0.5) + L(\\pi=0.8|y=1)f(\\pi=0.8) \\\\\n&= \\ ...\n\\end{align*}\n\n\nWork with your group to find the normalizing constant."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-2",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-2",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Normalizing Constant",
+    "text": "Normalizing Constant\n\nWe now must determine the total probability that Kasparov would win Y=1 games across all possible win probabilities \\pi, f(y=1).\n\n\n\\begin{align*}\nf(y=1) &= \\sum_{\\pi \\in \\{0.2, 0.5, 0.8 \\}} L(\\pi |y=1)f(\\pi) \\\\\n&= L(\\pi=0.2|y=1)f(\\pi=0.2) + L(\\pi=0.5|y=1)f(\\pi=0.5) + L(\\pi=0.8|y=1)f(\\pi=0.8) \\\\\n&\\approx 0.3932 \\cdot 0.10 + 0.0938 \\cdot 0.25 + 0.0015 \\cdot 0.65 \\\\\n&\\approx 0.0637\n\\end{align*}\n\n\nAcross all possible values of \\pi, there is about a 6% chance that Kasparov would have won only one game."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Posterior Probability Model",
+    "text": "Posterior Probability Model\n\nNow recall,\n\n\\text{posterior} = \\frac{\\text{prior} \\times \\text{likelihood}}{\\text{normalizing constant}}\n\nIn our example, where y = 1,\n\nf(\\pi | y=1) = \\frac{f(\\pi) L(\\pi | y = 1)}{f(y=1)} \\  \\text{for} \\ \\pi \\in \\{ 0.2, 0.5, 0.8\\}\n\nWork with your group to find the posterior probabilities.\n\nYou will have one posterior probability for each value of \\pi."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model-1",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model-1",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Posterior Probability Model",
+    "text": "Posterior Probability Model\n\nNote!! We do not have to calculate the normalizing constant!\nWe can note that f(Y=y) = 1/c.\nThen, we say that\n\n\n\\begin{align*}\nf(\\pi | y) &= \\frac{f(\\pi) L(\\pi|y)}{f(y)} \\\\\n& \\propto  f(\\pi) L(\\pi|y) \\\\\n\\\\\n\\text{posterior} &\\propto \\text{prior} \\cdot \\text{likelihood}\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#wrap-up",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#wrap-up",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Wrap Up",
+    "text": "Wrap Up\n\nToday we have gone through how to find posterior probabilities using the binomial distribution.\nNext week, we will learn about the Beta-Binomial model."
+  },
+  {
+    "objectID": "test/LICENSE.html",
+    "href": "test/LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2024 Shafayet Khan Shafee\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "<b>STA6349 - Applied Bayesian Analysis - Spring 2025</b>",
+    "section": "",
+    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\n\n\n\n\n\nW 01/09\nIntroduction to R\n \n\n\n\nM 01/13\nProbability Theory: Part 1\n \n\n\n\nW 01/15\nProbability Theory: Part 2\n \n\n\n\nM 01/20\nMLK Holiday - campus closed\n\n\n\n\nW 01/22\nsnow week!\n\n\n\n\nM 01/27\nDr. Seals sick\n\n\n\n\nW 01/29\nDr. Seals sick\n\n\n\n\nM 02/03\nDiscrete Random Variables\n \n\n\n\nW 02/05\nContinuous Random Variables\n \n\n\n\nM 02/10\nDr. Seals out (conference)\n\n\n\n\nW 02/12\nContinuous Random Variables\n \n\n\n\nM 02/17\nBayesian Thinking and Bayes’ Rule\n \n\n\n\nW 02/19\nBayesian Modeling for Random Variables\n \n\n\n\nM 02/24\nBeta-Binomial Conjugage Family\n \n\n\n\nW 02/26\nBeta-Binomial Conjugage Family\n \n\n\n\nM 03/03\nBalance and Sequentiality\n \n\n\n\nW 03/05\nWrite a biography for a Bayesian statistician!\n\n\n\n\nM 03/10\nGamma-Poisson and Normal-Normal\n \n\n\n\nW 03/12\nAssignment 2\n\n\n\n\nM 03/17\nSpring Break!\n\n\n\n\nW 03/19\nSpring Break!\n\n\n\n\nM 03/24\nApproximating the Posterior\n \n\n\n\nW 03/26\nPosterior Inference & Prediction\n\n\n\n\nM 03/31\nProject 1 (in class work)\n\n\n\n\nW 04/02\nProject 1 (presentation)\n\n\n\n\nM 04/07\nSimple Normal Regression\n\n\n\n\nW 04/09\nEvaluating Regression Models\n\n\n\n\nM 04/14\nMultiple Regression\n\n\n\n\nW 04/16\nAssignment 3\n\n\n\n\nM 04/21\nProject 2 (in class work)\n\n\n\n\nW 04/23\nProject 2 (presentation)\n\n\n\n\nM 04/28\nFinal Exam - in class (4/404) - 6:00–8:30 pm"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction",
+    "text": "Introduction\n\nOn Monday, we talked about the Beta-Binomial model for binary outcomes with an unknown probability of success, \\pi.\nWe will now discuss sequentality in Bayesian analyses.\nWorking example:\n\nIn Alison Bechdel’s 1985 comic strip The Rule, a character states that they only see a movie if it satisfies the following three rules (Bechdel 1986):\n\nthe movie has to have at least two women in it;\nthese two women talk to each other; and\nthey talk about something besides a man.\n\nThese criteria constitute the Bechdel test for the representation of women in film.\n\nThinking of movies you’ve watched, what percentage of all recent movies do you think pass the Bechdel test? Is it closer to 10%, 50%, 80%, or 100%?"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-1",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-1",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction",
+    "text": "Introduction\n\nLet \\pi, a random value between 0 and 1, denote the unknown proportion of recent movies that pass the Bechdel test.\nThree friends - the feminist, the clueless, and the optimist - have some prior ideas about \\pi.\n\nReflecting upon movies that he has seen in the past, the feminist understands that the majority lack strong women characters.\nThe clueless doesn’t really recall the movies they’ve seen, and so are unsure whether passing the Bechdel test is common or uncommon.\nLastly, the optimist thinks that the Bechdel test is a really low bar for the representation of women in film, and thus assumes almost all movies pass the test.\n\n\n\nplot_beta(alpha = 1, beta = 1)\nplot_beta(alpha = 5, beta = 11)\nplot_beta(alpha = 14, beta = 1)\n\n\nWhich one is which?"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-2",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-2",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction",
+    "text": "Introduction\n\nplot_beta(alpha = 1, beta = 1)\nplot_beta(alpha = 5, beta = 11)\nplot_beta(alpha = 14, beta = 1)\n\n\nWhich one is which?\n\nReflecting upon movies that he has seen in the past, the feminist understands that the majority lack strong women characters.\nThe clueless doesn’t really recall the movies they’ve seen, and so are unsure whether passing the Bechdel test is common or uncommon.\nLastly, the optimist thinks that the Bechdel test is a really low bar for the representation of women in film, and thus assumes almost all movies pass the test."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-3",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-3",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction",
+    "text": "Introduction\n\n\nplot_beta(alpha = 1, beta = 1) + theme_bw() + ggtitle(\"Beta(1, 1)\")\n\n\n\n\n\n\n\n\n\n\nThe clueless doesn’t really recall the movies they’ve seen, and so are unsure whether passing the Bechdel test is common or uncommon."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-4",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-4",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction",
+    "text": "Introduction\n\n\nplot_beta(alpha = 5, beta = 11) + theme_bw() + ggtitle(\"Beta(5, 11)\")\n\n\n\n\n\n\n\n\n\n\nReflecting upon movies that he has seen in the past, the feminist understands that the majority lack strong women characters."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-5",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-5",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction",
+    "text": "Introduction\n\n\nplot_beta(alpha = 14, beta = 1) + theme_bw() + ggtitle(\"Beta(14, 1)\")\n\n\n\n\n\n\n\n\n\n\nLastly, the optimist thinks that the Bechdel test is a really low bar for the representation of women in film, and thus assumes almost all movies pass the test."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-6",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-6",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction",
+    "text": "Introduction\n\nThe analysts agree to review a sample of n recent movies and record Y, the number that pass the Bechdel test.\n\nBecause the outcome is yes/no, the binomial distribution is appropriate for the data distribution.\nWe aren’t sure what the population proportion, \\pi, is, so we will not restrict it to a fixed value.\n\nBecause we know \\pi \\in [0, 1], the beta distribution is appropriate for the prior distribution.\n\n\n\n\n\\begin{align*}\nY|\\pi &\\sim \\text{Bin}(n, \\pi) \\\\\n\\pi &\\sim \\text{Beta}(\\alpha, \\beta)\n\\end{align*}\n\n\nFrom the previous chapter, we know that this results in the following posterior distribution\n\n\n\\pi | (Y=y) \\sim \\text{Beta}(\\alpha+y, \\beta+n-y)"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-7",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-7",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction",
+    "text": "Introduction\n\nWait!!\n\nEveryone gets their own prior?\n… is there a “correct” prior?\n…… is the Bayesian world always this subjective?"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-8",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-8",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction",
+    "text": "Introduction\n\nWait!!\n\nEveryone gets their own prior?\n… is there a “correct” prior?\n…… is the Bayesian world always this subjective?\n\nMore clearly defined questions that we can actually answer:\n\nTo what extent might different priors lead the analysts to three different posterior conclusions about the Bechdel test?\n\nHow might this depend upon the sample size and outcomes of the movie data they collect?\n\nTo what extent will the analysts’ posterior understandings evolve as they collect more and more data?\nWill they ever come to agreement about the representation of women in film?!"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\n\n\n\n\n\n\n\n\n\n\n\nThe differing prior means show disagreement about whether \\pi is closer to 0 or 1.\nThe differing levels of prior variability show that the analysts have different degrees of certainty in their prior information.\n\nThe more certain we are about the prior information, the smaller the prior variability."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-1",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-1",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\n\n\n\n\n\n\n\n\n\n\n\nInformative prior: reflects specific information about the unknown variable with high certainty, i.e., low variability."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-2",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-2",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\n\n\n\n\n\n\n\n\n\n\n\nVague or diffuse prior: reflects little specific information about the unknown variable.\n\nA flat prior, which assigns equal prior plausibility to all possible values of the variable, is a special case.\nThis is effectively saying “🤷.”"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-3",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-3",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nOkay, great - we have different priors.\n\nHow do the different priors affect the posterior?\n\nWe have data from FiveThirtyEight, reporting results of the Bechdel test.\n\n\nset.seed(65821)\nbechdel20 &lt;- bayesrules::bechdel %&gt;% sample_n(20)\nhead(bechdel20, n = 3)\n\n# A tibble: 3 × 3\n   year title               binary\n  &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt; \n1  2013 Her                 FAIL  \n2  1997 Grosse Pointe Blank PASS  \n3  2006 Volver              PASS"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-4",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-4",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nSo how many pass the test in this sample?\n\n\nbechdel20 %&gt;% tabyl(binary) %&gt;% adorn_totals(\"row\")\n\n binary  n percent\n   FAIL 11    0.55\n   PASS  9    0.45\n  Total 20    1.00"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-5",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-5",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s look at the graphs of just the prior and likelihood.\n\n\nplot_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20, posterior = FALSE) + theme_bw()\nplot_beta_binomial(alpha = 1, beta = 1, y = 9, n = 20, posterior = FALSE) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20, posterior = FALSE) + theme_bw()\n\n\nQuestions to think about:\n\nWhose posterior do you anticipate will look the most like the scaled likelihood?\nWhose do you anticipate will look the least like the scaled likelihood?"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-6",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-6",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s look at the graphs of just the prior and likelihood."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-7",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-7",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s look at the graphs of just the prior and likelihood."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-8",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-8",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s look at the graphs of just the prior and likelihood."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-9",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-9",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nFind the posterior distributions. (i.e., What are the updated parameters?)\n\n\n\n\n\n\nAnalyst\n\n\nPrior\n\n\nPosterior\n\n\n\n\n\n\nthe feminist\n\n\nBeta(5, 11)\n\n\nBeta(14, 22)\n\n\n\n\nthe clueless\n\n\nBeta(1, 1)\n\n\nBeta(10, 12)\n\n\n\n\nthe optimist\n\n\nBeta(14, 1)\n\n\nBeta(23, 12)\n\n\n\n\n\n\nLet’s now explore what the posteriors look like.\n\n\nplot_beta_binomial(alpha = 5, beta = 11, y = 9, n = 20) + theme_bw()\nplot_beta_binomial(alpha = 1, beta = 1, y = 9, n = 20) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 9, n = 20) + theme_bw()"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-10",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-10",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s now explore what the posteriors look like."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-11",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-11",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s now explore what the posteriors look like."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-12",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-12",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s now explore what the posteriors look like."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-13",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-13",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nIn addition to priors affecting our posterior distributions… the data also affects it.\nLet’s now consider three new analysts: they all share the optimistic Beta(14, 1) for \\pi, however, they have access to different data.\n\nMorteza reviews n = 13 movies from the year 1991, among which Y=6 (about 46%) pass the Bechdel.\nNadide reviews n = 63 movies from the year 2001, among which Y=29 (about 46%) pass the Bechdel.\nUrsula reviews n = 99 movies from the year 2013, among which Y=46 (about 46%) pass the Bechdel.\n\n\n\nplot_beta_binomial(alpha = 14, beta = 1, y = 6, n = 13, posterior = FALSE) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 29, n = 63, posterior = FALSE) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 46, n = 99, posterior = FALSE) + theme_bw()\n\n\nHow will the different data affect the posterior distributions?\n\nWhich posterior will be the most in sync with their data?\nWhich posterior will be the least in sync with their data?"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-14",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-14",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nHow will the different data affect the posterior distributions?"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-15",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-15",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nHow will the different data affect the posterior distributions?"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-16",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-16",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nHow will the different data affect the posterior distributions?"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-17",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-17",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nFind the posterior distributions. (i.e., What are the updated parameters?)\n\nRecall that all use the Beta(14, 1) prior.\n\n\n\n\n\n\n\n\nAnalyst\n\n\n\n\nData\n\n\n\n\nPosterior\n\n\n\n\n\n\n\nMorteza\n\n\nY=6 of n=13\n\n\nBeta(20, 8)\n\n\n\n\nNadide\n\n\nY=29 of n=63\n\n\nBeta(45, 35)\n\n\n\n\nUrsula\n\n\nY=46 of n=99\n\n\nBeta(60, 54)\n\n\n\n\n\n\nLet’s also explore what the posteriors look like.\n\n\nplot_beta_binomial(alpha = 14, beta = 1, y = 6, n = 13) + theme_bw() \nplot_beta_binomial(alpha = 14, beta = 1, y = 29, n = 63) + theme_bw()\nplot_beta_binomial(alpha = 14, beta = 1, y = 46, n = 99) + theme_bw()"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-18",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-18",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s explore what the posteriors look like."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-19",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-19",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s explore what the posteriors look like."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-20",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-20",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nLet’s explore what the posteriors look like."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-21",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#different-priors-to-different-posteriors-21",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Different Priors \\to Different Posteriors",
+    "text": "Different Priors \\to Different Posteriors\n\nWhat did we observe?\n\nAs n \\to \\infty, variance in the likelihood \\to 0.\n\nIn Morteza’s small sample of 13 movies, the likelihood function is wide.\nIn Ursula’s larger sample size of 99 movies, the likelihood function is narrower.\n\nWe see that the narrower the likelihood, the more influence the data holds over the posterior."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#striking-a-balance",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#striking-a-balance",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Striking a Balance",
+    "text": "Striking a Balance\n\n\nOverall message: no matter the strength of and discrepancies among their prior understanding of \\pi, analysts will come to a common posterior understanding in light of strong data."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#striking-a-balance-1",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#striking-a-balance-1",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Striking a Balance",
+    "text": "Striking a Balance\n\nThe posterior can either favor the data or the prior.\n\nThe rate at which the posterior balance tips in favor of the data depends upon the prior.\n\nLeft to right on the graph, the sample size increases from n=13 to n=99 movies, while preserving the proportion that pass (\\approx 0.46).\n\nThe likelihood’s insistence and the data’s influence over the posterior increase with sample size.\nThis also means that the influence of our prior understanding diminishes as we gather new data.\n\nTop to bottom on the graph, priors move from informative (Beta(14,1)) to vague (Beta(1,1)).\n\nNaturally, the more informative the prior, the greater its influence on the posterior."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction: Sequentiality",
+    "text": "Introduction: Sequentiality\n\nLet’s now turn our thinking to - okay, we’ve updated our beliefs… but now we have new data!\nThe evolution in our posterior understanding happens incrementally, as we accumulate new data.\n\nScientists’ understanding of climate change has evolved over the span of decades as they gain new information.\nPresidential candidates’ understanding of their chances of winning an election evolve over months as new poll results become available."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality-1",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality-1",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction: Sequentiality",
+    "text": "Introduction: Sequentiality\n\nLet’s revisit Milgram’s behavioral study of obedience from Chapter 3. Recall, \\pi represents the proportion of people that will obey authority, even if it means bringing harm to others.\nPrior to Milgram’s experiments, our fictional psychologist expected that few people would obey authority in the face of harming another: \\pi \\sim \\text{Beta}(1,10).\nNow, suppose that the psychologist collected the data incrementally, day by day, over a three-day period.\nFind the following posterior distributions, each building off the last:\n\nDay 0: \\text{Beta}(1,10).\nDay 1: Y=1 out of n=10.\nDay 2: Y=17 out of n=20.\nDay 3: Y=8 out of n=10."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality-2",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction-sequentiality-2",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Introduction: Sequentiality",
+    "text": "Introduction: Sequentiality\n\nLet’s revisit Milgram’s behavioral study of obedience from Chapter 3. Recall, \\pi represents the proportion of people that will obey authority, even if it means bringing harm to others.\nPrior to Milgram’s experiments, our fictional psychologist expected that few people would obey authority in the face of harming another: \\pi \\sim \\text{Beta}(1,10).\nNow, suppose that the psychologist collected the data incrementally, day by day, over a three-day period.\nFind the following posterior distributions, each building off the last:\n\nDay 0: \\text{Beta}(1,10).\nDay 1: Y=1 out of n=10: \\text{Beta}(1,10) \\to \\text{Beta}(2, 19).\nDay 2: Y=17 out of n=20: \\text{Beta}(2, 19) \\to \\text{Beta}(19, 22).\nDay 3: Y=8 out of n=10: \\text{Beta}(19, 22) \\to \\text{Beta}(27, 24).\n\nRecall from Chapter 3, our posterior was \\text{Beta}(27,24)!"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Sequential Bayesian Analysis or Bayesian Learning",
+    "text": "Sequential Bayesian Analysis or Bayesian Learning\n\nIn a sequential Bayesian analysis, a posterior model is updated incrementally as more data come in.\n\nWith each new piece of data, the previous posterior model reflecting our understanding prior to observing this data becomes the new prior model.\n\nThis is why we love Bayesian!\n\nWe evolve our thinking as new data come in.\n\nThese types of sequential analyses also uphold two fundamental properties:\n\nThe final posterior model is data order invariant,\n\nThe final posterior only depends upon the cumulative data."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning-1",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning-1",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Sequential Bayesian Analysis or Bayesian Learning",
+    "text": "Sequential Bayesian Analysis or Bayesian Learning\n\nIn order:\n\nDay 0: \\text{Beta}(1,10).\nDay 1: Y=1 out of n=10: \\text{Beta}(1,10) \\to \\text{Beta}(2, 19).\nDay 2: Y=17 out of n=20: \\text{Beta}(2, 19) \\to \\text{Beta}(19, 22).\nDay 3: Y=8 out of n=10: \\text{Beta}(19, 22) \\to \\text{Beta}(27, 24).\n\nOut of order:\n\nDay 0: \\text{Beta}(1,10).\nDay 3: Y=8 out of n=10: \\text{Beta}(1,10) \\to \\text{Beta}(9, 12).\nDay 2: Y=17 out of n=20: \\text{Beta}(9, 12) \\to \\text{Beta}(26, 15).\nDay 1: Y=1 out of n=10: \\text{Beta}(26, 15) \\to \\text{Beta}(27, 24)."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning-2",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#sequential-bayesian-analysis-or-bayesian-learning-2",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Sequential Bayesian Analysis or Bayesian Learning",
+    "text": "Sequential Bayesian Analysis or Bayesian Learning"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Proving Data Order Invariance",
+    "text": "Proving Data Order Invariance\n\nData order invariance:\n\nLet \\theta be any parameter of interest with prior pdf f(\\theta).\nThen a sequential analysis in which we first observe a data point y_1, and then a second data point y_2 will produce the same posterior model of \\theta as if we first observe y_2 and then y_1.\n\n\nf(\\theta|y_1,y_2) = f(\\theta|y_2,y_1)\n\nSimilarly, the posterior model is invariant to whether we observe the data all at once or sequentially."
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-1",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-1",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Proving Data Order Invariance",
+    "text": "Proving Data Order Invariance\n\nLet’s first specify the structure of posterior pdf f(\\theta|y_1,y_2), which evolves by sequentially observing data y_1, followed by y_2.\nIn step one, we construct the posterior pdf from our original prior pdf, f(\\theta), and the likelihood function of \\theta given the first data point y_1, L(\\theta|y_1).\n\n\n\\begin{align*}\nf(\\theta|y_1) &= \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_1)}{f(y_1)}\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-2",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-2",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Proving Data Order Invariance",
+    "text": "Proving Data Order Invariance\n\nIn step two, we update our model in light of observing new data, y_2.\n\nDon’t forget that we start from the prior model specified by f(\\theta|y_1).\n\n\n\n\\begin{align*}\nf(\\theta|y_2) &= \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\\\\n&= \\frac{\\frac{f(\\theta)L(\\theta|y_1)}{f(y_1)}L(\\theta|y_2)}{f(y_2)} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_1)L(\\theta|y_2)}{f(y_1)f(y_2)}\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-3",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-3",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Proving Data Order Invariance",
+    "text": "Proving Data Order Invariance\n\nWhat happens when we observe the data in the opposite order?\n\n\n\\begin{align*}\nf(\\theta|y_2) &= \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_2)}{f(y_2)}\n\\end{align*}\n\n\n\\begin{align*}\nf(\\theta|y_1) &= \\frac{\\text{prior} \\cdot \\text{likelihood}}{\\text{normalizing constant}} \\\\\n&= \\frac{\\frac{f(\\theta)L(\\theta|y_2)}{f(y_2)}L(\\theta|y_1)}{f(y_1)} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_2)L(\\theta|y_1)}{f(y_2)f(y_1)}\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-4",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-4",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Proving Data Order Invariance",
+    "text": "Proving Data Order Invariance\n\nFinally, not only does the order of the data not influence the ultimate posterior model of \\theta, but it doesn’t matter whether we observe the data all at once or sequentially.\nSuppose we start with the original f(\\theta) prior and observe data (y_1, y_2) together, not sequentially.\nFurther, assume that these data points are independent, thus,\n\nf(y_1, y_2) = f(y_1) f(y_2) \\text{ and } f(y_1,y_2|\\theta) = f(y_1|\\theta) f(y_2|\\theta)"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-5",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#proving-data-order-invariance-5",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Proving Data Order Invariance",
+    "text": "Proving Data Order Invariance\n\nThen, the posterior pdf is the same as the one resulting from sequential analysis,\n\n\n\\begin{align*}\nf(\\theta|y_1,y_2) &= \\frac{f(\\theta)L(\\theta|y_1,y_2)}{f(y_1,y_2)} \\\\\n&= \\frac{f(\\theta)f(y_1,y_2|\\theta)}{f(y_1)f(y_2)} \\\\\n&= \\frac{f(\\theta)f(y_1|\\theta)f(y_2|\\theta)}{f(y_1)f(y_2)} \\\\\n&= \\frac{f(\\theta)L(\\theta|y_1)L(\\theta|y_2)}{f(y_1)f(y_2)}\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#homework",
+    "href": "files/lecture/W08-L2-balance-and-sequentiality.html#homework",
+    "title": "Balance and Sequentiality in Bayesian Analyses",
+    "section": "Homework",
+    "text": "Homework\n\n4.3\n4.4\n4.6\n4.9\n4.15\n4.16\n4.17\n4.18\n4.19"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#introduction",
+    "href": "files/lecture/W11-L1-approx-posterior.html#introduction",
+    "title": "Approximating the Posterior",
+    "section": "Introduction",
+    "text": "Introduction\n\nWe have learned how to think like a Bayesian:\n\nPrior distribution\nData distribution\nPosterior distribution\n\nWe have learned three conjugate families:\n\nBeta-Binomial (binary outcomes)\nGamma-Poisson (count outcomes)\nNormal-Normal (continuous outcomes)\n\nOnce we have a posterior model, we must be able to apply the results.\n\nPosterior estimation\nHypothesis testing\nPrediction"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#introduction-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#introduction-1",
+    "title": "Approximating the Posterior",
+    "section": "Introduction",
+    "text": "Introduction\n\nRecall, we have the posterior pdf,\n\nf(\\theta|y) = \\frac{f(\\theta) L(\\theta|y)}{f(y)} \\propto f(\\theta)L(\\theta|y)\n\nNow, in the denominator, we need to remember,\n\nf(y) = \\int_{\\theta_1} \\int_{\\theta_2} \\cdot \\cdot \\cdot \\int_{\\theta_k} f(\\theta) L(\\theta|y) d\\theta_k \\cdot \\cdot \\cdot d\\theta_2 d\\theta_1\n\nBecause this is … not fun … we will approximate the posterior via simulation."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#introduction-2",
+    "href": "files/lecture/W11-L1-approx-posterior.html#introduction-2",
+    "title": "Approximating the Posterior",
+    "section": "Introduction",
+    "text": "Introduction\n\nWe are going to explore two simulation techniques:\n\ngrid approximation\nMarkov chain Monte Carlo (MCMC)\n\nEither method will produce a sample of N values for \\theta.\n\n\\left \\{ \\theta^{(1)}, \\theta^{(2)}, ..., \\theta^{(N)} \\right \\}\n\nThese \\theta_i will have properties that reflect those of the posterior model for \\theta.\nTo help us, we will apply these simulation techniques to Beta-Binomial and Gamma-Poisson models.\n\nNote that these models do not require simulation! We know their posteriors!\nThat’s why we are starting there – we can link the concepts to what we know. :)"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#introduction-3",
+    "href": "files/lecture/W11-L1-approx-posterior.html#introduction-3",
+    "title": "Approximating the Posterior",
+    "section": "Introduction",
+    "text": "Introduction\n\nNote: we will use the following packages that may be new to you:\n\njanitor\nrstan\nbayesplot\n\nIf you are using the server provided by HMCSE, they have been installed for you.\nIf you are working at home, please check to see if you have the libraries, then install if you do not.\n\ninstall.packages(c(\"janitor\", \"rstan\", \"bayesplot\"))"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\n\n\n\nSuppose there is an image that you can’t view in its entirety.\nWe can see snippets along a grid that sweeps from left to right across the image.\nThe finer the grid, the clearer the image; if the grid is fine enough, the result is a good approximation."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-1",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\n\n\n\nThis is the general idea behind Bayesian grid approximation.\nOur target image is the posterior pdf, f(\\theta|y).\n\nIt is not necessary to observe all possible f(\\theta|y) \\ \\forall \\theta for us to understand its structure.\nInstead, we evaluate f(\\theta|y) at a finite, discrete grid of possible \\theta values.\nThen, we take random samples from this discretized pdf to approximate the full posterior pdf."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-2",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-2",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nGrid approximation produces a sample of N independent \\theta values, \\left\\{ \\theta^{(1)}, \\theta^{(2)}, \\theta^{(N)} \\right\\}, from a discretized approximation of the posterior pdf, f(\\theta|y).\nAlgorithm:\n\nDefine a discrete grid of possible \\theta values.\nEvaluate the prior pdf, f(\\theta), and the likelihood function, L(\\theta|y) at each \\theta grid value.\nObtain a discrete approximation of the posterior pdf, f(\\theta|y) by:\n\nCalculating the product f(\\theta) L(\\theta|y) at each \\theta grid value,\nNormalize the products from (a) to sum to 1 across all \\theta.\n\nRandomly sample N \\theta grid values with respect to their corresponding normalized posterior probabilities."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation---example",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation---example",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation - Example",
+    "text": "Grid Approximation - Example\n\nWe will use the following Beta-Binomial model to learn how to do grid approximation:\n\n\n\\begin{align*}\nY|\\pi &\\sim \\text{Bin}(10, \\pi) \\\\\n\\pi &\\sim \\text{Beta}(2, 2)\n\\end{align*}\n\n\nNote that\n\nY is the number of successes in 10 independent trials.\nEvery trial has probability of success, \\pi.\nOur prior understanding about \\pi is captured by a \\text{Beta}(2,2) model.\n\nIf we observe Y = 9 successes, we know that the updated posterior model for \\pi is \\text{Beta}(11, 3).\n\nY + \\alpha = 9+2\nn - Y + \\beta = 10-9+2"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-3",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-3",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nInstead of using the posterior we know, let’s approximate it using grid approximation.\nFirst step: define a discrete grid of possible \\theta values.\n\nSo, let’s consider \\pi \\in \\{0, 0.2, 0.4, 0.6, 0.8, 1\\}.\n\n\n\nlibrary(tidyverse)\ngrid_data &lt;- tibble(pi_grid = seq(from = 0, to = 1, length = 6))"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-4",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-4",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nInstead of using the posterior we know, let’s approximate it using grid approximation.\nFirst step: define a discrete grid of possible \\theta values.\n\nSo, let’s consider \\pi \\in \\{0, 0.2, 0.4, 0.6, 0.8, 1\\}.\n\n\n\nlibrary(tidyverse)\ngrid_data &lt;- tibble(pi_grid = seq(from = 0, to = 1, length = 6))\n\n\n\n# A tibble: 3 × 1\n  pi_grid\n    &lt;dbl&gt;\n1     0  \n2     0.2\n3     0.4"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-5",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-5",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nInstead of using the posterior we know, let’s approximate it using grid approximation.\nSecond step: evaluate the prior pdf, f(\\theta), and the likelihood function, L(\\theta|y) at each \\theta grid value.\n\nWe will use dbeta() and dbinom() to evaluate the \\text{Beta}(2,2) prior and \\text{Bin}(10, \\pi) likelihood with Y=9 at each \\pi in pi_grid.\n\n\n\ngrid_data &lt;- grid_data %&gt;%\n  mutate(prior = dbeta(pi_grid, 2, 2),\n         likelihood = dbinom(9, 10, pi_grid))"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-6",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-6",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nInstead of using the posterior we know, let’s approximate it using grid approximation.\nSecond step: evaluate the prior pdf, f(\\theta), and the likelihood function, L(\\theta|y) at each \\theta grid value.\n\nWe will use dbeta() and dbinom() to evaluate the \\text{Beta}(2,2) prior and \\text{Bin}(10, \\pi) likelihood with Y=9 at each \\pi in pi_grid.\n\n\n\ngrid_data &lt;- grid_data %&gt;%\n  mutate(prior = dbeta(pi_grid, 2, 2),\n         likelihood = dbinom(9, 10, pi_grid))\n\n\n\n# A tibble: 3 × 3\n  pi_grid prior likelihood\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;\n1     0    0    0         \n2     0.2  0.96 0.00000410\n3     0.4  1.44 0.00157"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-7",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-7",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nInstead of using the posterior we know, let’s approximate it using grid approximation.\nThird step: obtain a discrete approximation of the posterior pdf, f(\\theta|y) by calculating the product f(\\theta) L(\\theta|y) at each \\theta grid value and normalizing the products to sum to 1 across all \\theta.\n\n\ngrid_data &lt;- grid_data %&gt;%\n  mutate(unnormalized = likelihood*prior,\n         posterior = unnormalized / sum(unnormalized))"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-8",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-8",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nInstead of using the posterior we know, let’s approximate it using grid approximation.\nThird step: obtain a discrete approximation of the posterior pdf, f(\\theta|y) by calculating the product f(\\theta) L(\\theta|y) at each \\theta grid value and normalizing the products to sum to 1 across all \\theta.\n\n\ngrid_data &lt;- grid_data %&gt;%\n  mutate(unnormalized = likelihood*prior,\n         posterior = unnormalized / sum(unnormalized))\n\n\nWe can verify,\n\n\ngrid_data %&gt;%\n  summarize(sum(unnormalized), sum(posterior))\n\n# A tibble: 1 × 2\n  `sum(unnormalized)` `sum(posterior)`\n                &lt;dbl&gt;            &lt;dbl&gt;\n1               0.318                1"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-9",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-9",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nInstead of using the posterior we know, let’s approximate it using grid approximation.\nThird step: obtain a discrete approximation of the posterior pdf, f(\\theta|y) by calculating the product f(\\theta) L(\\theta|y) at each \\theta grid value and normalizing the products to sum to 1 across all \\theta.\n\n\ngrid_data &lt;- grid_data %&gt;%\n  mutate(unnormalized = likelihood*prior,\n         posterior = unnormalized / sum(unnormalized))\n\n\n\n# A tibble: 3 × 5\n  pi_grid prior likelihood unnormalized posterior\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;\n1     0    0    0            0          0        \n2     0.2  0.96 0.00000410   0.00000393 0.0000124\n3     0.4  1.44 0.00157      0.00226    0.00712"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-10",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-10",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nInstead of using the posterior we know, let’s approximate it using grid approximation.\nWe now have a glimpse into the actual posterior pdf.\n\nWe can plot it to see what it looks like,"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-11",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-11",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nAs we increase the number of possible \\theta values, the better we can “see” the resulting posterior.\nWhat happens if we try the following: n=50, n=100, n=500, n=1000?"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-12",
+    "href": "files/lecture/W11-L1-approx-posterior.html#grid-approximation-12",
+    "title": "Approximating the Posterior",
+    "section": "Grid Approximation",
+    "text": "Grid Approximation\n\nAs we increase the number of possible \\theta values, the better we can “see” the resulting posterior.\nWhat happens if we try the following: n=50, n=100, n=500, n=1000?"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#markov-chain-monte-carlo-mcmc",
+    "href": "files/lecture/W11-L1-approx-posterior.html#markov-chain-monte-carlo-mcmc",
+    "title": "Approximating the Posterior",
+    "section": "Markov chain Monte Carlo (MCMC)",
+    "text": "Markov chain Monte Carlo (MCMC)\n\nMarkov chain Monte Carlo (MCMC) is an application of Markov chains to simulate probability models.\nMCMC samples are not taken directly from the posterior pdf, f(\\theta | y)… and they are not independent.\n\nEach subsequent value depends on the previous value.\n\nSuppose we have an N-length MCMC sample, \\left\\{ \\theta^{(1)}, \\theta^{(2)}, \\theta^{(3)}, ..., \\theta^{(N)} \\right\\}\n\n\\theta^{(2)} is drawn from a model that depends on \\theta^{(1)}.\n\\theta^{(3)} is drawn from a model that depends on \\theta^{(2)}.\netc."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#markov-chain-monte-carlo-mcmc-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#markov-chain-monte-carlo-mcmc-1",
+    "title": "Approximating the Posterior",
+    "section": "Markov chain Monte Carlo (MCMC)",
+    "text": "Markov chain Monte Carlo (MCMC)\n\nThe (i+1)st chain value, \\theta^{(i+1)} is drawn from a model that depends on data y and the previous chain value, \\theta^{(i)}.\n\nf\\left( \\theta^{(i+1)} | \\theta^{(i)}, y \\right)\n\nIt is important for us to note that the pdf from which a Markov chain is simulated is not equivalent to the posterior pdf!\n\nf\\left( \\theta^{(i+1)} | \\theta^{(i)}, y  \\right) \\ne f\\left(\\theta^{(i+1)}|y \\right)"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#using-rstan",
+    "href": "files/lecture/W11-L1-approx-posterior.html#using-rstan",
+    "title": "Approximating the Posterior",
+    "section": "Using rstan",
+    "text": "Using rstan\n\nWe will use rstan:\n\ndefine the Bayesian model structure in rstan notation\nsimulate the posterior\n\nAgain, we will use the Beta-Binomial model from earlier.\n\ndata: in our example, Y is the observed number of successes in 10 trials.\n\nWe need to tell rstan that Y is an integer between 0 and 10.\n\nparameters: in our example, our model depends on \\pi.\n\nWe need to tell rstan that \\pi can be any real number between 0 and 1.\n\nmodel: in our example, we need to specify Y \\sim \\text{Bin}(10, \\pi) and \\pi \\sim \\text{Beta}(2,2)."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#using-rstan-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#using-rstan-1",
+    "title": "Approximating the Posterior",
+    "section": "Using rstan",
+    "text": "Using rstan\n\n# STEP 1: DEFINE the model\nbb_model &lt;- \"\n  data {\n    int&lt;lower = 0, upper = 10&gt; Y;\n  }\n  parameters {\n    real&lt;lower = 0, upper = 1&gt; pi;\n  }\n  model {\n    Y ~ binomial(10, pi);\n    pi ~ beta(2, 2);\n  }\n\""
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#using-rstan-2",
+    "href": "files/lecture/W11-L1-approx-posterior.html#using-rstan-2",
+    "title": "Approximating the Posterior",
+    "section": "Using rstan",
+    "text": "Using rstan\n\nThen, when we go to simulate, we first put in the model information\n\nmodel code: the character string defining the model (in our case, bb_model).\ndata: a list of the observed data.\n\nIn this example, we are using Y = 9 - a single data point.\n\n\nThen, we put in the Markov chain information,\n\nchains: how many parallel Markov chains to run.\n\nThis will be the number of distinct \\theta values we want.\n\niter: desired number of iterations, or length of Markov chain.\n\nHalf are thrown out as “burn in” samples.\n\n“burn in”? Think: pancakes!\n\n\nseed: used to set the seed of the RNG."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#using-rstan-3",
+    "href": "files/lecture/W11-L1-approx-posterior.html#using-rstan-3",
+    "title": "Approximating the Posterior",
+    "section": "Using rstan",
+    "text": "Using rstan\n\n# STEP 2: simulate the posterior\nbb_sim &lt;- stan(model_code = bb_model, data = list(Y = 9), \n               chains = 4, iter = 5000*2, seed = 84735)\n\n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).\nChain 1: \nChain 1: Gradient evaluation took 3e-06 seconds\nChain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.\nChain 1: Adjust your expectations accordingly!\nChain 1: \nChain 1: \nChain 1: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 1: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 1: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 1: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 1: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 1: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 1: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 1: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 1: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 1: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 1: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 1: \nChain 1:  Elapsed Time: 0.012 seconds (Warm-up)\nChain 1:                0.013 seconds (Sampling)\nChain 1:                0.025 seconds (Total)\nChain 1: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).\nChain 2: \nChain 2: Gradient evaluation took 0 seconds\nChain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 2: Adjust your expectations accordingly!\nChain 2: \nChain 2: \nChain 2: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 2: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 2: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 2: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 2: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 2: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 2: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 2: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 2: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 2: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 2: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 2: \nChain 2:  Elapsed Time: 0.012 seconds (Warm-up)\nChain 2:                0.013 seconds (Sampling)\nChain 2:                0.025 seconds (Total)\nChain 2: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).\nChain 3: \nChain 3: Gradient evaluation took 0 seconds\nChain 3: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 3: Adjust your expectations accordingly!\nChain 3: \nChain 3: \nChain 3: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 3: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 3: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 3: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 3: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 3: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 3: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 3: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 3: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 3: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 3: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 3: \nChain 3:  Elapsed Time: 0.012 seconds (Warm-up)\nChain 3:                0.012 seconds (Sampling)\nChain 3:                0.024 seconds (Total)\nChain 3: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).\nChain 4: \nChain 4: Gradient evaluation took 0 seconds\nChain 4: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 4: Adjust your expectations accordingly!\nChain 4: \nChain 4: \nChain 4: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 4: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 4: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 4: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 4: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 4: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 4: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 4: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 4: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 4: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 4: \nChain 4:  Elapsed Time: 0.012 seconds (Warm-up)\nChain 4:                0.013 seconds (Sampling)\nChain 4:                0.025 seconds (Total)\nChain 4:"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#using-rstan-4",
+    "href": "files/lecture/W11-L1-approx-posterior.html#using-rstan-4",
+    "title": "Approximating the Posterior",
+    "section": "Using rstan",
+    "text": "Using rstan\n\nNow, we need to extract the values,\n\n\nas.array(bb_sim, pars = \"pi\") %&gt;% head(4)\n\n, , parameters = pi\n\n          chains\niterations   chain:1   chain:2   chain:3   chain:4\n      [1,] 0.8278040 0.7523560 0.6386998 0.9627572\n      [2,] 0.9087546 0.8922386 0.6254761 0.9413518\n      [3,] 0.6143859 0.8682356 0.7222360 0.9489624\n      [4,] 0.8462156 0.8792812 0.8100192 0.9413812\n\n\n\nRemember, these are not a random sample from the posterior!\nThey are also not independent!\nEach chain forms a dependent 5,000 length Markov chain of \\left\\{ \\pi^{(1)}, \\pi^{(2)}, ..., \\pi^{(5000)}\\right\\}\n\nEach chain will move along the sample space of plausible values for \\pi."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#using-rstan-5",
+    "href": "files/lecture/W11-L1-approx-posterior.html#using-rstan-5",
+    "title": "Approximating the Posterior",
+    "section": "Using rstan",
+    "text": "Using rstan\n\nWe will look at the trace plot (using mcmc_trace() from bayesplot package) to see what the values did longitudinally.\n\n\n\nmcmc_trace(bb_sim, pars = \"pi\", size = 0.1)"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#using-rstan-6",
+    "href": "files/lecture/W11-L1-approx-posterior.html#using-rstan-6",
+    "title": "Approximating the Posterior",
+    "section": "Using rstan",
+    "text": "Using rstan\n\nWe can also look at the mcmc_hist() and mcmc_dens() functions,"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#diagnostics",
+    "href": "files/lecture/W11-L1-approx-posterior.html#diagnostics",
+    "title": "Approximating the Posterior",
+    "section": "Diagnostics",
+    "text": "Diagnostics\n\nSimulations are not perfect…\n\nWhat does a good Markov chain look like?\nHow can we tell if the Markov chain sample produces a reasonable approximation of the posterior?\nHow big should our Markov chain sample size be?\n\nUnfortunately there is no one answer here.\n\nYou will learn through experience, much like other nuanced areas of statistics."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#diagnostics-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#diagnostics-1",
+    "title": "Approximating the Posterior",
+    "section": "Diagnostics",
+    "text": "Diagnostics\n\nLet’s now discuss diagnostic tools.\n\nTrace plots\nParallel chains\nEffective sample size\nAutocorrelation\n\\hat{R}"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#trace-plots",
+    "href": "files/lecture/W11-L1-approx-posterior.html#trace-plots",
+    "title": "Approximating the Posterior",
+    "section": "Trace Plots",
+    "text": "Trace Plots\n\n\n\n\nChain A has not stabilized after 5000 iterations.\n\nIt has not “found” or does not know how to explore the range of posterior plausible \\pi values.\nThe downward trend also hints against independent noise."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#trace-plots-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#trace-plots-1",
+    "title": "Approximating the Posterior",
+    "section": "Trace Plots",
+    "text": "Trace Plots\n\n\n\n\nWe say that Chain A is mixing slowly.\n\nThe more Markov chains behave like fast mixing (noisy) independent samples, the smaller the error in the resulting posterior approximation."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#trace-plots-2",
+    "href": "files/lecture/W11-L1-approx-posterior.html#trace-plots-2",
+    "title": "Approximating the Posterior",
+    "section": "Trace Plots",
+    "text": "Trace Plots\n\n\n\n\nChain B is not great, either – it gets stuck when looking at a smaller value of \\pi."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#trace-plots-3",
+    "href": "files/lecture/W11-L1-approx-posterior.html#trace-plots-3",
+    "title": "Approximating the Posterior",
+    "section": "Trace Plots",
+    "text": "Trace Plots\n\nRealistically, we are only going to do simulations when we can’t specify the posterior and must approximate\n\ni.e., we won’t be able to compare the simulation results to the “true” results.\n\nIf we see bad trace plots:\n\nCheck the model (… or your code). Are the assumed prior and data models appropriate?\nRun the chain for more iterations. Sometimes we just need a longer run to iron out issues."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#parallel-chains",
+    "href": "files/lecture/W11-L1-approx-posterior.html#parallel-chains",
+    "title": "Approximating the Posterior",
+    "section": "Parallel Chains",
+    "text": "Parallel Chains\n\nLet’s now consider a smaller simulation, where n=50 (recall, overall n=100, but half is for burn-in).\n\n\nbb_sim_short &lt;- stan(model_code = bb_model, data = list(Y = 9), \n                     chains = 4, iter = 50*2, seed = 84735)"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#parallel-chains-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#parallel-chains-1",
+    "title": "Approximating the Posterior",
+    "section": "Parallel Chains",
+    "text": "Parallel Chains\n\nLet’s now consider a smaller simulation, where n=50 (recall, overall n=100, but half is for burn-in).\n\n\nbb_sim_short &lt;- stan(model_code = bb_model, data = list(Y = 9), \n                     chains = 4, iter = 50*2, seed = 84735)\n\n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).\nChain 1: \nChain 1: Gradient evaluation took 1e-06 seconds\nChain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.\nChain 1: Adjust your expectations accordingly!\nChain 1: \nChain 1: \nChain 1: WARNING: There aren't enough warmup iterations to fit the\nChain 1:          three stages of adaptation as currently configured.\nChain 1:          Reducing each adaptation stage to 15%/75%/10% of\nChain 1:          the given number of warmup iterations:\nChain 1:            init_buffer = 7\nChain 1:            adapt_window = 38\nChain 1:            term_buffer = 5\nChain 1: \nChain 1: Iteration:  1 / 100 [  1%]  (Warmup)\nChain 1: Iteration: 10 / 100 [ 10%]  (Warmup)\nChain 1: Iteration: 20 / 100 [ 20%]  (Warmup)\nChain 1: Iteration: 30 / 100 [ 30%]  (Warmup)\nChain 1: Iteration: 40 / 100 [ 40%]  (Warmup)\nChain 1: Iteration: 50 / 100 [ 50%]  (Warmup)\nChain 1: Iteration: 51 / 100 [ 51%]  (Sampling)\nChain 1: Iteration: 60 / 100 [ 60%]  (Sampling)\nChain 1: Iteration: 70 / 100 [ 70%]  (Sampling)\nChain 1: Iteration: 80 / 100 [ 80%]  (Sampling)\nChain 1: Iteration: 90 / 100 [ 90%]  (Sampling)\nChain 1: Iteration: 100 / 100 [100%]  (Sampling)\nChain 1: \nChain 1:  Elapsed Time: 0 seconds (Warm-up)\nChain 1:                0 seconds (Sampling)\nChain 1:                0 seconds (Total)\nChain 1: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).\nChain 2: \nChain 2: Gradient evaluation took 0 seconds\nChain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 2: Adjust your expectations accordingly!\nChain 2: \nChain 2: \nChain 2: WARNING: There aren't enough warmup iterations to fit the\nChain 2:          three stages of adaptation as currently configured.\nChain 2:          Reducing each adaptation stage to 15%/75%/10% of\nChain 2:          the given number of warmup iterations:\nChain 2:            init_buffer = 7\nChain 2:            adapt_window = 38\nChain 2:            term_buffer = 5\nChain 2: \nChain 2: Iteration:  1 / 100 [  1%]  (Warmup)\nChain 2: Iteration: 10 / 100 [ 10%]  (Warmup)\nChain 2: Iteration: 20 / 100 [ 20%]  (Warmup)\nChain 2: Iteration: 30 / 100 [ 30%]  (Warmup)\nChain 2: Iteration: 40 / 100 [ 40%]  (Warmup)\nChain 2: Iteration: 50 / 100 [ 50%]  (Warmup)\nChain 2: Iteration: 51 / 100 [ 51%]  (Sampling)\nChain 2: Iteration: 60 / 100 [ 60%]  (Sampling)\nChain 2: Iteration: 70 / 100 [ 70%]  (Sampling)\nChain 2: Iteration: 80 / 100 [ 80%]  (Sampling)\nChain 2: Iteration: 90 / 100 [ 90%]  (Sampling)\nChain 2: Iteration: 100 / 100 [100%]  (Sampling)\nChain 2: \nChain 2:  Elapsed Time: 0 seconds (Warm-up)\nChain 2:                0 seconds (Sampling)\nChain 2:                0 seconds (Total)\nChain 2: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).\nChain 3: \nChain 3: Gradient evaluation took 0 seconds\nChain 3: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 3: Adjust your expectations accordingly!\nChain 3: \nChain 3: \nChain 3: WARNING: There aren't enough warmup iterations to fit the\nChain 3:          three stages of adaptation as currently configured.\nChain 3:          Reducing each adaptation stage to 15%/75%/10% of\nChain 3:          the given number of warmup iterations:\nChain 3:            init_buffer = 7\nChain 3:            adapt_window = 38\nChain 3:            term_buffer = 5\nChain 3: \nChain 3: Iteration:  1 / 100 [  1%]  (Warmup)\nChain 3: Iteration: 10 / 100 [ 10%]  (Warmup)\nChain 3: Iteration: 20 / 100 [ 20%]  (Warmup)\nChain 3: Iteration: 30 / 100 [ 30%]  (Warmup)\nChain 3: Iteration: 40 / 100 [ 40%]  (Warmup)\nChain 3: Iteration: 50 / 100 [ 50%]  (Warmup)\nChain 3: Iteration: 51 / 100 [ 51%]  (Sampling)\nChain 3: Iteration: 60 / 100 [ 60%]  (Sampling)\nChain 3: Iteration: 70 / 100 [ 70%]  (Sampling)\nChain 3: Iteration: 80 / 100 [ 80%]  (Sampling)\nChain 3: Iteration: 90 / 100 [ 90%]  (Sampling)\nChain 3: Iteration: 100 / 100 [100%]  (Sampling)\nChain 3: \nChain 3:  Elapsed Time: 0 seconds (Warm-up)\nChain 3:                0 seconds (Sampling)\nChain 3:                0 seconds (Total)\nChain 3: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).\nChain 4: \nChain 4: Gradient evaluation took 0 seconds\nChain 4: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 4: Adjust your expectations accordingly!\nChain 4: \nChain 4: \nChain 4: WARNING: There aren't enough warmup iterations to fit the\nChain 4:          three stages of adaptation as currently configured.\nChain 4:          Reducing each adaptation stage to 15%/75%/10% of\nChain 4:          the given number of warmup iterations:\nChain 4:            init_buffer = 7\nChain 4:            adapt_window = 38\nChain 4:            term_buffer = 5\nChain 4: \nChain 4: Iteration:  1 / 100 [  1%]  (Warmup)\nChain 4: Iteration: 10 / 100 [ 10%]  (Warmup)\nChain 4: Iteration: 20 / 100 [ 20%]  (Warmup)\nChain 4: Iteration: 30 / 100 [ 30%]  (Warmup)\nChain 4: Iteration: 40 / 100 [ 40%]  (Warmup)\nChain 4: Iteration: 50 / 100 [ 50%]  (Warmup)\nChain 4: Iteration: 51 / 100 [ 51%]  (Sampling)\nChain 4: Iteration: 60 / 100 [ 60%]  (Sampling)\nChain 4: Iteration: 70 / 100 [ 70%]  (Sampling)\nChain 4: Iteration: 80 / 100 [ 80%]  (Sampling)\nChain 4: Iteration: 90 / 100 [ 90%]  (Sampling)\nChain 4: Iteration: 100 / 100 [100%]  (Sampling)\nChain 4: \nChain 4:  Elapsed Time: 0 seconds (Warm-up)\nChain 4:                0 seconds (Sampling)\nChain 4:                0 seconds (Total)\nChain 4:"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#parallel-chains-2",
+    "href": "files/lecture/W11-L1-approx-posterior.html#parallel-chains-2",
+    "title": "Approximating the Posterior",
+    "section": "Parallel Chains",
+    "text": "Parallel Chains\n\nLet’s now consider a smaller simulation, where n=50 (recall, overall n=100, but half is for burn-in)."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#parallel-chains-3",
+    "href": "files/lecture/W11-L1-approx-posterior.html#parallel-chains-3",
+    "title": "Approximating the Posterior",
+    "section": "Parallel Chains",
+    "text": "Parallel Chains\n\nNow you try 10,000 iterations."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#parallel-chains-4",
+    "href": "files/lecture/W11-L1-approx-posterior.html#parallel-chains-4",
+    "title": "Approximating the Posterior",
+    "section": "Parallel Chains",
+    "text": "Parallel Chains\n\nNow you try 10,000 iterations."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#effective-sample-size",
+    "href": "files/lecture/W11-L1-approx-posterior.html#effective-sample-size",
+    "title": "Approximating the Posterior",
+    "section": "Effective Sample Size",
+    "text": "Effective Sample Size\n\nThe more a dependent Markov chain behaves like an independent sample, the smaller the error in the resulting posterior approximation.\n\nPlots are great, but numerical assessment can provide more nuanced information.\n\nEffective sample size (N_{\\text{eff}}): the number of independent sample values it would take to produce an equivalently accurate posterior approximation.\nEffective sample size ratio:\n\n\\frac{N_{\\text{eff}}}{N}\n\nGenerally, we look for the effective sample size, N_{\\text{eff}}, to be greater than 10% of the actual sample size, N."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#effective-sample-size-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#effective-sample-size-1",
+    "title": "Approximating the Posterior",
+    "section": "Effective Sample Size",
+    "text": "Effective Sample Size\n\nWe will use the neff_ratio() function to find this ratio.\nIn our example data,\n\n\n# Calculate the effective sample size ratio - N = 50\nneff_ratio(bb_sim, pars = c(\"pi\"))\n\n[1] 0.3462257\n\n# Calculate the effective sample size ratio - N = 10000\nneff_ratio(bb_sim_short, pars = c(\"pi\"))\n\n[1] 0.4950171\n\n\n\nBecause the N_{\\text{eff}} is over 10%, we are not concerned and can proceed."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#autocorrelation",
+    "href": "files/lecture/W11-L1-approx-posterior.html#autocorrelation",
+    "title": "Approximating the Posterior",
+    "section": "Autocorrelation",
+    "text": "Autocorrelation\n\nAutocorrelation allows us to evaluate if our Markov chain sufficiently mimics the behavior of an independent sample.\nAutocorrelation:\n\nLag 1 autocorrelation measures the correlation between pairs of Markov chain values that are one “step” apart (e.g., \\pi_i and \\pi_{(i-1)}; e.g., \\pi_4 and \\pi_3).\nLag 2 autocorrelation measures the correlation between pairs of Markov chain values that are two “steps apart (e.g., \\pi_i and \\pi_{(i-2)}; e.g., \\pi_4 and \\pi_2).\nLag k autocorrelation measures the correlation between pairs of Markov chain values that are k “steps” apart (e.g., \\pi_i and \\pi_{(i-k)}; e.g., \\pi_4 and \\pi_{(4-k)}).\n\nStrong autocorrelation or dependence is a bad thing.\n\nIt goes hand in hand with small effective sample size ratios.\nThese provide a warning sign that our resulting posterior approximations might be unreliable."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#autocorrelation-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#autocorrelation-1",
+    "title": "Approximating the Posterior",
+    "section": "Autocorrelation",
+    "text": "Autocorrelation\n\n\n\n\nNo obvious patterns in the trace plot; dependence is relatively weak.\nAutocorrelation plot quickly drops off and is effectively 0 by lag 5.\nConfirmation that our Markov chain is mixing quickly.\n\ni.e., quickly moving around the range of posterior plausible \\pi values\ni.e., at least mimicking an independent sample."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#autocorrelation-2",
+    "href": "files/lecture/W11-L1-approx-posterior.html#autocorrelation-2",
+    "title": "Approximating the Posterior",
+    "section": "Autocorrelation",
+    "text": "Autocorrelation\n\n\n\n\nThis is an “unhealthy” Markov chain.\nTrace plot shows strong trends \\to autocorrelation in the Markov chain values.\nSlow decrease in autocorrelation plot indicates that the dependence between chain values does not quickly fade away.\n\nAt lag 20, the autocorrelation is still \\sim 90%."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#fast-vs.-slow-mixing-markov-chains",
+    "href": "files/lecture/W11-L1-approx-posterior.html#fast-vs.-slow-mixing-markov-chains",
+    "title": "Approximating the Posterior",
+    "section": "Fast vs. Slow Mixing Markov Chains",
+    "text": "Fast vs. Slow Mixing Markov Chains\n\nFast mixing chains:\n\nThe chains move “quickly” around the range of posterior plausible values\nThe autocorrelation among the chain values drops off quickly.\nThe effective sample size ratio is reasonably large.\n\nSlow mixing chains:\n\nThe chains move “slowly” around the range of posterior plauslbe values.\nThe autocorrelation among the chainv alues drops off very slowly.\nThe effective sample size ratio is small.\n\nWhat do we do if we have a slow mixing chain?\n\nIncrease the chain size :)\nThin the Markov chain :|"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#thinning-markov-chains",
+    "href": "files/lecture/W11-L1-approx-posterior.html#thinning-markov-chains",
+    "title": "Approximating the Posterior",
+    "section": "Thinning Markov Chains",
+    "text": "Thinning Markov Chains\n\nLet’s thin our original results, bb_sim, to every tenth value using the thin argument in stan().\n\n\nthinned_sim &lt;- stan(model_code = bb_model, data = list(Y = 9), \n                    chains = 4, iter = 5000*2, seed = 84735, thin = 10)\n\nmcmc_trace(thinned_sim, pars = \"pi\")\nmcmc_acf(thinned_sim, pars = \"pi\")"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#thinning-markov-chains-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#thinning-markov-chains-1",
+    "title": "Approximating the Posterior",
+    "section": "Thinning Markov Chains",
+    "text": "Thinning Markov Chains\n\nLet’s thin our original results, bb_sim, to every tenth value using the thin argument in stan().\n\n\nthinned_sim &lt;- stan(model_code = bb_model, data = list(Y = 9), \n                    chains = 4, iter = 5000*2, seed = 84735, thin = 10)\n\n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).\nChain 1: \nChain 1: Gradient evaluation took 2e-06 seconds\nChain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.\nChain 1: Adjust your expectations accordingly!\nChain 1: \nChain 1: \nChain 1: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 1: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 1: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 1: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 1: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 1: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 1: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 1: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 1: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 1: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 1: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 1: \nChain 1:  Elapsed Time: 0.009 seconds (Warm-up)\nChain 1:                0.011 seconds (Sampling)\nChain 1:                0.02 seconds (Total)\nChain 1: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).\nChain 2: \nChain 2: Gradient evaluation took 0 seconds\nChain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 2: Adjust your expectations accordingly!\nChain 2: \nChain 2: \nChain 2: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 2: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 2: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 2: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 2: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 2: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 2: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 2: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 2: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 2: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 2: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 2: \nChain 2:  Elapsed Time: 0.009 seconds (Warm-up)\nChain 2:                0.011 seconds (Sampling)\nChain 2:                0.02 seconds (Total)\nChain 2: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).\nChain 3: \nChain 3: Gradient evaluation took 0 seconds\nChain 3: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 3: Adjust your expectations accordingly!\nChain 3: \nChain 3: \nChain 3: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 3: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 3: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 3: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 3: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 3: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 3: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 3: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 3: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 3: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 3: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 3: \nChain 3:  Elapsed Time: 0.01 seconds (Warm-up)\nChain 3:                0.009 seconds (Sampling)\nChain 3:                0.019 seconds (Total)\nChain 3: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).\nChain 4: \nChain 4: Gradient evaluation took 0 seconds\nChain 4: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 4: Adjust your expectations accordingly!\nChain 4: \nChain 4: \nChain 4: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 4: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 4: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 4: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 4: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 4: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 4: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 4: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 4: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 4: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 4: \nChain 4:  Elapsed Time: 0.009 seconds (Warm-up)\nChain 4:                0.011 seconds (Sampling)\nChain 4:                0.02 seconds (Total)\nChain 4:"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#thinning-markov-chains-2",
+    "href": "files/lecture/W11-L1-approx-posterior.html#thinning-markov-chains-2",
+    "title": "Approximating the Posterior",
+    "section": "Thinning Markov Chains",
+    "text": "Thinning Markov Chains\n\nLet’s thin our original results, bb_sim, to every tenth value using the thin argument in stan()."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#thinning-markov-chains-3",
+    "href": "files/lecture/W11-L1-approx-posterior.html#thinning-markov-chains-3",
+    "title": "Approximating the Posterior",
+    "section": "Thinning Markov Chains",
+    "text": "Thinning Markov Chains\n\nWarning!\n\nThe benefits of reduced autocorrelation do not necessarily outweigh the loss of chain values.\ni.e., 5,000 Markov chain values with stronger autocorrelation may be a better posterior approximation than 500 chain values with weaker autocorrelation.\n\nThe effectiveness depends on the algorithm used to construct the Markov chain.\n\nFolks advise against thinning unless you need memory space on your computer."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#hatr",
+    "href": "files/lecture/W11-L1-approx-posterior.html#hatr",
+    "title": "Approximating the Posterior",
+    "section": "\\hat{R}",
+    "text": "\\hat{R}\n\\hat{R} \\approx \\sqrt{\\frac{\\text{var}_{\\text{combined}}}{\\text{var}_{\\text{within}}}}\n\nwhere\n\n\\text{var}_{\\text{combined}} is the variability in \\theta across all chains combined.\n\\text{var}_{\\text{within}} is the typical variability within any individual chain.\n\n\\hat{R} compares the variability in sampled \\theta values across all chains combined with the variability within each individual change.\n\nIdeally, \\hat{R} \\approx 1, showing stability across chains.\n\\hat{R} &gt; 1 indicates instability with the variability in the combined chains larger than that of the variability within the chains.\n\\hat{R} &gt; 1.05 raises red flags about the stability of the simulation."
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#hatr-1",
+    "href": "files/lecture/W11-L1-approx-posterior.html#hatr-1",
+    "title": "Approximating the Posterior",
+    "section": "\\hat{R}",
+    "text": "\\hat{R}\n\nWe can use the rhat() function from the bayesplot package to find \\hat{R}.\n\n\nrhat(bb_sim, pars = \"pi\")\n\n[1] 1.000245\n\n\n\nWe can see that our simulation is stable.\nIf we were to find \\hat{R} for the other (obviously bad) simulation, it would be 5.35 😱"
+  },
+  {
+    "objectID": "files/lecture/W11-L1-approx-posterior.html#homework",
+    "href": "files/lecture/W11-L1-approx-posterior.html#homework",
+    "title": "Approximating the Posterior",
+    "section": "Homework",
+    "text": "Homework\n\n6.5\n6.6\n6.7\n6.13\n6.14\n6.15\n6.17"
   },
   {
     "objectID": "files/lecture/W05-L2-continuous-rv.html#introduction",
