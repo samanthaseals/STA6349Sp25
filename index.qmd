@@ -33,7 +33,7 @@ title-block-banner: false
 | W 03/12 | Assignment 2 |
 | M 03/17 | Spring Break! | 
 | W 03/19 | Spring Break! |  
-| M 03/24 | Approximating the Posterior |
+| M 03/24 | Approximating the Posterior | <a href="files/lecture/W11-L1-approx-posterior.htm l"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W11-L1-approx-posterior.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a>
 | W 03/26 | Posterior Inference & Prediction | 
 | M 03/31 | Project 1 (in class work) |
 | W 04/02 | Project 1 (presentation) |

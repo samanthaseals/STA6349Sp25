@@ -1,0 +1,783 @@
+---
+title: "**Approximating the Posterior**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Introduction**
+
+- We have learned how to think like a Bayesian: 
+
+    - Prior distribution
+    - Data distribution
+    - Posterior distribution
+
+- We have learned three conjugate families:
+
+    - Beta-Binomial (binary outcomes)
+    - Gamma-Poisson (count outcomes)
+    - Normal-Normal (continuous outcomes)
+    
+- Once we have a posterior model, we must be able to apply the results.
+
+    - Posterior estimation
+    - Hypothesis testing
+    - Prediction  
+
+## **Introduction**
+
+- Recall, we have the posterior pdf,
+
+$$f(\theta|y) = \frac{f(\theta) L(\theta|y)}{f(y)} \propto f(\theta)L(\theta|y)$$
+    
+- Now, in the denominator, we need to remember,
+
+$$f(y) = \int_{\theta_1} \int_{\theta_2} \cdot \cdot \cdot \int_{\theta_k} f(\theta) L(\theta|y) d\theta_k \cdot \cdot \cdot d\theta_2 d\theta_1$$
+
+- Because this is ... not fun ... we will approximate the posterior via simulation.
+
+## **Introduction**
+
+- We are going to explore two simulation techniques:
+    - grid approximation
+    - Markov chain Monte Carlo (MCMC)
+    
+- Either method will produce a **sample** of $N$ values for $\theta$. 
+
+$$\left \{ \theta^{(1)}, \theta^{(2)}, ..., \theta^{(N)} \right \}$$
+
+- These $\theta_i$ will have properties that reflect those of the posterior model for $\theta$.
+
+- To help us, we will apply these simulation techniques to Beta-Binomial and Gamma-Poisson models.
+    - Note that these models do not require simulation! We know their posteriors!
+    - That's why we are starting there -- we can link the concepts to what we know. :)
+
+## **Introduction**
+
+- Note: we will use the following packages that may be new to you:
+    - `janitor`
+    - `rstan`
+    - `bayesplot`
+    
+- If you are using the server provided by HMCSE, *they have been installed for you*.
+
+- If you are working at home, please check to see if you have the libraries, then install if you do not.
+    - `install.packages(c("janitor", "rstan", "bayesplot"))`
+
+## **Grid Approximation**
+
+<center><img src = "images/W12-L1-a.png"></center>
+
+- Suppose there is an image that you can't view in its entirety.
+
+- We can see snippets along a grid that sweeps from left to right across the image. 
+
+- The finer the grid, the clearer the image; if the grid is fine enough, the result is a good approximation.
+
+## **Grid Approximation**
+
+<center><img src = "images/W12-L1-a.png"></center>
+
+- This is the general idea behind Bayesian grid approximation.
+
+- Our target image is the posterior pdf, $f(\theta|y)$.
+    - It is not necessary to observe all possible $f(\theta|y) \ \forall \theta$ for us to understand its structure.
+    - Instead, we evaluate $f(\theta|y)$ at a finite, discrete grid of possible $\theta$ values.
+    - Then, we take random samples from this discretized pdf to approximate the full posterior pdf.
+    
+## **Grid Approximation**
+
+- Grid approximation produces a sample of $N$ independent $\theta$ values, $$\left\{ \theta^{(1)}, \theta^{(2)}, \theta^{(N)} \right\},$$ from a discretized approximation of the posterior pdf, $f(\theta|y)$.
+
+- **Algorithm:**
+    1. Define a discrete grid of possible $\theta$ values.
+    2. Evaluate the prior pdf, $f(\theta)$, and the likelihood function, $L(\theta|y)$ at each $\theta$ grid value.
+    3. Obtain a discrete approximation of the posterior pdf, $f(\theta|y)$ by:
+        a. Calculating the product $f(\theta) L(\theta|y)$ at each $\theta$ grid value,
+        b. Normalize the products from (a) to sum to 1 across all $\theta$.
+    4. Randomly sample $N$ $\theta$ grid values with respect to their corresponding normalized posterior probabilities.        
+
+## **Grid Approximation - Example**
+
+- We will use the following Beta-Binomial model to learn how to do grid approximation:
+
+$$
+\begin{align*}
+Y|\pi &\sim \text{Bin}(10, \pi) \\
+\pi &\sim \text{Beta}(2, 2)
+\end{align*}
+$$
+
+- Note that 
+    - $Y$ is the number of successes in 10 independent trials.
+    - Every trial has probability of success, $\pi$.
+    - Our prior understanding about $\pi$ is captured by a $\text{Beta}(2,2)$ model.
+    
+- If we observe $Y = 9$ successes, we know that the updated posterior model for $\pi$ is $\text{Beta}(11, 3)$.
+    - $Y + \alpha = 9+2$
+    - $n - Y + \beta = 10-9+2$
+
+## **Grid Approximation**
+
+- Instead of using the posterior we know, let's approximate it using grid approximation.
+
+- **First step:** define a discrete grid of possible $\theta$ values.
+    - So, let's consider $\pi \in \{0, 0.2, 0.4, 0.6, 0.8, 1\}$.
+
+```{r}
+#| eval: false
+library(tidyverse)
+grid_data <- tibble(pi_grid = seq(from = 0, to = 1, length = 6))
+```
+
+## **Grid Approximation** 
+
+- Instead of using the posterior we know, let's approximate it using grid approximation.
+
+- **First step:** define a discrete grid of possible $\theta$ values.
+    - So, let's consider $\pi \in \{0, 0.2, 0.4, 0.6, 0.8, 1\}$.
+
+```{r}
+#| eval: false
+library(tidyverse)
+grid_data <- tibble(pi_grid = seq(from = 0, to = 1, length = 6))
+```
+
+```{r}
+#| echo: false
+library(tidyverse)
+grid_data <- tibble(pi_grid = seq(from = 0, to = 1, length = 6))
+head(grid_data, n = 3)
+```
+
+## **Grid Approximation** 
+
+- Instead of using the posterior we know, let's approximate it using grid approximation.
+
+- **Second step:** evaluate the prior pdf, $f(\theta)$, and the likelihood function, $L(\theta|y)$ at each $\theta$ grid value.
+    - We will use `dbeta()` and `dbinom()` to evaluate the $\text{Beta}(2,2)$ prior and $\text{Bin}(10, \pi)$ likelihood with $Y=9$ at each $\pi$ in `pi_grid`.
+
+```{r}
+grid_data <- grid_data %>%
+  mutate(prior = dbeta(pi_grid, 2, 2),
+         likelihood = dbinom(9, 10, pi_grid))
+```
+
+## **Grid Approximation**
+
+- Instead of using the posterior we know, let's approximate it using grid approximation.
+
+- **Second step:** evaluate the prior pdf, $f(\theta)$, and the likelihood function, $L(\theta|y)$ at each $\theta$ grid value.
+    - We will use `dbeta()` and `dbinom()` to evaluate the $\text{Beta}(2,2)$ prior and $\text{Bin}(10, \pi)$ likelihood with $Y=9$ at each $\pi$ in `pi_grid`.
+
+```{r}
+grid_data <- grid_data %>%
+  mutate(prior = dbeta(pi_grid, 2, 2),
+         likelihood = dbinom(9, 10, pi_grid))
+```
+
+```{r}
+#| echo: false
+head(grid_data, n = 3)
+```
+
+## **Grid Approximation**
+
+- Instead of using the posterior we know, let's approximate it using grid approximation.
+
+- **Third step:** obtain a discrete approximation of the posterior pdf, $f(\theta|y)$ by calculating the product $f(\theta) L(\theta|y)$ at each $\theta$ grid value and normalizing the products to sum to 1 across all $\theta$.
+
+```{r}
+#| eval: false
+grid_data <- grid_data %>%
+  mutate(unnormalized = likelihood*prior,
+         posterior = unnormalized / sum(unnormalized))
+```
+
+## **Grid Approximation**
+
+- Instead of using the posterior we know, let's approximate it using grid approximation.
+
+- **Third step:** obtain a discrete approximation of the posterior pdf, $f(\theta|y)$ by calculating the product $f(\theta) L(\theta|y)$ at each $\theta$ grid value and normalizing the products to sum to 1 across all $\theta$.
+
+```{r}
+grid_data <- grid_data %>%
+  mutate(unnormalized = likelihood*prior,
+         posterior = unnormalized / sum(unnormalized))
+```
+
+- We can verify,
+
+```{r}
+grid_data %>%
+  summarize(sum(unnormalized), sum(posterior))
+```
+
+## **Grid Approximation**
+
+- Instead of using the posterior we know, let's approximate it using grid approximation.
+
+- **Third step:** obtain a discrete approximation of the posterior pdf, $f(\theta|y)$ by calculating the product $f(\theta) L(\theta|y)$ at each $\theta$ grid value and normalizing the products to sum to 1 across all $\theta$.
+
+```{r}
+grid_data <- grid_data %>%
+  mutate(unnormalized = likelihood*prior,
+         posterior = unnormalized / sum(unnormalized))
+```
+
+```{r}
+#| echo: false
+head(grid_data, n = 3)
+```
+
+## **Grid Approximation**
+
+- Instead of using the posterior we know, let's approximate it using grid approximation.
+
+- We now have a *glimpse* into the actual posterior pdf.
+    - We can plot it to see what it looks like,
+    
+<center>    
+```{r}
+#| echo: false
+ggplot(grid_data, aes(x = pi_grid, y = posterior)) + 
+  geom_point() + 
+  geom_segment(aes(x = pi_grid, xend = pi_grid, y = 0, yend = posterior)) +
+  theme_bw()
+```
+</center>
+
+## **Grid Approximation**
+
+- As we increase the number of possible $\theta$ values, the better we can "see" the resulting posterior.
+
+- What happens if we try the following: $n=50$, $n=100$, $n=500$, $n=1000$?
+
+## **Grid Approximation**
+
+- As we increase the number of possible $\theta$ values, the better we can "see" the resulting posterior.
+
+- What happens if we try the following: $n=50$, $n=100$, $n=500$, $n=1000$?
+
+<center>
+```{r}
+#| echo: false
+g1 <- tibble(pi_grid = seq(from = 0, to = 1, length = 50)) %>%
+  mutate(prior = dbeta(pi_grid, 2, 2),
+         likelihood = dbinom(9, 10, pi_grid),
+         unnormalized = likelihood*prior,
+         posterior = unnormalized / sum(unnormalized)) %>%
+  ggplot(aes(x = pi_grid, y = posterior)) + 
+  geom_point() + 
+  geom_segment(aes(x = pi_grid, xend = pi_grid, y = 0, yend = posterior)) +
+  theme_bw() + ggtitle("n=50")
+
+g2 <- tibble(pi_grid = seq(from = 0, to = 1, length = 100)) %>%
+  mutate(prior = dbeta(pi_grid, 2, 2),
+         likelihood = dbinom(9, 10, pi_grid),
+         unnormalized = likelihood*prior,
+         posterior = unnormalized / sum(unnormalized)) %>%
+  ggplot(aes(x = pi_grid, y = posterior)) + 
+  geom_point() + 
+  geom_segment(aes(x = pi_grid, xend = pi_grid, y = 0, yend = posterior)) +
+  theme_bw()+ ggtitle("n=100")
+
+g3 <- tibble(pi_grid = seq(from = 0, to = 1, length = 500)) %>%
+  mutate(prior = dbeta(pi_grid, 2, 2),
+         likelihood = dbinom(9, 10, pi_grid),
+         unnormalized = likelihood*prior,
+         posterior = unnormalized / sum(unnormalized)) %>%
+  ggplot(aes(x = pi_grid, y = posterior)) + 
+  geom_point() + 
+  geom_segment(aes(x = pi_grid, xend = pi_grid, y = 0, yend = posterior)) +
+  theme_bw()+ ggtitle("n=500")
+
+g4 <- tibble(pi_grid = seq(from = 0, to = 1, length = 1000)) %>%
+  mutate(prior = dbeta(pi_grid, 2, 2),
+         likelihood = dbinom(9, 10, pi_grid),
+         unnormalized = likelihood*prior,
+         posterior = unnormalized / sum(unnormalized)) %>%
+  ggplot(aes(x = pi_grid, y = posterior)) + 
+  geom_point() + 
+  geom_segment(aes(x = pi_grid, xend = pi_grid, y = 0, yend = posterior)) +
+  theme_bw()+ ggtitle("n=1000")
+
+library(ggpubr)
+ggarrange(g1, g2, g3, g4, ncol=2, nrow=2)
+```
+</center>
+
+
+<!-- ## Grid Approximation - Example -->
+
+<!-- - Your turn! -->
+
+<!-- - Let's now apply this to a Gamma-Poisson model. -->
+
+<!-- - $Y$ is the number of events that occur in a one-hour period, where events occur at an average rate of $\lambda$ per hour. -->
+
+<!-- $$ -->
+<!-- \begin{align*} -->
+<!-- Y_i | \lambda &\overset{\text{iid}}\sim \text{Pois}(\lambda) \\ -->
+<!-- \lambda &\sim \text{Gamma}(3,1) -->
+<!-- \end{align*} -->
+<!-- $$ -->
+
+<!-- - We collect two data points,  $(Y_1, Y_2) = (2, 3)$ -->
+
+<!-- - What is the posterior model? -->
+
+<!-- - Simulate this posterior using grid approximation. -->
+
+<!--     - You will need `dgamma()` and `dpois()`. -->
+<!--     - Remember to set the seed. -->
+
+## **Markov chain Monte Carlo (MCMC)**
+
+- Markov chain Monte Carlo (MCMC) is an application of [Markov chains](https://en.wikipedia.org/wiki/Markov_chain) to simulate probability models.
+
+- MCMC samples are not taken directly from the posterior pdf, $f(\theta | y)$... and they are not independent.
+    - Each subsequent value depends on the previous value.
+    
+- Suppose we have an $N$-length MCMC sample, $$\left\{ \theta^{(1)}, \theta^{(2)}, \theta^{(3)}, ..., \theta^{(N)} \right\}$$
+    - $\theta^{(2)}$ is drawn from a model that depends on $\theta^{(1)}$.
+    - $\theta^{(3)}$ is drawn from a model that depends on $\theta^{(2)}$.
+    - etc.
+
+## **Markov chain Monte Carlo (MCMC)**
+
+- The $(i+1)$^st^ chain value, $\theta^{(i+1)}$ is drawn from a model that depends on data $y$ and the previous chain value, $\theta^{(i)}$.
+
+$$f\left( \theta^{(i+1)} | \theta^{(i)}, y \right)$$ 
+    
+- It is important for us to note that the pdf from which a Markov chain is simulated is not equivalent to the posterior pdf!
+
+$$f\left( \theta^{(i+1)} | \theta^{(i)}, y  \right) \ne f\left(\theta^{(i+1)}|y \right)$$
+
+## **Using `rstan`**
+
+- We will use `rstan`:
+    - define the Bayesian model structure in `rstan` notation
+    - simulate the posterior
+    
+- Again, we will use the Beta-Binomial model from earlier.
+    - `data`: in our example, $Y$ is the observed number of successes in 10 trials.
+        - We need to tell `rstan` that $Y$ is an *integer* between 0 and 10.
+    - `parameters`: in our example, our model depends on $\pi$.
+        - We need to tell `rstan` that $\pi$ can be any *real* number between 0 and 1.
+    - `model`: in our example, we need to specify $Y \sim \text{Bin}(10, \pi)$ and $\pi \sim \text{Beta}(2,2)$.
+
+## **Using `rstan`** 
+
+```{r}
+#| echo: false
+
+library(janitor)
+library(bayesplot)
+library(bayesrules)
+library(rstan)
+```
+
+```{r}
+# STEP 1: DEFINE the model
+bb_model <- "
+  data {
+    int<lower = 0, upper = 10> Y;
+  }
+  parameters {
+    real<lower = 0, upper = 1> pi;
+  }
+  model {
+    Y ~ binomial(10, pi);
+    pi ~ beta(2, 2);
+  }
+"
+```
+
+## **Using `rstan`** 
+
+- Then, when we go to simulate, we first put in the model information
+    - `model code`: the character string defining the model (in our case, `bb_model`).
+    - `data`: a list of the observed data.
+        - In this example, we are using $Y = 9$ - a single data point.
+        
+- Then, we put in the Markov chain information,
+    - `chains`: how many parallel Markov chains to run.
+        - This will be the number of distinct $\theta$ values we want.
+    - `iter`: desired number of iterations, or length of Markov chain.
+        - Half are thrown out as "burn in" samples. 
+            - "burn in"? Think: pancakes!
+    - `seed`: used to set the seed of the RNG.        
+
+## **Using `rstan`**
+
+```{r}
+# STEP 2: simulate the posterior
+bb_sim <- stan(model_code = bb_model, data = list(Y = 9), 
+               chains = 4, iter = 5000*2, seed = 84735)
+```
+
+## **Using `rstan`** 
+
+- Now, we need to extract the values,
+
+```{r}
+as.array(bb_sim, pars = "pi") %>% head(4)
+```
+
+- Remember, these are *not* a random sample from the posterior!
+
+- They are also *not* independent!
+
+- Each chain forms a dependent 5,000 length Markov chain of $\left\{ \pi^{(1)}, \pi^{(2)}, ..., \pi^{(5000)}\right\}$
+
+    - Each chain will move along the sample space of plausible values for $\pi$.
+    
+## **Using `rstan`** 
+
+- We will look at the trace plot (using `mcmc_trace()` from `bayesplot` package) to see what the values did longitudinally.
+
+<center>
+```{r}
+mcmc_trace(bb_sim, pars = "pi", size = 0.1)
+```
+</center>
+
+## **Using `rstan`** 
+
+- We can also look at the `mcmc_hist()` and `mcmc_dens()` functions,
+
+<center>
+```{r}
+#| echo: false
+g1 <- mcmc_hist(bb_sim, pars = "pi") +
+  yaxis_text(TRUE) +
+  ylab("count") + ggtitle("mcmc_hist()") + theme_bw()
+g2 <- mcmc_dens(bb_sim, pars = "pi") +
+  yaxis_text(TRUE) + ggtitle("mcmc_dens()") + theme_bw() +
+  ylab("count")
+ggarrange(g1, g2, ncol=2, nrow=1)
+```
+</center>
+
+<!-- ## MCMC - Example -->
+
+<!-- - Your turn! -->
+
+<!-- - Let's now apply this to a Gamma-Poisson model. -->
+
+<!-- - $Y$ is the number of events that occur in a one-hour period, where events occur at an average rate of $\lambda$ per hour. -->
+
+<!-- $$ -->
+<!-- \begin{align*} -->
+<!-- Y_i | \lambda &\overset{\text{iid}}\sim \text{Pois}(\lambda) \\ -->
+<!-- \lambda &\sim \text{Gamma}(3,1) -->
+<!-- \end{align*} -->
+<!-- $$ -->
+
+<!-- - We collect two data points, $(Y_1, Y_2) = (2, 8)$ -->
+
+<!-- - What is the posterior model? -->
+
+<!-- - Simulate this posterior using MCMC in `rstan`. -->
+
+<!-- - If you struggle, ask Dr. Seals for a hint :) -->
+    
+## **Diagnostics**
+
+- Simulations are not perfect...
+    - What does a good Markov chain look like?
+    - How can we tell if the Markov chain sample produces a reasonable approximation of the posterior?
+    - How big should our Markov chain sample size be?
+    
+- Unfortunately there is no one answer here.
+    - You will learn through experience, much like other nuanced areas of statistics.
+    
+## **Diagnostics**     
+    
+- Let's now discuss diagnostic tools.
+    - Trace plots
+    - Parallel chains
+    - Effective sample size
+    - Autocorrelation
+    - $\hat{R}$
+
+## **Trace Plots** 
+
+<center><img src = "images/W12-L1-b.png" width = 1200></center>
+
+- Chain A has not stabilized after 5000 iterations.
+    - It has not "found" or does not know how to explore the range of posterior plausible $\pi$ values.
+    - The downward trend also hints against independent noise. 
+    
+## **Trace Plots** 
+
+<center><img src = "images/W12-L1-b.png" width = 1200></center>    
+- We say that Chain A is mixing slowly. 
+    - The more Markov chains behave like fast mixing (noisy) independent samples, the smaller the error in the resulting posterior approximation.
+
+## **Trace Plots** 
+
+<center><img src = "images/W12-L1-c.png" width = 1200></center>
+
+- Chain B is not great, either -- it gets stuck when looking at a smaller value of $\pi$.
+
+## **Trace Plots** 
+
+- Realistically, we are only going to do simulations when we can't specify the posterior and must approximate
+    - i.e., we won't be able to compare the simulation results to the "true" results.
+    
+- If we see bad trace plots:
+    - Check the model (... or your code). Are the assumed prior and data models appropriate? 
+    - Run the chain for more iterations. Sometimes we just need a longer run to iron out issues.
+
+## **Parallel Chains**
+
+- Let's now consider a smaller simulation, where $n=50$ (recall, overall $n=100$, but half is for burn-in).
+
+```{r}
+#| eval: false
+
+bb_sim_short <- stan(model_code = bb_model, data = list(Y = 9), 
+                     chains = 4, iter = 50*2, seed = 84735)
+```
+
+
+## **Parallel Chains** 
+
+- Let's now consider a smaller simulation, where $n=50$ (recall, overall $n=100$, but half is for burn-in).
+
+
+```{r}
+
+bb_sim_short <- stan(model_code = bb_model, data = list(Y = 9), 
+                     chains = 4, iter = 50*2, seed = 84735)
+```
+
+## **Parallel Chains**
+
+- Let's now consider a smaller simulation, where $n=50$ (recall, overall $n=100$, but half is for burn-in).
+
+<center>
+```{r}
+#| echo: false
+ggarrange(mcmc_trace(bb_sim_short, pars = "pi")+ggtitle("trace") + theme_bw() + theme(legend.position="none"),
+          mcmc_dens_overlay(bb_sim_short, pars = "pi") + ylab("density") + ggtitle("density") + theme_bw(),
+          ncol=2, nrow=1)
+```
+</center>
+
+
+## **Parallel Chains** 
+
+- Now you try 10,000 iterations.
+
+## **Parallel Chains** 
+
+- Now you try 10,000 iterations.
+
+<center>
+```{r}
+#| echo: false
+ggarrange(
+  mcmc_trace(bb_sim, pars = "pi") + theme_bw() + theme(legend.position="none") + ggtitle("trace"),
+  mcmc_dens_overlay(bb_sim, pars = "pi") +  ylab("density") + ggtitle("density") + theme_bw(),
+  ncol = 2, nrow = 1)
+```
+</center>
+
+## **Effective Sample Size**  
+
+- The more a dependent Markov chain behaves like an independent sample, the smaller the error in the resulting posterior approximation. 
+    - Plots are great, but numerical assessment can provide more nuanced information.
+
+- **Effective sample size** ($N_{\text{eff}}$): the number of independent sample values it would take to produce an equivalently accurate posterior approximation.
+
+- **Effective sample size ratio**: 
+
+$$\frac{N_{\text{eff}}}{N}$$
+
+- Generally, we look for the effective sample size, $N_{\text{eff}}$, to be greater than 10% of the actual sample size, $N$. 
+
+## **Effective Sample Size**  
+
+- We will use the `neff_ratio()` function to find this ratio.
+
+- In our example data,
+
+```{r}
+# Calculate the effective sample size ratio - N = 50
+neff_ratio(bb_sim, pars = c("pi"))
+
+# Calculate the effective sample size ratio - N = 10000
+neff_ratio(bb_sim_short, pars = c("pi"))
+```
+
+- Because the $N_{\text{eff}}$ is over 10%, we are not concerned and can proceed.
+
+## **Autocorrelation**  
+
+- Autocorrelation allows us to evaluate if our Markov chain sufficiently mimics the behavior of an independent sample. 
+
+- **Autocorrelation**:
+    - *Lag 1* autocorrelation measures the correlation between pairs of Markov chain values that are one "step" apart (e.g.,  $\pi_i$ and $\pi_{(i-1)}$; e.g., $\pi_4$ and $\pi_3$).
+    - *Lag 2* autocorrelation measures the correlation between pairs of Markov chain values that are two "steps apart (e.g.,  $\pi_i$ and $\pi_{(i-2)}$; e.g., $\pi_4$ and $\pi_2$).
+    - *Lag $k$* autocorrelation measures the correlation between pairs of Markov chain values that are $k$ "steps" apart (e.g.,  $\pi_i$ and $\pi_{(i-k)}$; e.g., $\pi_4$ and $\pi_{(4-k)}$).
+
+- Strong autocorrelation or dependence is a bad thing.
+    - It goes hand in hand with small effective sample size ratios.
+    - These provide a warning sign that our resulting posterior approximations might be unreliable. 
+    
+## **Autocorrelation** 
+
+<center>
+<img src = "images/W12-L1-d.png" width = 1200>
+</center>
+
+- No obvious patterns in the trace plot; dependence is relatively weak.
+
+- Autocorrelation plot quickly drops off and is effectively 0 by lag 5.
+
+- Confirmation that our Markov chain is mixing quickly.
+    - i.e., quickly moving around the range of posterior plausible $\pi$ values
+    - i.e., at least mimicking an independent sample.
+
+## **Autocorrelation** 
+
+<center>
+<img src = "images/W12-L1-e.png" width = 1200>
+</center>
+
+- This is an "unhealthy" Markov chain.
+
+- Trace plot shows strong trends $\to$ autocorrelation in the Markov chain values.
+
+- Slow decrease in autocorrelation plot indicates that the dependence between chain values does not quickly fade away.
+
+    - At lag 20, the autocorrelation is still $\sim$ 90%.
+
+## **Fast vs. Slow Mixing Markov Chains** 
+
+- **Fast mixing** chains: 
+    - The chains move "quickly" around the range of posterior plausible values
+    - The autocorrelation among the chain values drops off quickly.
+    - The effective sample size ratio is reasonably large.
+    
+- **Slow mixing** chains:
+    - The chains move "slowly" around the range of posterior plauslbe values.
+    - The autocorrelation among the chainv alues drops off very slowly.
+    - The effective sample size ratio is small.
+    
+- What do we do if we have a slow mixing chain?
+    - Increase the chain size :)
+    - Thin the Markov chain :|
+
+## **Thinning Markov Chains**
+
+- Let's thin our original results, `bb_sim`, to every tenth value using the `thin` argument in `stan()`.
+
+```{r}
+#| eval: false
+
+thinned_sim <- stan(model_code = bb_model, data = list(Y = 9), 
+                    chains = 4, iter = 5000*2, seed = 84735, thin = 10)
+
+mcmc_trace(thinned_sim, pars = "pi")
+mcmc_acf(thinned_sim, pars = "pi")
+```
+
+## **Thinning Markov Chains**
+
+- Let's thin our original results, `bb_sim`, to every tenth value using the `thin` argument in `stan()`.
+
+```{r}
+thinned_sim <- stan(model_code = bb_model, data = list(Y = 9), 
+                    chains = 4, iter = 5000*2, seed = 84735, thin = 10)
+```
+
+## **Thinning Markov Chains**
+
+- Let's thin our original results, `bb_sim`, to every tenth value using the `thin` argument in `stan()`.
+
+<center>
+```{r}
+#| echo: false
+ggarrange(
+  mcmc_trace(thinned_sim, pars = "pi") + theme_bw() + ggtitle("trace"),
+  mcmc_acf(thinned_sim, pars = "pi") + theme_bw() + ggtitle("autocorrelation"),
+  ncol=2, nrow=1)
+```
+</center>
+
+## **Thinning Markov Chains**
+
+- Warning!
+    - The benefits of reduced autocorrelation do not necessarily outweigh the loss of chain values.
+    - i.e., 5,000 Markov chain values with stronger autocorrelation may be a better posterior approximation than 500 chain values with weaker autocorrelation.
+    
+- The effectiveness depends on the algorithm used to construct the Markov chain.
+    - Folks advise against thinning unless you need memory space on your computer.
+
+## **$\hat{R}$**
+
+$$\hat{R} \approx \sqrt{\frac{\text{var}_{\text{combined}}}{\text{var}_{\text{within}}}}$$
+
+- where
+    - $\text{var}_{\text{combined}}$ is the variability in $\theta$ across all chains combined.
+    - $\text{var}_{\text{within}}$ is the typical variability within any individual chain.
+- $\hat{R}$ compares the variability in sampled $\theta$ values across all chains combined with the variability within each individual change.
+    - Ideally, $\hat{R} \approx 1$, showing stability across chains.
+    - $\hat{R} > 1$ indicates instability with the variability in the combined chains larger than that of the variability within the chains.
+    - $\hat{R} > 1.05$ raises red flags about the stability of the simulation.
+
+## **$\hat{R}$**
+
+- We can use the `rhat()` function from the `bayesplot` package to find $\hat{R}$.
+
+```{r}
+rhat(bb_sim, pars = "pi")
+```
+
+- We can see that our simulation is stable.
+
+- If we were to find $\hat{R}$ for the other (obviously bad) simulation, it would be 5.35 😱
+
+## **Homework**
+
+- 6.5
+
+- 6.6
+
+- 6.7
+
+- 6.13
+
+- 6.14
+
+- 6.15
+
+- 6.17
+
+
+
+
+
+
+
