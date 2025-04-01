@@ -1141,125 +1141,6 @@
     "text": "Homework\n\n5.3\n5.5\n5.6\n5.9\n5.10"
   },
   {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Example",
-    "text": "Example\n\nIn 1996, Gary Kasparov played a six-game chess match against the IBM supercomputer Deep Blue.\n\nOf the six games, Kasparov won three, drew two, and lost one.\nThus, Kasparov won the overall match.\n\nKasparov and Deep Blue were to meet again for a six-game match in 1997.\nLet \\pi denote Kasparov’s chances of winning any particular game in the re-match.\n\nThus, \\pi is a measure of his overall skill relative to Deep Blue.\nGiven the complexity of chess, machines, and humans, \\pi is unknown and can vary over time.\n\ni.e., \\pi is a random variable.\n\n\nOur first step is to start with a prior model. This model\n\nIdentifies what values \\pi can take,\nassigns a prior weight or probability to each, and\nthese probabilities sum to 1."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example-1",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example-1",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Example",
-    "text": "Example\n\nBased on what we were told, the prior model for \\pi in our example,\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\nTotal\n\n\n\n\nf(\\pi)\n0.10\n0.25\n0.65\n1\n\n\n\n\nNote that this is an incredibly simple model.\n\nThe win probability can technically be any number \\in [0, 1].\nHowever, this prior assumes that \\pi has a discrete set of possibilities: 20%, 50%, or 80%."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example-2",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example-2",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Example",
-    "text": "Example\n\nIn the second step of our analysis, we collect and process data which can inform our understanding of \\pi.\nHere, Y = the number of the six games in the 1997 re-match that Kasparov wins.\n\nAs chess match outcome isn’t predetermined, Y is a random variable that can take any value in \\{1, 2, 3, 4, 5, 6\\}.\n\nNote that Y inherently depends upon \\pi.\n\nIf \\pi = 0.80, Y would also be high (on average).\nIf \\pi = 0.20, Y would also be low (on average).\n\nThus, we must model this dependence of Y on \\pi using a conditional probability model."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nWe must make two assumptions about the chess match:\n\nGames are independent (the outcome of one game does not influence the outcome of another).\nKasparov has an equal probability of winning any game in the match.\n\ni.e., probability of winning does not increase or decrease as the match goes on.\n\n\nWe will use a binomial model for this problem.\n\nRecall the binomial pmf,\n\n\nf(y|\\pi) = {n \\choose y} \\pi^y (1-\\pi)^{n-y}, \n\nIn our case,\n\nY|\\pi \\sim \\text{Bin}(6, \\pi)"
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-1",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-1",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nLet’s assume \\pi = 0.8.\nThe probability that he would win all 6 games is approximately 26%.\n\nf(y=6|\\pi=0.8) = {6 \\choose 6} 0.8^6 (1-0.8)^{6-6}, \n\ndbinom(6, 6, 0.8)\n\n[1] 0.262144\n\n\n\nThe probability that he would win none of the games is approximately 0%.\n\nf(y=0|\\pi=0.8) = {6 \\choose 0} 0.8^0 (1-0.8)^{6-0}, \n\ndbinom(0, 6, 0.8)\n\n[1] 6.4e-05"
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-2",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-2",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nYour turn!\nWe want to reproduce Figure 2.5 from the Bayes Rules! textbook (from Section 2.3.2).\n\n\n\nWork with your group to come up with that graph.\nPick one person to present in 15 minutes."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-3",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-3",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nNote that the Binomial gives us the theoretical model of the data we might observe.\n\nIn the end, Kasparov only won one of the six games against Deep Blue in 1997 (Y=1).\n\nNext step: how compatible this particular data is with the various possible \\pi?\n\nWhat is the likelihood of Kasparov winning Y=1 game under each possible \\pi?\n\nRecall, f(y|\\pi) = L(\\pi|Y=y). When Y=1,\n\n\n\\begin{align*}\nL(\\pi | y = 1) &= f(y=1|\\pi) \\\\\n&= {6 \\choose 1} \\pi^1 (1-\\pi)^6-1 \\\\\n&= 6\\pi(1-\\pi)^5\n\\end{align*}\n\n\nNote that we do not expect all likelihoods to sum to 1."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-4",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-4",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nYour turn!\nUse your results from earlier to tell me the resulting likelihood values.\n\n\n\n\n\n\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\n\n\n\n\nL(\\pi|y=1)"
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-5",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-5",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Binomial Data Model",
-    "text": "Binomial Data Model\n\nYour turn!\nUse your results from earlier to tell me the resulting likelihood values.\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\n\n\n\n\nL(\\pi|y=1)\n0.3932\n0.0938\n0.0015\n\n\n\n\nAs we can see, the likelihoods do not sum to 1."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Normalizing Constant",
-    "text": "Normalizing Constant\n\nBayes’ Rule requires three pieces of information:\n\nPrior\nLikelihood\nNormalizing constant\n\nNormalizing constant: a value that ensures that the sum of all probabilities is equal to 1.\n\nIt can be a scalar or a function.\nEvery probability distribution that does not sum to 1 will ahve a normalizing constant."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-1",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-1",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Normalizing Constant",
-    "text": "Normalizing Constant\n\nWe now must determine the total probability that Kasparov would win Y=1 games across all possible win probabilities \\pi, f(y=1).\n\n\n\\begin{align*}\nf(y=1) &= \\sum_{\\pi \\in \\{0.2, 0.5, 0.8 \\}} L(\\pi |y=1)f(\\pi) \\\\\n&= L(\\pi=0.2|y=1)f(\\pi=0.2) + L(\\pi=0.5|y=1)f(\\pi=0.5) + L(\\pi=0.8|y=1)f(\\pi=0.8) \\\\\n&= \\ ...\n\\end{align*}\n\n\nWork with your group to find the normalizing constant."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-2",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-2",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Normalizing Constant",
-    "text": "Normalizing Constant\n\nWe now must determine the total probability that Kasparov would win Y=1 games across all possible win probabilities \\pi, f(y=1).\n\n\n\\begin{align*}\nf(y=1) &= \\sum_{\\pi \\in \\{0.2, 0.5, 0.8 \\}} L(\\pi |y=1)f(\\pi) \\\\\n&= L(\\pi=0.2|y=1)f(\\pi=0.2) + L(\\pi=0.5|y=1)f(\\pi=0.5) + L(\\pi=0.8|y=1)f(\\pi=0.8) \\\\\n&\\approx 0.3932 \\cdot 0.10 + 0.0938 \\cdot 0.25 + 0.0015 \\cdot 0.65 \\\\\n&\\approx 0.0637\n\\end{align*}\n\n\nAcross all possible values of \\pi, there is about a 6% chance that Kasparov would have won only one game."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Posterior Probability Model",
-    "text": "Posterior Probability Model\n\nNow recall,\n\n\\text{posterior} = \\frac{\\text{prior} \\times \\text{likelihood}}{\\text{normalizing constant}}\n\nIn our example, where y = 1,\n\nf(\\pi | y=1) = \\frac{f(\\pi) L(\\pi | y = 1)}{f(y=1)} \\  \\text{for} \\ \\pi \\in \\{ 0.2, 0.5, 0.8\\}\n\nWork with your group to find the posterior probabilities.\n\nYou will have one posterior probability for each value of \\pi."
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model-1",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model-1",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Posterior Probability Model",
-    "text": "Posterior Probability Model\n\nNote!! We do not have to calculate the normalizing constant!\nWe can note that f(Y=y) = 1/c.\nThen, we say that\n\n\n\\begin{align*}\nf(\\pi | y) &= \\frac{f(\\pi) L(\\pi|y)}{f(y)} \\\\\n& \\propto  f(\\pi) L(\\pi|y) \\\\\n\\\\\n\\text{posterior} &\\propto \\text{prior} \\cdot \\text{likelihood}\n\\end{align*}"
-  },
-  {
-    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#wrap-up",
-    "href": "files/lecture/W07-L2-Bayes-models-rv.html#wrap-up",
-    "title": "Bayesian Modeling for Random Variables",
-    "section": "Wrap Up",
-    "text": "Wrap Up\n\nToday we have gone through how to find posterior probabilities using the binomial distribution.\nNext week, we will learn about the Beta-Binomial model."
-  },
-  {
-    "objectID": "test/LICENSE.html",
-    "href": "test/LICENSE.html",
-    "title": "MIT License",
-    "section": "",
-    "text": "MIT License\nCopyright (c) 2024 Shafayet Khan Shafee\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "<b>STA6349 - Applied Bayesian Analysis - Spring 2025</b>",
-    "section": "",
-    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\n\n\n\n\n\nW 01/09\nIntroduction to R\n \n\n\n\nM 01/13\nProbability Theory: Part 1\n \n\n\n\nW 01/15\nProbability Theory: Part 2\n \n\n\n\nM 01/20\nMLK Holiday - campus closed\n\n\n\n\nW 01/22\nsnow week!\n\n\n\n\nM 01/27\nDr. Seals sick\n\n\n\n\nW 01/29\nDr. Seals sick\n\n\n\n\nM 02/03\nDiscrete Random Variables\n \n\n\n\nW 02/05\nContinuous Random Variables\n \n\n\n\nM 02/10\nDr. Seals out (conference)\n\n\n\n\nW 02/12\nContinuous Random Variables\n \n\n\n\nM 02/17\nBayesian Thinking and Bayes’ Rule\n \n\n\n\nW 02/19\nBayesian Modeling for Random Variables\n \n\n\n\nM 02/24\nBeta-Binomial Conjugage Family\n \n\n\n\nW 02/26\nBeta-Binomial Conjugage Family\n \n\n\n\nM 03/03\nBalance and Sequentiality\n \n\n\n\nW 03/05\nWrite a biography for a Bayesian statistician!\n\n\n\n\nM 03/10\nGamma-Poisson and Normal-Normal\n \n\n\n\nW 03/12\nAssignment 2\n\n\n\n\nM 03/17\nSpring Break!\n\n\n\n\nW 03/19\nSpring Break!\n\n\n\n\nM 03/24\nApproximating the Posterior\n \n\n\n\nW 03/26\nPosterior Inference & Prediction\n\n\n\n\nM 03/31\nProject 1 (in class work)\n\n\n\n\nW 04/02\nProject 1 (presentation)\n\n\n\n\nM 04/07\nSimple Normal Regression\n\n\n\n\nW 04/09\nEvaluating Regression Models\n\n\n\n\nM 04/14\nMultiple Regression\n\n\n\n\nW 04/16\nAssignment 3\n\n\n\n\nM 04/21\nProject 2 (in class work)\n\n\n\n\nW 04/23\nProject 2 (presentation)\n\n\n\n\nM 04/28\nFinal Exam - in class (4/404) - 6:00–8:30 pm"
-  },
-  {
     "objectID": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction",
     "href": "files/lecture/W08-L2-balance-and-sequentiality.html#introduction",
     "title": "Balance and Sequentiality in Bayesian Analyses",
@@ -1580,6 +1461,426 @@
     "title": "Balance and Sequentiality in Bayesian Analyses",
     "section": "Homework",
     "text": "Homework\n\n4.3\n4.4\n4.6\n4.9\n4.15\n4.16\n4.17\n4.18\n4.19"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "<b>STA6349 - Applied Bayesian Analysis - Spring 2025</b>",
+    "section": "",
+    "text": "Tentative Schedule\n\n\n\n\n\n\n\n\n\nDay\nTopic\nSlides\n\n\n\n\n\nW 01/09\nIntroduction to R\n \n\n\n\nM 01/13\nProbability Theory: Part 1\n \n\n\n\nW 01/15\nProbability Theory: Part 2\n \n\n\n\nM 01/20\nMLK Holiday - campus closed\n\n\n\n\nW 01/22\nsnow week!\n\n\n\n\nM 01/27\nDr. Seals sick\n\n\n\n\nW 01/29\nDr. Seals sick\n\n\n\n\nM 02/03\nDiscrete Random Variables\n \n\n\n\nW 02/05\nContinuous Random Variables\n \n\n\n\nM 02/10\nDr. Seals out (conference)\n\n\n\n\nW 02/12\nContinuous Random Variables\n \n\n\n\nM 02/17\nBayesian Thinking and Bayes’ Rule\n \n\n\n\nW 02/19\nBayesian Modeling for Random Variables\n \n\n\n\nM 02/24\nBeta-Binomial Conjugage Family\n \n\n\n\nW 02/26\nBeta-Binomial Conjugage Family\n \n\n\n\nM 03/03\nBalance and Sequentiality\n \n\n\n\nW 03/05\nWrite a biography for a Bayesian statistician!\n\n\n\n\nM 03/10\nGamma-Poisson and Normal-Normal\n \n\n\n\nW 03/12\nAssignment 2\n\n\n\n\nM 03/17\nSpring Break!\n\n\n\n\nW 03/19\nSpring Break!\n\n\n\n\nM 03/24\nApproximating the Posterior (pt 1)\n \n\n\n\nW 03/26\nApproximating the Posterior (pt 2)\n \n\n\n\nM 03/31\nPosterior Inference & Prediction\n \n\n\n\nW 04/02\nProject 1 (in class work)\n\n\n\n\nM 04/07\nProject 1 (presentation)\n\n\n\n\nW 04/09\nSimple Normal Regression\n\n\n\n\nM 04/14\nMultiple Regression\n\n\n\n\nW 04/16\nAssignment 3\n\n\n\n\nM 04/21\nProject 2 (in class work)\n\n\n\n\nW 04/23\nProject 2 (presentation)\n\n\n\n\nM 04/28\nFinal Exam - in class (4/404) - 6:00–8:30 pm"
+  },
+  {
+    "objectID": "test/LICENSE.html",
+    "href": "test/LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2024 Shafayet Khan Shafee\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Example",
+    "text": "Example\n\nIn 1996, Gary Kasparov played a six-game chess match against the IBM supercomputer Deep Blue.\n\nOf the six games, Kasparov won three, drew two, and lost one.\nThus, Kasparov won the overall match.\n\nKasparov and Deep Blue were to meet again for a six-game match in 1997.\nLet \\pi denote Kasparov’s chances of winning any particular game in the re-match.\n\nThus, \\pi is a measure of his overall skill relative to Deep Blue.\nGiven the complexity of chess, machines, and humans, \\pi is unknown and can vary over time.\n\ni.e., \\pi is a random variable.\n\n\nOur first step is to start with a prior model. This model\n\nIdentifies what values \\pi can take,\nassigns a prior weight or probability to each, and\nthese probabilities sum to 1."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example-1",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example-1",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Example",
+    "text": "Example\n\nBased on what we were told, the prior model for \\pi in our example,\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\nTotal\n\n\n\n\nf(\\pi)\n0.10\n0.25\n0.65\n1\n\n\n\n\nNote that this is an incredibly simple model.\n\nThe win probability can technically be any number \\in [0, 1].\nHowever, this prior assumes that \\pi has a discrete set of possibilities: 20%, 50%, or 80%."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#example-2",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#example-2",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Example",
+    "text": "Example\n\nIn the second step of our analysis, we collect and process data which can inform our understanding of \\pi.\nHere, Y = the number of the six games in the 1997 re-match that Kasparov wins.\n\nAs chess match outcome isn’t predetermined, Y is a random variable that can take any value in \\{1, 2, 3, 4, 5, 6\\}.\n\nNote that Y inherently depends upon \\pi.\n\nIf \\pi = 0.80, Y would also be high (on average).\nIf \\pi = 0.20, Y would also be low (on average).\n\nThus, we must model this dependence of Y on \\pi using a conditional probability model."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nWe must make two assumptions about the chess match:\n\nGames are independent (the outcome of one game does not influence the outcome of another).\nKasparov has an equal probability of winning any game in the match.\n\ni.e., probability of winning does not increase or decrease as the match goes on.\n\n\nWe will use a binomial model for this problem.\n\nRecall the binomial pmf,\n\n\nf(y|\\pi) = {n \\choose y} \\pi^y (1-\\pi)^{n-y}, \n\nIn our case,\n\nY|\\pi \\sim \\text{Bin}(6, \\pi)"
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-1",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-1",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nLet’s assume \\pi = 0.8.\nThe probability that he would win all 6 games is approximately 26%.\n\nf(y=6|\\pi=0.8) = {6 \\choose 6} 0.8^6 (1-0.8)^{6-6}, \n\ndbinom(6, 6, 0.8)\n\n[1] 0.262144\n\n\n\nThe probability that he would win none of the games is approximately 0%.\n\nf(y=0|\\pi=0.8) = {6 \\choose 0} 0.8^0 (1-0.8)^{6-0}, \n\ndbinom(0, 6, 0.8)\n\n[1] 6.4e-05"
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-2",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-2",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nYour turn!\nWe want to reproduce Figure 2.5 from the Bayes Rules! textbook (from Section 2.3.2).\n\n\n\nWork with your group to come up with that graph.\nPick one person to present in 15 minutes."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-3",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-3",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nNote that the Binomial gives us the theoretical model of the data we might observe.\n\nIn the end, Kasparov only won one of the six games against Deep Blue in 1997 (Y=1).\n\nNext step: how compatible this particular data is with the various possible \\pi?\n\nWhat is the likelihood of Kasparov winning Y=1 game under each possible \\pi?\n\nRecall, f(y|\\pi) = L(\\pi|Y=y). When Y=1,\n\n\n\\begin{align*}\nL(\\pi | y = 1) &= f(y=1|\\pi) \\\\\n&= {6 \\choose 1} \\pi^1 (1-\\pi)^6-1 \\\\\n&= 6\\pi(1-\\pi)^5\n\\end{align*}\n\n\nNote that we do not expect all likelihoods to sum to 1."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-4",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-4",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nYour turn!\nUse your results from earlier to tell me the resulting likelihood values.\n\n\n\n\n\n\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\n\n\n\n\nL(\\pi|y=1)"
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-5",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#binomial-data-model-5",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\n\nYour turn!\nUse your results from earlier to tell me the resulting likelihood values.\n\n\n\n\n\\pi\n0.2\n0.5\n0.8\n\n\n\n\nL(\\pi|y=1)\n0.3932\n0.0938\n0.0015\n\n\n\n\nAs we can see, the likelihoods do not sum to 1."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Normalizing Constant",
+    "text": "Normalizing Constant\n\nBayes’ Rule requires three pieces of information:\n\nPrior\nLikelihood\nNormalizing constant\n\nNormalizing constant: a value that ensures that the sum of all probabilities is equal to 1.\n\nIt can be a scalar or a function.\nEvery probability distribution that does not sum to 1 will ahve a normalizing constant."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-1",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-1",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Normalizing Constant",
+    "text": "Normalizing Constant\n\nWe now must determine the total probability that Kasparov would win Y=1 games across all possible win probabilities \\pi, f(y=1).\n\n\n\\begin{align*}\nf(y=1) &= \\sum_{\\pi \\in \\{0.2, 0.5, 0.8 \\}} L(\\pi |y=1)f(\\pi) \\\\\n&= L(\\pi=0.2|y=1)f(\\pi=0.2) + L(\\pi=0.5|y=1)f(\\pi=0.5) + L(\\pi=0.8|y=1)f(\\pi=0.8) \\\\\n&= \\ ...\n\\end{align*}\n\n\nWork with your group to find the normalizing constant."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-2",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#normalizing-constant-2",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Normalizing Constant",
+    "text": "Normalizing Constant\n\nWe now must determine the total probability that Kasparov would win Y=1 games across all possible win probabilities \\pi, f(y=1).\n\n\n\\begin{align*}\nf(y=1) &= \\sum_{\\pi \\in \\{0.2, 0.5, 0.8 \\}} L(\\pi |y=1)f(\\pi) \\\\\n&= L(\\pi=0.2|y=1)f(\\pi=0.2) + L(\\pi=0.5|y=1)f(\\pi=0.5) + L(\\pi=0.8|y=1)f(\\pi=0.8) \\\\\n&\\approx 0.3932 \\cdot 0.10 + 0.0938 \\cdot 0.25 + 0.0015 \\cdot 0.65 \\\\\n&\\approx 0.0637\n\\end{align*}\n\n\nAcross all possible values of \\pi, there is about a 6% chance that Kasparov would have won only one game."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Posterior Probability Model",
+    "text": "Posterior Probability Model\n\nNow recall,\n\n\\text{posterior} = \\frac{\\text{prior} \\times \\text{likelihood}}{\\text{normalizing constant}}\n\nIn our example, where y = 1,\n\nf(\\pi | y=1) = \\frac{f(\\pi) L(\\pi | y = 1)}{f(y=1)} \\  \\text{for} \\ \\pi \\in \\{ 0.2, 0.5, 0.8\\}\n\nWork with your group to find the posterior probabilities.\n\nYou will have one posterior probability for each value of \\pi."
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model-1",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#posterior-probability-model-1",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Posterior Probability Model",
+    "text": "Posterior Probability Model\n\nNote!! We do not have to calculate the normalizing constant!\nWe can note that f(Y=y) = 1/c.\nThen, we say that\n\n\n\\begin{align*}\nf(\\pi | y) &= \\frac{f(\\pi) L(\\pi|y)}{f(y)} \\\\\n& \\propto  f(\\pi) L(\\pi|y) \\\\\n\\\\\n\\text{posterior} &\\propto \\text{prior} \\cdot \\text{likelihood}\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W07-L2-Bayes-models-rv.html#wrap-up",
+    "href": "files/lecture/W07-L2-Bayes-models-rv.html#wrap-up",
+    "title": "Bayesian Modeling for Random Variables",
+    "section": "Wrap Up",
+    "text": "Wrap Up\n\nToday we have gone through how to find posterior probabilities using the binomial distribution.\nNext week, we will learn about the Beta-Binomial model."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#introduction",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#introduction",
+    "title": "Posterior Inference and Prediction",
+    "section": "Introduction",
+    "text": "Introduction\n\nNow that we know how to find posterior distributions, we will discuss how to use them to make inference.\nHere are the packages we need today:\n\n\nlibrary(bayesrules)\nlibrary(tidyverse)\nlibrary(rstan)\nlibrary(bayesplot)\nlibrary(broom.mixed)\nlibrary(janitor)\ndata(\"moma_sample\")"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#working-example",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#working-example",
+    "title": "Posterior Inference and Prediction",
+    "section": "Working Example",
+    "text": "Working Example\n\nImagine you find yourself standing at the Museum of Modern Art (MoMA) in New York City, captivated by the artwork in front of you.\nWhile understanding that “modern” art doesn’t necessarily mean “new” art, a question still bubbles up: what are the chances that this modern artist is Gen X or even younger, i.e., born in 1965 or later?\nLet \\pi denote the proportion of artists represented in major U.S. modern art museums that are Gen X or younger.\nThe Beta(4,6) prior model for \\pi reflects our own very vague prior assumption that major modern art museums disproportionately display artists born before 1965, i.e., \\pi most likely falls below 0.5.\nAfter all, “modern art” dates back to the 1880s and it can take a while to attain such high recognition in the art world."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#working-example-1",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#working-example-1",
+    "title": "Posterior Inference and Prediction",
+    "section": "Working Example",
+    "text": "Working Example\n\nThe Beta(4,6) prior model for \\pi reflects our own very vague prior assumption"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#working-example-2",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#working-example-2",
+    "title": "Posterior Inference and Prediction",
+    "section": "Working Example",
+    "text": "Working Example\n\nLet’s consider the following dataset:\n\n\nhead(moma_sample)"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#working-example-3",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#working-example-3",
+    "title": "Posterior Inference and Prediction",
+    "section": "Working Example",
+    "text": "Working Example\n\nCounting the number of Generation X and younger,\n\n\nmoma_sample %&gt;% \n  group_by(genx) %&gt;% \n  tally()"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#working-example-4",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#working-example-4",
+    "title": "Posterior Inference and Prediction",
+    "section": "Working Example",
+    "text": "Working Example\n\nOur modeling is as follows,\n\n\n\\begin{align*}\nY|\\pi &\\sim \\text{Bin}(100,\\pi) \\\\\n\\pi &\\sim \\text{Beta}(4,6) \\\\\n\\pi | (Y = 14) &\\sim \\text{Beta(18,92)}\n\\end{align*}\n\n\nsummarize_beta_binomial(alpha = 4, beta = 6,\n                        y = 14, n = nrow(moma_sample))"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#working-example-5",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#working-example-5",
+    "title": "Posterior Inference and Prediction",
+    "section": "Working Example",
+    "text": "Working Example\n\n\nplot_beta_binomial(alpha = 4, beta = 6,\n                   y = 14, n = nrow(moma_sample)) +\n  theme_bw()"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#working-example-6",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#working-example-6",
+    "title": "Posterior Inference and Prediction",
+    "section": "Working Example",
+    "text": "Working Example\n\nWe must be able to utilize this posterior to perform a rigorous posterior analysis of \\pi.\nThere are three common tasks in posterior analysis:\n\nestimation,\nhypothesis testing, and\nprediction.\n\nFor example,\n\nWhat’s our estimate of \\pi?\nDoes our model support the claim that fewer than 20% of museum artists are Gen X or younger?\nIf we sample 20 more museum artists, how many do we predict will be Gen X or younger?"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-estimation",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-estimation",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Estimation",
+    "text": "Posterior Estimation\n\nWe can construct posterior credible intervals.\n\nLet \\theta have posterior pmf f(\\theta|y).\nA posterior credible interval (CI) provides a range of posterior plausible values of \\theta, and thus a summary of both posterior central tendency and variability.\nA middle 95% CI is constructed by the 2.5th and 97.5th posterior percentiles, \\left( \\theta_{0.025}, \\theta_{0.975} \\right), and there is a 95% posterior probability that \\theta is in this range,\n\n\nP\\left[ \\theta \\in (\\theta_{0.025}, \\theta_{0.975})|Y=y \\right] = \\int_{\\theta_{0.025}}^{\\theta_{0.975}} f(\\theta|y) d\\theta = 0.95"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-estimation-1",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-estimation-1",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Estimation",
+    "text": "Posterior Estimation\n\nRecall the Beta(18, 92) posterior model for \\pi, the proportion of modern art museum artists that are Gen X or younger.\n\n\nqbeta(c(0.025, 0.975), 18, 92) # 95% CI\n\n[1] 0.1009084 0.2379286\n\n\n\nThere is a 95% posterior probability that somewhere between 10% and 24% of museum artists are Gen X or younger.\n\n\nqbeta(c(0.25, 0.75), 18, 92) # 50% CI\n\n[1] 0.1388414 0.1862197\n\n\n\nThere is a 50% posterior probability that somewhere between 14% and 19% of museum artists are Gen X or younger."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-estimation-2",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-estimation-2",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Estimation",
+    "text": "Posterior Estimation\n\n95% is a common choice, however, note that it is somewhat arbitrary and used because of decades of tradition.\n\n\n\n\n\nThere is no one right credible interval.\n\nIt will just depend on the context of the analysis."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nSuppose we read an article claiming that fewer than 20% of museum artists are Gen X or younger.\n\n\n\n\n\nHow plausible is it that \\pi &lt; 0.2?\n\n\nP\\left[ \\pi &lt; 0.2 | Y = 14 \\right] = \\int_0^{0.2} f(\\pi|y = 14) d\\pi"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-1",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-1",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nPosterior Probability\n\n\nP\\left[ \\pi &lt; 0.2 | Y = 14 \\right] = \\int_0^{0.2} f(\\pi|y = 14) d\\pi\n\n\nWe can find this probability by using the pbeta() function:\n\n\npbeta(0.20, 18, 92)\n\n[1] 0.8489856\n\n\n\nThus,\n\n\nP\\left[ \\pi &lt; 0.2 | Y = 14 \\right] = 0.849\n\n\nThere is approximately an 84.9% posterior chance that Gen Xers account for fewer than 20% of modern art museum artists."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-2",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-2",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nPrior Probability\n\n\nP\\left[ \\pi &lt; 0.2 \\right] = \\int_0^{0.2} f(\\pi) d\\pi\n\n\nWe can find this probability by using the pbeta() function:\n\n\npbeta(0.20, 4, 6)\n\n[1] 0.08564173\n\n\n\nThus,\n\n\nP\\left[ \\pi &lt; 0.2 \\right] = 0.086\n\n\nThere is approximately an 8.6% prior chance that Gen Xers account for fewer than 20% of modern art museum artists."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-3",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-3",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nWe can create a table of information we will use to make inferences:\n\n\n\n\n\n\n\n\nHypotheses\n\n\n\n\n\n\nPrior Probability\n\n\n\n\n\n\nPosterior Probability\n\n\n\n\n\n\nH_0: \\pi \\ge 0.2\n\n\nP[H_0] = 0.914\n\n\nP[H_0 | Y= 14] = 0.151\n\n\n\n\nH_1: \\pi &lt; 0.2\n\n\nP[H_1] = 0.086\n\n\nP[H_1 | Y = 14] = 0.849"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-4",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-4",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nLet’s find the posterior odds:\n\n\n\n\n\n\n\n\nHypotheses\n\n\n\n\n\n\nPrior Probability\n\n\n\n\n\n\nPosterior Probability\n\n\n\n\n\n\nH_0: \\pi \\ge 0.2\n\n\nP[H_0] = 0.914\n\n\nP[H_0 | Y= 14] = 0.151\n\n\n\n\nH_1: \\pi &lt; 0.2\n\n\nP[H_1] = 0.086\n\n\nP[H_1 | Y = 14] = 0.849\n\n\n\n\n\n\n\\begin{align*}\n\\text{posterior odds} &= \\frac{P\\left[ H_1 | Y = 14 \\right]}{P\\left[ H_0 | Y = 14 \\right]} \\\\\n&= \\frac{0.849}{0.151} \\\\\n&\\approx 5.62\n\\end{align*}\n\n\nOur posterior assessment suggests that \\pi is 5.62 times more likely to be below 0.2 rather than being above 0.2."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-5",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-5",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nLet’s find the prior odds:\n\n\n\n\n\n\n\n\nHypotheses\n\n\n\n\n\n\nPrior Probability\n\n\n\n\n\n\nPosterior Probability\n\n\n\n\n\n\nH_0: \\pi \\ge 0.2\n\n\nP[H_0] = 0.914\n\n\nP[H_0 | Y= 14] = 0.151\n\n\n\n\nH_1: \\pi &lt; 0.2\n\n\nP[H_1] = 0.086\n\n\nP[H_1 | Y = 14] = 0.849\n\n\n\n\n\n\n\\begin{align*}\n\\text{prior odds} &= \\frac{P\\left[ H_1 \\right]}{P\\left[ H_0 \\right]} \\\\\n&= \\frac{0.086}{0.914} \\\\\n&\\approx 0.093\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-6",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-6",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nBayes Factor\n\nWhen we are comparing two competing hypotheses, H_0 vs. H_1, the Bayes Factor is an odds ratio for H_1:\n\n\n\n\\text{Bayes Factor} = \\frac{\\text{posterior odds}}{\\text{prior odds}} = \\frac{P\\left[H_1 | Y\\right] / P\\left[H_0 | Y\\right]}{P\\left[H_1\\right] / P\\left[H_0\\right]}\n\n\nWe will compare this value to 1.\n\nBF = 1: The plausibility of H_1 did not change in light of the observed data.\nBF &gt; 1: The plausibility of H_1 increased in light of the observed data.\n\nThe greater the Bayes Factor, the more convincing the evidence for H_1.\n\nBF &lt; 1: The plausibilty of H_1 decreased in light of the observed data."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-7",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-7",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nLet’s now find the Bayes Factor:\n\n\n\n\n\n\n\n\nHypotheses\n\n\n\n\n\n\nPrior Probability\n\n\n\n\n\n\nPosterior Probability\n\n\n\n\n\n\nH_0: \\pi \\ge 0.2\n\n\nP[H_0] = 0.914\n\n\nP[H_0 | Y= 14] = 0.151\n\n\n\n\nH_1: \\pi &lt; 0.2\n\n\nP[H_1] = 0.086\n\n\nP[H_1 | Y = 14] = 0.849\n\n\n\n\n\n\n\\begin{align*}\n\\text{Bayes Factor} &= \\frac{\\text{posterior odds}}{\\text{prior odds}} = \\frac{P\\left[H_1 | Y\\right] / P\\left[H_0 | Y\\right]}{P\\left[H_1\\right] / P\\left[H_0\\right]} \\\\\n&= \\frac{5.62}{0.09} \\\\\n&\\approx 62.44\n\\end{align*}"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-8",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-8",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nLet’s now find the Bayes Factor:\n\n\n\n\n\n\n\n\nHypotheses\n\n\n\n\n\n\nPrior Probability\n\n\n\n\n\n\nPosterior Probability\n\n\n\n\n\n\nH_0: \\pi \\ge 0.2\n\n\nP[H_0] = 0.914\n\n\nP[H_0 | Y= 14] = 0.151\n\n\n\n\nH_1: \\pi &lt; 0.2\n\n\nP[H_1] = 0.086\n\n\nP[H_1 | Y = 14] = 0.849\n\n\n\n\n\n\n\nprior_odds &lt;- pbeta(0.20, 4, 6)/(1-pbeta(0.20, 4, 6))\npost_odds &lt;- pbeta(0.20, 18, 92)/(1-pbeta(0.20, 18, 92))\n(BF &lt;- post_odds/prior_odds)\n\n[1] 60.02232"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-9",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-9",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nIt’s time to draw a conclusion!\n\nPosterior probability: 0.85\nBayes factor: 60\n\nWe have fairly convincing evidence in factor of the claim that fewer than 20% of artists at major modern art museums are Gen X or younger.\nThis gives us more information - we have a holistic measure of the level of uncertainty about the claim.\n\nThis should help us inform our next steps."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-10",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-10",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nWe now want to test whether or not 30% of major museum artists are Gen X or younger.\n\n\n\\begin{align*}\nH_0&: \\ \\pi = 0.3 \\\\\nH_1&: \\ \\pi \\ne 0.3\n\\end{align*}\n\n\nWhy is this an issue?\n\n\nP\\left[ \\pi =0.3 | Y = 14 \\right] = \\int_{0.3}^{0.3} f(\\pi|y = 14) d\\pi = 0\n\n\nand even worse,\n\n\n\\text{posterior odds}  = \\frac{P\\left[ H_1 | Y = 14 \\right]}{P\\left[ H_0 | Y = 14 \\right]} = \\frac{1}{0}"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-11",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-11",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nWelp."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-12",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-12",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nWelp.\nLet’s think about the 95% posterior credible interval for \\pi: (0.10, 0.24).\n\nDo we think that 0.3 is a plausible value?"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-13",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-hypothesis-testing-13",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Hypothesis Testing",
+    "text": "Posterior Hypothesis Testing\n\nWelp.\nLet’s think about the 95% posterior credible interval for \\pi: (0.10, 0.24).\n\nDo we think that 0.3 is a plausible value?\n\nLet’s reframe our hypotheses:\n\n\n\\begin{align*}\nH_0&: \\ \\pi \\in (0.25, 0.35) \\\\\nH_1&: \\ \\pi \\not\\in (0.25, 0.35)\n\\end{align*}\n\n\nNow, we can more rigorously claim belief in H_1.\n\nThe entire hypothesized range is above the 95% CI.\n\nThis also allows us a way to construct our hypothesis test with posterior probability and Bayes Factor."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Prediction",
+    "text": "Posterior Prediction\n\nIn addition to estimating the posterior and using the posterior distribution for hypothesis testing, we may be interested in predicting the outcome in a new dataset.\nExample: Suppose we get our hands on data for 20 more artworks displayed at the museum. Based on the posterior understanding of \\pi that we’ve developed throughout this chapter, what number would you predict are done by artists that are Gen X or younger?"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-1",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-1",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Prediction",
+    "text": "Posterior Prediction\n\nExample: Suppose we get our hands on data for 20 more artworks displayed at the museum. Based on the posterior understanding of \\pi that we’ve developed throughout this chapter, what number would you predict are done by artists that are Gen X or younger?\n\nLogical response:\n\nposterior guess was 16%\nn = 20\nn \\hat{\\pi} = 20(0.16) = 3.2\n\n… can we have 3.2 artworks?"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-2",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-2",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Prediction",
+    "text": "Posterior Prediction\n\nExample: Suppose we get our hands on data for 20 more artworks displayed at the museum. Based on the posterior understanding of \\pi that we’ve developed throughout this chapter, what number would you predict are done by artists that are Gen X or younger?\n\nTwo sources of variability in prediction:\n\nSampling variability: if we randomly sample n artists, we do not expect n \\hat{\\pi} \\in \\{1, 2, ..., n\\}.\nPosterior variability in \\pi: we know that 0.16 is not the singular posterior plausible value of \\pi.\n\n95% credible interval for \\pi: (0.10, 0.24)\nWhat do we expect to see under each possible \\pi?"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-3",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-3",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Prediction",
+    "text": "Posterior Prediction\n\nLet’s look at combining the sampling variability in our new Y and posterior variability in \\pi.\n\nLet Y' = y' be the (unknown) number of the 20 new artwork that are done by Gen X or younger artists.\n\ny' \\in \\{0, 1, ..., 20\\}.\n\nConditioned on \\pi, the sampling variability in Y' can be modeled\n\n\n\nY'|\\pi \\sim \\text{Bin}(20, \\pi)\n\n\nf(y'|\\pi) = P[Y' = y'|\\pi] = {20\\choose{y'}} \\pi^{y'} (1-\\pi)^{20-y'}"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-4",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-4",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Prediction",
+    "text": "Posterior Prediction\n\nWe can weight f(y'|\\pi) by the posterior pdf, f(\\pi|y=14).\n\nThis captures the chance of observing Y' = y' Gen Xers for a given \\pi\nAt the same time, this accounts for the posterior plausibility of \\pi.\n\n\nf(y'|\\pi) f(\\pi|y=14)"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-5",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-prediction-5",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Prediction",
+    "text": "Posterior Prediction\n\nThis leads us to the posterior predictive model of Y'.\n\n\nf(y'|y) = \\int f(y'|\\pi) f(\\pi|y) \\ d \\pi\n\n\nThe overall chance of observing Y' = y' weights the chance of observing this outcome under any possible \\pi by the posterior plausibility of \\pi.\n\nChance of observing this outcome under any \\pi: f(y'|\\pi).\nPosterior plausibility of \\pi: f(\\pi|y)."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\n# STEP 1: DEFINE the model\nart_model &lt;- \"\n  data {\n    int&lt;lower = 0, upper = 100&gt; Y;\n  }\n  parameters {\n    real&lt;lower = 0, upper = 1&gt; pi;\n  }\n  model {\n    Y ~ binomial(100, pi);\n    pi ~ beta(4, 6);\n  }\n\""
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-1",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-1",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\n# STEP 2: SIMULATE the posterior\nart_sim &lt;- stan(model_code = art_model, data = list(Y = 14),  chains = 4, iter = 5000*2, seed = 84735)\n\n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).\nChain 1: \nChain 1: Gradient evaluation took 3e-06 seconds\nChain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.\nChain 1: Adjust your expectations accordingly!\nChain 1: \nChain 1: \nChain 1: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 1: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 1: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 1: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 1: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 1: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 1: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 1: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 1: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 1: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 1: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 1: \nChain 1:  Elapsed Time: 0.013 seconds (Warm-up)\nChain 1:                0.013 seconds (Sampling)\nChain 1:                0.026 seconds (Total)\nChain 1: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).\nChain 2: \nChain 2: Gradient evaluation took 0 seconds\nChain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 2: Adjust your expectations accordingly!\nChain 2: \nChain 2: \nChain 2: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 2: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 2: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 2: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 2: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 2: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 2: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 2: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 2: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 2: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 2: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 2: \nChain 2:  Elapsed Time: 0.013 seconds (Warm-up)\nChain 2:                0.014 seconds (Sampling)\nChain 2:                0.027 seconds (Total)\nChain 2: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).\nChain 3: \nChain 3: Gradient evaluation took 0 seconds\nChain 3: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 3: Adjust your expectations accordingly!\nChain 3: \nChain 3: \nChain 3: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 3: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 3: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 3: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 3: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 3: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 3: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 3: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 3: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 3: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 3: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 3: \nChain 3:  Elapsed Time: 0.013 seconds (Warm-up)\nChain 3:                0.014 seconds (Sampling)\nChain 3:                0.027 seconds (Total)\nChain 3: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).\nChain 4: \nChain 4: Gradient evaluation took 0 seconds\nChain 4: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.\nChain 4: Adjust your expectations accordingly!\nChain 4: \nChain 4: \nChain 4: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 4: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 4: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 4: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 4: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 4: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 4: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 4: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 4: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 4: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 4: \nChain 4:  Elapsed Time: 0.012 seconds (Warm-up)\nChain 4:                0.011 seconds (Sampling)\nChain 4:                0.023 seconds (Total)\nChain 4:"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-2",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-2",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\n\n# Parallel trace plot\nmcmc_trace(art_sim, pars = \"pi\", size = 0.5) + xlab(\"iteration\")"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-3",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-3",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\n\n# Density plot\nmcmc_dens_overlay(art_sim, pars = \"pi\")"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-4",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-4",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\n\n# Autocorrelation plot\nmcmc_acf(art_sim, pars = \"pi\")"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-5",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-5",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\nAs we saw previously, the posterior was Beta(18, 92).\nWe will use the tidy() function from the broom.mixed package.\n\n\nlibrary(broom.mixed)\ntidy(art_sim, conf.int = TRUE, conf.level = 0.95)\n\n\n  \n\n\n\n\nThe approximate middle 95% CI for \\pi is (0.100, 0.239).\nOur approximation of the actual posterior median is 0.162."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-6",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-6",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\nWe can use the mcmc_areas() function from the bayesrules package to get a corresponding graph,\n\n\n\nmcmc_areas(art_sim, pars = \"pi\", prob = 0.95)"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-7",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-7",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\nUnfortunately, tidy() does not give everything we may be interested in.\n\nWe can save the Markov chain values to a dataset and analyze.\n\n\n\n# Store the 4 chains in 1 data frame\nart_chains_df &lt;- as.data.frame(art_sim, pars = \"lp__\", include = FALSE)\ndim(art_chains_df)\n\n[1] 20000     1\n\nhead(art_chains_df, n=3)"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-8",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-8",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\nWe can then summarize the Markov chain values,\n\n\nart_chains_df %&gt;% \n  summarize(post_mean = mean(pi), \n            post_median = median(pi),\n            post_mode = sample_mode(pi),\n            lower_95 = quantile(pi, 0.025),\n            upper_95 = quantile(pi, 0.975))\n\n\n  \n\n\n\n\nWe have reproduced/verified the results from tidy() (and then some!)"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-9",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-9",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\nNow that we have saved the Markov chain values, we can use them to answer questions about the data.\nRecall, we were interested in testing the claim that fewer than 20% of major museum artists are Gen X.\n\n\nart_chains_df %&gt;% \n  mutate(exceeds = pi &lt; 0.20) %&gt;% \n  tabyl(exceeds)\n\n\n  \n\n\n\n\nBy the posterior, there is an 84.6% chance that Gen X artist representation is under 20%."
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-10",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#posterior-simulation-10",
+    "title": "Posterior Inference and Prediction",
+    "section": "Posterior Simulation",
+    "text": "Posterior Simulation\n\nLet us compare the results between using conjugate family knowledge and MCMC.\n\n\n\n\n\nFrom this, we can see that MCMC gave us an accurate approximation.\nWe should use this as “proof” that the approximations are “reliable” for non-conjugate families.\n\nAlways look at diagnostics!"
+  },
+  {
+    "objectID": "files/lecture/W12-L1-posterior-analysis.html#homework",
+    "href": "files/lecture/W12-L1-posterior-analysis.html#homework",
+    "title": "Posterior Inference and Prediction",
+    "section": "Homework",
+    "text": "Homework\n\n8.4\n8.8\n8.9\n8.10\n8.14\n8.15\n8.16"
   },
   {
     "objectID": "files/lecture/W11-L1-approx-posterior.html#introduction",
