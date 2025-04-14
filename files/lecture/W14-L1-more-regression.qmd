@@ -1,0 +1,460 @@
+---
+title: "**Further Topics in Regression**"
+subtitle: "**STA6349: Applied Bayesian Analysis** <br> Spring 2025"
+date-format: long
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: true
+format: 
+  revealjs:
+    df-print: paged
+    code-overflow: wrap
+    embed-resources: true
+    slide-number: false
+    width: 1600
+    height: 900
+    html-math-method: katex
+    theme:
+      - default
+      - sp25.scss
+editor: source
+---
+
+## **Introduction**  
+
+- Last week, we learned regression for continuous outcomes using the normal distribution.
+
+- Today, we will focus on expanding to Poisson, negative binomial, and logistic regressions, so that we can model continuous, count, and categorical outcomes.
+
+## **Working Example**  
+
+- We will examine Australian weather from the `weather_WU` data in the `bayesrules` package. 
+    - This data contains 100 days of weather data for each of two Australian cities: Uluru and Wollongong.
+    
+```{r}
+library(bayesrules)
+library(rstanarm)
+library(bayesplot)
+library(tidyverse)
+library(broom.mixed)
+library(tidybayes)
+
+data(weather_WU)
+head(weather_WU, n = 3)
+```
+
+## **Working Example**  
+
+- Let's keep only the variables on afternoon temperatures (`temp3pm`) and a subset of possible predictors that we'd have access to in the morning:
+
+```{r}
+weather_WU <- weather_WU %>% 
+  select(location, windspeed9am, humidity9am, pressure9am, temp9am, temp3pm)
+head(weather_WU)
+```
+
+## **Working Example**  
+
+- We begin our analysis with the familiar: a simple Normal regression model of `temp3pm` with one quantitative predictor, the morning temperature `temp9am`, both measured in degrees Celsius.
+
+<center>
+```{r}
+ggplot(weather_WU, aes(x = temp9am, y = temp3pm)) +
+  geom_point(size = 0.2) + 
+  theme_bw()
+```
+</center>
+
+## **Working Example**  
+
+- Let's model the 3 pm temperature as a function of the 9 am temperature on a given day $i$.
+    - Outcome: $Y_i$ = 3 pm temp
+    - Predictor: $X_{i1}$ = 9 am temp
+    
+- Then, we can model it using the Bayesian normal regression model,
+
+$$
+\begin{align*}
+Y_i | \beta_0, \beta_1, \sigma &\overset{\text{ind}}{\sim} N(\mu_i, \sigma^2), \text{ with } \mu_i = \beta_0 + \beta_1 X_{i1} \\
+\beta_{0c} &\sim N(25, 5^2) \\
+\beta_1 &\sim N(0,3.1^2) \\
+\sigma & \sim \text{Exp}(0.13)
+\end{align*}
+$$
+
+- Note that we are using the centered intercept as 0 degree mornings are rare in Australia.
+
+## **Working Example**  
+
+- Simulating this model,
+
+```{r}
+weather_model_1 <- stan_glm(
+  temp3pm ~ temp9am, 
+  data = weather_WU, family = gaussian,
+  prior_intercept = normal(25, 5),
+  prior = normal(0, 2.5, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 4, iter = 5000*2, seed = 84735)
+```
+
+## **Working Example** 
+
+- Note that we asked `stan_glm()` to *autoscale* our priors. What did it change them to?
+
+```{r}
+prior_summary(weather_model_1)
+```
+
+## **Working Example** 
+
+<center>
+```{r}
+mcmc_trace(weather_model_1, size = 0.1)
+```
+</center>
+
+## **Working Example** 
+
+<center>
+```{r}
+mcmc_dens_overlay(weather_model_1)
+```
+</center>
+
+## **Working Example** 
+
+```{r}
+posterior_interval(weather_model_1, prob = 0.80)
+```
+
+- 80% credible interval for $\beta_1$: (0.98, 1.10)
+
+- 80% credible interval for $\sigma$: (3.87, 4.41)
+
+## **Working Example** 
+
+<center>
+```{r}
+pp_check(weather_model_1)
+```
+</center>
+
+## **Categorical Predictors**
+
+- What if we look at the data by location?
+
+<center>
+```{r}
+ggplot(weather_WU, aes(x = temp3pm, fill = location)) + 
+  geom_density(alpha = 0.5) + theme_bw()
+```
+</center>
+
+- We should probably look at location as a predictor...
+
+## **Categorical Predictors**
+
+- Let's let $X_{i2}$ be an indicator for the location,
+
+$$
+X_{i2} =
+\begin{cases}
+1 & \text{Wollongong} \\
+0 & \text{otherwise (i.e., Uluru).}
+\end{cases}
+$$
+
+- We are treating "not-Wollongong" as our reference group -- in this case, it is Uluru.
+
+$$
+\begin{array}{rl}
+\text{data:} & Y_i \mid \beta_0, \beta_1, \sigma \overset{\text{ind}}{\sim} N(\mu_i, \sigma^2) \quad \text{with} \quad \mu_i = \beta_0 + \beta_1 X_{i2} \\
+\text{priors:} & \beta_{0c} \sim N(25, 5^2) \\
+& \beta_1 \sim N(0, 38^2) \\
+& \sigma \sim \text{Exp}(0.13).
+\end{array}
+$$
+
+## **Categorical Predictors**
+
+- Let's think about our model.
+
+$$y = \beta_0 + \beta_1 x_2$$
+
+- What do our coefficients mean?
+    - $\beta_0$ is the typical 3 pm temperature in Uluru ($x_2=0$).
+    - $\beta_1$ is the typical difference in 3 pm temperature in Wollongong ($x_2=1$) as compared to Uluru ($x_2=0$).
+    - $\sigma$ represents the standard deviation in 3 pm temperatures in Wollongong and Uluru.
+
+- When we use a binary predictor, this results in two models, effectively. 
+    - One when $x_1=0$ (Uluru) and one when $x_1=1$ (Wollongong).
+
+$$
+\begin{align*}
+y = \beta_0 + \beta_1 x_2 \to \text{(U)} \ y &= \beta_0 \\
+\text{(W)} \ y&=  \beta_0+\beta_1
+\end{align*}
+$$
+
+## **Categorical Predictors**
+
+- Let's simulate our posterior using weakly informative priors,
+
+```{r}
+weather_model_2 <- stan_glm(
+  temp3pm ~ location,
+  data = weather_WU, family = gaussian,
+  prior_intercept = normal(25, 5),
+  prior = normal(0, 2.5, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 4, iter = 5000*2, seed = 84735)
+```
+
+## **Categorical Predictors** 
+
+<center>
+```{r}
+mcmc_trace(weather_model_2, size = 0.1)
+```
+</center>
+
+## **Categorical Predictors** 
+
+<center>
+```{r}
+mcmc_dens_overlay(weather_model_2)
+```
+</center>
+
+## **Categorical Predictors**
+
+- Looking at the posterior summary statistics,
+
+```{r}
+tidy(weather_model_2, effects = c("fixed", "aux"),
+     conf.int = TRUE, conf.level = 0.80) %>% 
+  select(-std.error)
+```
+
+## **Categorical Predictors**
+
+- We can also look at the temperatures by location,
+
+<center>
+```{r}
+as.data.frame(weather_model_2) %>% 
+  mutate(uluru = `(Intercept)`, 
+         wollongong = `(Intercept)` + locationWollongong) %>% 
+  mcmc_areas(pars = c("uluru", "wollongong"))
+```
+</center>
+
+## **Multiple Predictors**
+
+- What if we want to include multiple predictors?
+    - Notice in the code, our model now has multiple predictors (`temp9am` and `location`).
+    - Here, we are simulating the *prior* - this will allow us to graphically examine what we are claiming with the priors.
+
+```{r}
+weather_model_3_prior <- stan_glm(
+  temp3pm ~ temp9am + location,
+  data = weather_WU, family = gaussian, 
+  prior_intercept = normal(25, 5),
+  prior = normal(0, 2.5, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 4, iter = 5000*2, seed = 84735,
+  prior_PD = TRUE)
+```
+
+## **Multiple Predictors**
+
+- From the simulated priors,
+    - We can look at different sets of 3 p.m. temperature data (left graph).
+    - We can also look at our prior assumptions about the relationship between 3 p.m. and 9 a.m. temperature at each location (right graph)
+        - The graph tells us that our prior is vague - when it comes to Australian weather, we're just not sure what is going on.
+
+<center>
+```{r}
+#| echo: false
+
+set.seed(84735)
+a <- weather_WU %>%
+  add_predicted_draws(weather_model_3_prior, n = 100) %>%
+  ggplot(aes(x = .prediction, group = .draw)) +
+    geom_density() + 
+    xlab("temp3pm") + theme_bw()
+
+b <- weather_WU %>%
+  add_fitted_draws(weather_model_3_prior, n = 100) %>%
+  ggplot(aes(x = temp9am, y = temp3pm, color = location)) +
+    geom_line(aes(y = .value, group = paste(location, .draw))) + theme_bw()
+
+library(ggpubr)
+ggarrange(a, b, ncol=2)
+```
+</center>
+
+## **Multiple Predictors**
+
+- Instead of starting the `stan_glm()` syntax from scratch, we can `update()` the `weather_model_3_prior` by setting `prior_PD = FALSE`:
+
+```{r}
+weather_model_3 <- update(weather_model_3_prior, prior_PD = FALSE)
+```
+
+## **Multiple Predictors**
+
+- The simulation results in 20,000 posterior plausible relationships between temperature and location.
+
+- You try the following code:
+
+<center>
+```{r}
+#| eval: false
+weather_WU %>%
+  add_fitted_draws(weather_model_3, n = 100) %>%
+  ggplot(aes(x = temp9am, y = temp3pm, color = location)) +
+    geom_line(aes(y = .value, group = paste(location, .draw)), alpha = .1) +
+    geom_point(data = weather_WU, size = 0.1) +
+  theme_bw()
+```
+</center>
+
+## **Multiple Predictors**
+
+- The simulation results in 20,000 posterior plausible relationships between temperature and location.
+
+<center>
+```{r}
+#| echo: false
+weather_WU %>%
+  add_fitted_draws(weather_model_3, n = 100) %>%
+  ggplot(aes(x = temp9am, y = temp3pm, color = location)) +
+    geom_line(aes(y = .value, group = paste(location, .draw)), alpha = .1) +
+    geom_point(data = weather_WU, size = 0.1) +
+  theme_bw()
+```
+</center>
+
+- 3 p.m. temperature is positively associated with 9 a.m. temperature and tends to be higher in Uluru than in Wollongong. 
+
+- Further, relative to the prior simulated relationships in Figure 11.9, these posterior relationships are very consistent 
+
+## **Multiple Predictors**
+
+- Looking at the posterior summary statistics,
+
+```{r}
+tidy(weather_model_3, effects = c("fixed", "aux"),
+     conf.int = TRUE, conf.level = 0.80) %>% 
+  select(-std.error)
+```
+
+## **Multiple Predictions**
+
+- You try! Run the following code to look at our posterior predictive models.
+
+<center>
+```{r}
+#| eval: false
+# Simulate a set of predictions
+set.seed(84735)
+temp3pm_prediction <- posterior_predict(
+  weather_model_3,
+  newdata = data.frame(temp9am = c(10, 10), 
+                       location = c("Uluru", "Wollongong")))
+
+# Plot the posterior predictive models
+mcmc_areas(temp3pm_prediction) +
+  ggplot2::scale_y_discrete(labels = c("Uluru", "Wollongong")) + 
+  xlab("temp3pm")
+```
+</center>
+
+## **Multiple Predictions**
+
+<center>
+```{r}
+#| echo: false
+
+# Simulate a set of predictions
+set.seed(84735)
+temp3pm_prediction <- posterior_predict(
+  weather_model_3,
+  newdata = data.frame(temp9am = c(10, 10), 
+                       location = c("Uluru", "Wollongong")))
+
+# Plot the posterior predictive models
+mcmc_areas(temp3pm_prediction) +
+  ggplot2::scale_y_discrete(labels = c("Uluru", "Wollongong")) + 
+  xlab("temp3pm")
+```
+</center>
+
+- Roughly speaking, we can anticipate 3 p.m. temperatures between 15 and 25 degrees in Uluru, and cooler temperatures between 8 and 18 in Wollongong.
+
+## **Poisson Regression**
+
+```{r}
+#| eval: false
+# Simulate the prior distribution
+equality_model_prior <- stan_glm(laws ~ percent_urban + historical, 
+                                 data = equality, 
+                                 family = poisson,
+                                 prior_intercept = normal(2, 0.5),
+                                 prior = normal(0, 2.5, autoscale = TRUE), 
+                                 chains = 4, iter = 5000*2, seed = 84735, 
+                                 prior_PD = TRUE)
+
+# Update to simulate the posterior distribution
+equality_model <- update(equality_model_prior, prior_PD = FALSE)
+```
+
+## **Negative Binomial Regression**
+
+```{r}
+#| eval: false
+
+# Simulate the prior distribution
+books_negbin_sim <- stan_glm(
+  books ~ age + wise_unwise, 
+  data = pulse, family = neg_binomial_2,
+  prior_intercept = normal(0, 2.5, autoscale = TRUE),
+  prior = normal(0, 2.5, autoscale = TRUE), 
+  prior_aux = exponential(1, autoscale = TRUE),
+  chains = 4, iter = 5000*2, seed = 84735)
+
+# Update to simulate the posterior distribution
+equality_model <- update(equality_model_prior, prior_PD = FALSE)
+```
+
+## **Logistic Regression**
+
+```{r}
+#| eval: false
+# Simulate the prior distribution
+rain_model_prior <- stan_glm(raintomorrow ~ humidity9am,
+                             data = weather, family = binomial,
+                             prior_intercept = normal(-1.4, 0.7),
+                             prior = normal(0.07, 0.035),
+                             chains = 4, iter = 5000*2, seed = 84735,
+                             prior_PD = TRUE)
+
+# Update to simulate the posterior distribution
+rain_model_1 <- update(rain_model_prior, prior_PD = FALSE)
+```
+
+## **Wrap Up**
+
+- Today, we have expanded to multiple predictors in our model.
+    
+- Wednesday next week:
+    - Assignment to practice regression.
+    
+- Monday & Wednesday next week:
+    - Project 2! (We will build regression models. Surprise!)
+    - You will present on Wednesday.
+    - We will have smaller groups ($n=2$) this time.
