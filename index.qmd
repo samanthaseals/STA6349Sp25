@@ -33,13 +33,13 @@ title-block-banner: false
 | W 03/12 | Assignment 2 |
 | M 03/17 | Spring Break! | 
 | W 03/19 | Spring Break! |  
-| M 03/24 | Approximating the Posterior (pt 1) | <a href="files/lecture/W11-L1-approx-posterior.htm l"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W11-L1-approx-posterior.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a>
-| W 03/26 | Approximating the Posterior (pt 2) | <a href="files/lecture/W11-L1-approx-posterior.htm l"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W11-L1-approx-posterior.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> 
-| M 03/31 | Posterior Inference & Prediction | <a href="files/lecture/W12-L1-posterior-analysis.htm l"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W12-L1-posterior-analysis.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> 
+| M 03/24 | Approximating the Posterior (pt 1) | <a href="files/lecture/W11-L1-approx-posterior.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W11-L1-approx-posterior.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a>
+| W 03/26 | Approximating the Posterior (pt 2) | <a href="files/lecture/W11-L1-approx-posterior.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W11-L1-approx-posterior.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> 
+| M 03/31 | Posterior Inference & Prediction | <a href="files/lecture/W12-L1-posterior-analysis.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W12-L1-posterior-analysis.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> 
 | W 04/02 | Project 1 (in class work) |
 | M 04/07 | Project 1 (presentation) |
-| W 04/09 | Simple Normal Regression |
-| M 04/14 | Multiple Regression |
+| W 04/09 | Simple Normal Regression | <a href="files/lecture/W13-L1-simple-regression.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W13-L1-simple-regression.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> 
+| M 04/14 | Multiple Regression | <a href="files/lecture/W14-L1-more-regression.html"><i class="fa fa-display fa-s" style="color: #8DC8E8;"></i></a> <a href="https://github.com/samanthaseals/STA6349Sp25/blob/main/files/lecture/W14-L1-more-regression.qmd"><i class="fa fa-paperclip" style="color: #8DC8E8;"></i></a> 
 | W 04/16 | Assignment 3 |
 | M 04/21 | Project 2 (in class work)
 | W 04/23 | Project 2 (presentation)
